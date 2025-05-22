@@ -1,0 +1,116 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  padding: 1rem 0;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--green);
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.navLinks {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.navLinks a {
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navLinks a:hover {
+  color: var(--green);
+}
+
+.navButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.loginButton {
+  background: transparent;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--purple);
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.loginButton:hover {
+  background-color: var(--purple);
+}
+
+.signupButton {
+  background-color: var(--green);
+  color: var(--black);
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.signupButton:hover {
+  background-color: #6daf7d;
+}
+
+.mobileMenuButton {
+  display: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mobileMenuButton {
+    display: block;
+    z-index: 1001;
+  }
+
+  .navLinks,
+  .navButtons {
+    position: fixed;
+    flex-direction: column;
+    background-color: var(--black);
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    padding-top: 5rem;
+    transition: right 0.3s ease;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .navLinks {
+    gap: 2rem;
+    padding-top: 8rem;
+  }
+
+  .navButtons {
+    padding-top: 2rem;
+  }
+
+  .navLinks.active,
+  .navButtons.active {
+    right: 0;
+  }
+}
