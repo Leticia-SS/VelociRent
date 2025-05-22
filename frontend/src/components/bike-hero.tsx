@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react"
 import Logo from "../assets/logo-sem-fundo.png"
 
 const BikeHero = () => {
+    // alteração inutil
   return (
     <section className={styles.hero}>
       <div className={styles.heroContent}>
