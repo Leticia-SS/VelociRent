@@ -7,13 +7,13 @@ const BikeHero = () => {
   return (
     <section className={styles.hero}>
       <div className={styles.heroContent}>
-        <h1>Explore the city on two wheels</h1>
-        <p>Convenient, affordable, and eco-friendly bike rentals at your fingertips</p>
+        <h1>Sua ida mais fácil e sempre disponível</h1>
+        <p>A sua volta para casa é nossa responsabilidade, com bikes acessíveis e sustentáveis na ponta do seus dedos.</p>
         <div className={styles.heroButtons}>
           <button className={styles.primaryButton}>
-            Rent a bike <ArrowRight size={16} />
+            Alugue uma bicicleta! <ArrowRight size={16} />
           </button>
-          <button className={styles.secondaryButton}>Download app</button>
+          <button className={styles.secondaryButton}>Acessar pelo app</button>
         </div>
       </div>
       <div className={styles.heroImage}>
@@ -23,7 +23,7 @@ const BikeHero = () => {
       </div>
       <div className={styles.scrollIndicator}>
         <div className={styles.mouseIcon}></div>
-        <span>Scroll to explore</span>
+        <span>Role para explorar</span>
       </div>
     </section>
   )

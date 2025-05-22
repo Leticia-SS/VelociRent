@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className={styles.navContainer}>
         <div className={styles.logo}>
           <Bike size={24} />
-          <span>BikeShare</span>
+          <span>VelociRent</span>
         </div>
 
         <div className={styles.mobileMenuButton} onClick={toggleMenu}>
@@ -28,22 +28,22 @@ const Navbar = () => {
             <a href="#">Bikes</a>
           </li>
           <li>
-            <a href="#">Locations</a>
+            <a href="#">Como retirar</a>
           </li>
           <li>
-            <a href="#">Pricing</a>
+            <a href="#">Tempo de uso</a>
           </li>
           <li>
-            <a href="#">Safety</a>
+            <a href="#">Estágios</a>
           </li>
           <li>
-            <a href="#">About</a>
+            <a href="#">Sobre nós</a>
           </li>
         </ul>
 
         <div className={`${styles.navButtons} ${isMenuOpen ? styles.active : ""}`}>
-          <button className={styles.loginButton}>Log in</button>
-          <button className={styles.signupButton}>Sign up</button>
+          <button className={styles.loginButton}>Login</button>
+          <button className={styles.signupButton}>Cadastre-se</button>
         </div>
       </div>
     </nav>
