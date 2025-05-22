@@ -1,4 +1,4 @@
 package com.velocirent.entities;
 
-public class Bikes {
+public class VelociBookings {
 }

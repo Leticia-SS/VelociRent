@@ -1,4 +1,4 @@
 package com.velocirent.entities;
 
-public class Users {
+public class VelociUsers {
 }
