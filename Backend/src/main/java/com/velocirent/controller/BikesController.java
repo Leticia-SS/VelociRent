@@ -29,9 +29,21 @@ public class BikesController {
     }
 
     @PostMapping
-    public ResponseEntity<Bikes> createBike(@RequestBody Bikes bike) {
-        Bikes savedBike = bikesRepository.save(bike);
-        return ResponseEntity.ok(savedBike);
+    public ResponseEntity<?> createBike(@RequestBody Bikes bike) {
+        try {
+            if (bike.getModel() == null || bike.getModel().isBlank()) {
+                return ResponseEntity.badRequest().body("Modelo da bike é obrigatório");
+            }
+
+            if (bikesRepository.existsById(bike.getId())) {
+                return ResponseEntity.badRequest().body("ID da bike já existe");
+            }
+
+            Bikes savedBike = bikesRepository.save(bike);
+            return ResponseEntity.ok(savedBike);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body("Erro ao criar bike: " + e.getMessage());
+        }
     }
 
     @PutMapping("/{id}")

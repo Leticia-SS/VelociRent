@@ -10,6 +10,9 @@ public class Bikes {
     private String model;
     private boolean available;
 
+    public Bikes() {
+    }
+
     public Bikes(int id, String model, boolean available) {
         this.id = id;
         this.model = model;
