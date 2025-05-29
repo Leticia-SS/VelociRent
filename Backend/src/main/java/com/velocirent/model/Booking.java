@@ -28,6 +28,9 @@ public class Booking {
         this.status = status;
     }
 
+    public Booking() {
+    }
+
     public int getId() {
         return id;
     }

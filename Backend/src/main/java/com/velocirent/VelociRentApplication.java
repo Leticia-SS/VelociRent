@@ -10,5 +10,4 @@ public class VelociRentApplication {
 
 		SpringApplication.run(VelociRentApplication.class, args);
 	}
-
 }
