@@ -5,3 +5,7 @@
   background-color: #000000;
   color: white;
 }
+
+.content {
+  flex: 1;
+}

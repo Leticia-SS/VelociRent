@@ -1,0 +1,319 @@
+.pickupPage {
+  min-height: 100vh;
+  padding-top: 70px; /* Space for fixed navbar */
+}
+
+.pickupHero {
+  background: linear-gradient(to right, var(--dark-purple), var(--black));
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.pickupHeroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pickupHero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pickupHero p {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.pickupContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.pickupIntro {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.pickupIconContainer {
+  width: 80px;
+  height: 80px;
+  background-color: var(--dark-purple);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: var(--green);
+}
+
+.pickupIntro h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.pickupIntro p {
+  max-width: 700px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+.stepsSection {
+  margin-bottom: 4rem;
+}
+
+.stepsSection h3 {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.stepsSection h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  border-radius: 2px;
+}
+
+.stepsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.stepCard {
+  background-color: rgba(59, 49, 99, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.stepCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(115, 98, 149, 0.2);
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stepNumber {
+  width: 40px;
+  height: 40px;
+  background-color: var(--purple);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.stepIcon {
+  color: var(--green);
+}
+
+.stepContent h4 {
+  color: white;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.stepDescription {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.stepDetails {
+  list-style: none;
+  padding: 0;
+}
+
+.stepDetails li {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.stepDetails li::before {
+  content: "•";
+  color: var(--green);
+  position: absolute;
+  left: 0;
+}
+
+.tipsSection {
+  margin-bottom: 4rem;
+}
+
+.tipsSection h3 {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.tipsSection h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  border-radius: 2px;
+}
+
+.tipsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.tipCard {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  gap: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.tipCard:hover {
+  transform: translateY(-3px);
+}
+
+.tipIcon {
+  color: var(--purple);
+  flex-shrink: 0;
+}
+
+.tipContent h4 {
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.tipContent p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.pickupCTA {
+  background: linear-gradient(to right, var(--dark-purple), var(--purple));
+  padding: 3rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.pickupCTA h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.pickupCTA p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pickupButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.primaryButton {
+  background-color: var(--green);
+  color: var(--black);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.primaryButton:hover {
+  background-color: #6daf7d;
+  transform: translateY(-2px);
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--green);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  background-color: rgba(133, 197, 148, 0.1);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .pickupHero {
+    padding: 4rem 1.5rem;
+  }
+
+  .pickupHero h1 {
+    font-size: 2.5rem;
+  }
+
+  .pickupContainer {
+    padding: 3rem 1.5rem;
+  }
+
+  .stepsList {
+    grid-template-columns: 1fr;
+  }
+
+  .tipsList {
+    grid-template-columns: 1fr;
+  }
+
+  .pickupCTA {
+    padding: 2rem 1.5rem;
+  }
+
+  .pickupButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tipCard {
+    flex-direction: column;
+    text-align: center;
+  }
+}
