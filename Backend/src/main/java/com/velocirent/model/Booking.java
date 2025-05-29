@@ -1,19 +1,28 @@
-package com.velocirent.modelo;
+package com.velocirent.model;
+
+import jakarta.persistence.*;
 
 import java.util.Date;
 
+@Entity
+@Table(name = "veloci_bookings")
 public class Booking {
+    @Id
     private int id;
-    private int userId;
-    private int bikeId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "matricula")
+    private Users user;
+    @ManyToOne
+    @JoinColumn(name = "bike_id")
+    private Bikes bike;
     private Date startTime;
     private Date endTime;
     private String status;
 
-    public Booking(int id, int userId, int bikeId, Date startTime, Date endTime, String status) {
+    public Booking(int id, Users user, Bikes bike, Date startTime, Date endTime, String status) {
         this.id = id;
-        this.userId = userId;
-        this.bikeId = bikeId;
+        this.user = user;
+        this.bike = bike;
         this.startTime = startTime;
         this.endTime = endTime;
         this.status = status;
@@ -25,22 +34,6 @@ public class Booking {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getBikeId() {
-        return bikeId;
-    }
-
-    public void setBikeId(int bikeId) {
-        this.bikeId = bikeId;
     }
 
     public Date getStartTime() {
@@ -65,5 +58,21 @@ public class Booking {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
+
+    public Bikes getBike() {
+        return bike;
+    }
+
+    public void setBike(Bikes bike) {
+        this.bike = bike;
     }
 }

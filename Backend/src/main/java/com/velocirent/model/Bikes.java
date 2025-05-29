@@ -1,16 +1,19 @@
-package com.velocirent.modelo;
+package com.velocirent.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "veloci_bikes")
 public class Bikes {
+    @Id
     private int id;
     private String model;
     private boolean available;
-    private int ownerMatricula;
 
-    public Bikes(int id, String model, boolean available, int ownerMatricula) {
+    public Bikes(int id, String model, boolean available) {
         this.id = id;
         this.model = model;
         this.available = available;
-        this.ownerMatricula = ownerMatricula;
     }
 
     public int getId() {
@@ -37,11 +40,4 @@ public class Bikes {
         this.available = available;
     }
 
-    public int getOwnerMatricula() {
-        return ownerMatricula;
-    }
-
-    public void setOwnerMatricula(int ownerMatricula) {
-        this.ownerMatricula = ownerMatricula;
-    }
 }
