@@ -4,6 +4,9 @@ import Footer from "./components/footer"
 import HomePage from "./pages/home-page"
 import BikesPage from "./pages/bikes-page"
 import PickupPage from "./pages/pickup-page"
+import UsagePage from "./pages/usage-page"
+import InternshipsPage from "./pages/internships-page"
+import AboutPage from "./pages/about-page"
 import "./App.css"
 
 function App() {
@@ -16,6 +19,9 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/bikes" element={<BikesPage />} />
             <Route path="/pickup" element={<PickupPage />} />
+            <Route path="/usage" element={<UsagePage />} />
+            <Route path="/internships" element={<InternshipsPage />} />
+            <Route path="/about" element={<AboutPage />} />
           </Routes>
         </div>
         <Footer />

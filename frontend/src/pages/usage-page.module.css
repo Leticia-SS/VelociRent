@@ -1,0 +1,423 @@
+.usagePage {
+  min-height: 100vh;
+  padding-top: 70px; /* Space for fixed navbar */
+}
+
+.usageHero {
+  background: linear-gradient(to right, var(--dark-purple), var(--black));
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.usageHeroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.usageHero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.usageHero p {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.usageContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.usageIntro {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.usageIconContainer {
+  width: 80px;
+  height: 80px;
+  background-color: var(--dark-purple);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: var(--green);
+}
+
+.usageIntro h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.usageIntro p {
+  max-width: 700px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+.optionsSection {
+  margin-bottom: 4rem;
+}
+
+.optionsSection h3 {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.optionsSection h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  border-radius: 2px;
+}
+
+.optionsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.optionCard {
+  background-color: rgba(59, 49, 99, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.optionCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(115, 98, 149, 0.2);
+}
+
+.optionCard.popular {
+  border-color: var(--green);
+  background-color: rgba(133, 197, 148, 0.1);
+}
+
+.popularBadge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--green);
+  color: var(--black);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.optionHeader {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.optionIcon {
+  color: var(--green);
+  margin-bottom: 1rem;
+}
+
+.optionHeader h4 {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.optionDuration {
+  color: var(--purple);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.optionDescription {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.optionFeatures {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.optionFeatures li {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.optionFeatures li::before {
+  content: "✓";
+  color: var(--green);
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.optionPrice {
+  color: var(--green);
+  font-size: 1.25rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.optionButton {
+  background-color: var(--green);
+  color: var(--black);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.optionButton:hover {
+  background-color: #6daf7d;
+}
+
+.benefitsSection {
+  margin-bottom: 4rem;
+}
+
+.benefitsSection h3 {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.benefitsSection h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  border-radius: 2px;
+}
+
+.benefitsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.benefitCard {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.benefitCard:hover {
+  transform: translateY(-5px);
+}
+
+.benefitIcon {
+  color: var(--purple);
+  margin-bottom: 1rem;
+}
+
+.benefitContent h4 {
+  color: white;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.benefitContent p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+.guidelinesSection {
+  margin-bottom: 4rem;
+}
+
+.guidelinesSection h3 {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.guidelinesSection h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  border-radius: 2px;
+}
+
+.guidelinesList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.guidelineCard {
+  background-color: rgba(59, 49, 99, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.guidelineCard:hover {
+  transform: translateY(-5px);
+}
+
+.guidelineCard h4 {
+  color: var(--green);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.guidelineCard ul {
+  list-style: none;
+  padding: 0;
+}
+
+.guidelineCard li {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.guidelineCard li::before {
+  content: "•";
+  color: var(--purple);
+  position: absolute;
+  left: 0;
+}
+
+.usageCTA {
+  background: linear-gradient(to right, var(--dark-purple), var(--purple));
+  padding: 3rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.usageCTA h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.usageCTA p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.usageButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.primaryButton {
+  background-color: var(--green);
+  color: var(--black);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.primaryButton:hover {
+  background-color: #6daf7d;
+  transform: translateY(-2px);
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--green);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  background-color: rgba(133, 197, 148, 0.1);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .usageHero {
+    padding: 4rem 1.5rem;
+  }
+
+  .usageHero h1 {
+    font-size: 2.5rem;
+  }
+
+  .usageContainer {
+    padding: 3rem 1.5rem;
+  }
+
+  .optionsList {
+    grid-template-columns: 1fr;
+  }
+
+  .benefitsList {
+    grid-template-columns: 1fr;
+  }
+
+  .guidelinesList {
+    grid-template-columns: 1fr;
+  }
+
+  .usageCTA {
+    padding: 2rem 1.5rem;
+  }
+
+  .usageButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -40,13 +40,19 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <a href="#">Pricing</a>
+            <Link to="/usage" onClick={closeMenu}>
+              Usage time
+            </Link>
           </li>
           <li>
-            <a href="#">Safety</a>
+            <Link to="/internships" onClick={closeMenu}>
+              Internships
+            </Link>
           </li>
           <li>
-            <a href="#">About</a>
+            <Link to="/about" onClick={closeMenu}>
+              About
+            </Link>
           </li>
         </ul>
 
