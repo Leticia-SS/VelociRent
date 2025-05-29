@@ -15,6 +15,7 @@ public class MeuBot extends TelegramLongPollingBot {
     private Map<Long, String> perfisUsuarios = new HashMap<>();
     private Map<Long, String> bicicletasAlugadas = new HashMap<>();
     private Map<Long, String> dadosTemporarios = new HashMap<>();
+    private Tratamentos tratamentos = new Tratamentos();
 
     @Override
     public String getBotUsername() {
@@ -65,256 +66,37 @@ public class MeuBot extends TelegramLongPollingBot {
                     break;
 
                 case "AGUARDANDO_MATRICULA":
-                    tratarMatricula(chatId, mensagem);
+                    tratamentos.tratarMatricula(this, chatId, mensagem, estadosUsuarios, perfisUsuarios);
                     break;
 
                 case "MENU_ALUNO":
-                    tratarMenuAluno(chatId, mensagem);
+                    tratamentos.tratarMenuAluno(this, chatId, mensagem, bicicletasAlugadas, estadosUsuarios);
                     break;
 
                 case "MENU_PROFESSOR":
-                    tratarMenuProfessor(chatId, mensagem);
+                    tratamentos.tratarMenuProfessor(this, chatId, mensagem, bicicletasAlugadas, estadosUsuarios);
                     break;
 
                 case "MENU_MECANICO":
-                    tratarMenuMecanico(chatId, mensagem);
+                    tratamentos.tratarMenuMecanico(this, chatId, mensagem, bicicletasAlugadas, estadosUsuarios);
                     break;
 
                 case "MENU_ADMIN":
-                    tratarMenuAdmin(chatId, mensagem);
+                    tratamentos.tratarMenuAdmin(this, chatId, mensagem, bicicletasAlugadas, estadosUsuarios);
                     break;
 
                 case "AGUARDANDO_RETORNO":
-                    tratarRetornoBicicleta(chatId, mensagem);
+                    tratamentos.tratarRetornoBicicleta(this, chatId, mensagem, bicicletasAlugadas, perfisUsuarios, estadosUsuarios);
                     break;
 
                 case "AGUARDANDO_EDICAO_STATUS":
-                    tratarEdicaoStatus(chatId, mensagem);
+                    tratamentos.tratarEdicaoStatus(this, chatId, mensagem, estadosUsuarios);
                     break;
 
                 default:
                     enviarMensagem(chatId, "Erro de estado. Reinicie com /start.");
                     estadosUsuarios.put(chatId, "INICIO");
             }
-        }
-    }
-
-    private void tratarMatricula(Long chatId, String mensagem) {
-        if (mensagem.equals("123")) {
-            perfisUsuarios.put(chatId, "ALUNO");
-            estadosUsuarios.put(chatId, "MENU_ALUNO");
-            PerfilUsuario.mostrarMenuAluno(this, chatId, "Argos");
-        } else if (mensagem.equals("456")) {
-            perfisUsuarios.put(chatId, "PROFESSOR");
-            estadosUsuarios.put(chatId, "MENU_PROFESSOR");
-            PerfilUsuario.mostrarMenuProfessor(this, chatId, "Lara");
-        } else if (mensagem.equals("789")) {
-            perfisUsuarios.put(chatId, "MECANICO");
-            estadosUsuarios.put(chatId, "MENU_MECANICO");
-            PerfilUsuario.mostrarMenuMecanico(this, chatId, "Megan");
-        } else if (mensagem.equals("1011")) {
-            perfisUsuarios.put(chatId, "ADMIN");
-            estadosUsuarios.put(chatId, "MENU_ADMIN");
-            PerfilUsuario.mostrarMenuAdmin(this, chatId, "Fazoeli");
-        } else {
-            enviarMensagem(chatId, "❌ Matrícula inválida. Tente novamente:");
-        }
-    }
-
-    private void tratarMenuAluno(Long chatId, String mensagem) {
-        switch (mensagem) {
-            case "🚲 Alugar bicicleta":
-                if (bicicletasAlugadas.containsKey(chatId)) {
-                    enviarMensagemComOpcaoMenu(chatId, "⚠️ Você já tem uma bicicleta alugada: " + bicicletasAlugadas.get(chatId));
-                } else {
-                    bicicletasAlugadas.put(chatId, "Bike#A" + new Random().nextInt(100));
-                    enviarMensagemComOpcaoMenu(chatId, "✅ Você alugou a bicicleta: " + bicicletasAlugadas.get(chatId));
-                }
-                break;
-
-            case "📜 Ver histórico":
-                enviarMensagemComOpcaoMenu(chatId, "📅 Histórico de aluguéis:\n" +
-                        "1. Bike#A23 - 10/05/2023 14:30\n" +
-                        "2. Bike#A45 - 05/05/2023 09:15");
-                break;
-
-            case "🔄 Retornar bicicleta":
-                if (bicicletasAlugadas.containsKey(chatId)) {
-                    estadosUsuarios.put(chatId, "AGUARDANDO_RETORNO");
-                    enviarMensagem(chatId, "Por favor, informe o estado da bicicleta " +
-                            bicicletasAlugadas.get(chatId) + " (ótimo, bom, regular, ruim):");
-                } else {
-                    enviarMensagemComOpcaoMenu(chatId, "❌ Você não tem nenhuma bicicleta alugada no momento.");
-                }
-                break;
-
-            case "❌ Encerrar atendimento":
-                enviarMensagem(chatId, "👋 Atendimento encerrado. Obrigado por usar a VelociRent!");
-                estadosUsuarios.put(chatId, "INICIO");
-                break;
-
-            default:
-                enviarMensagemComOpcaoMenu(chatId, "Opção inválida. Por favor, selecione uma opção do menu.");
-        }
-    }
-
-    private void tratarMenuProfessor(Long chatId, String mensagem) {
-        switch (mensagem) {
-            case "🚲 Alugar bicicleta":
-                if (bicicletasAlugadas.containsKey(chatId)) {
-                    enviarMensagemComOpcaoMenu(chatId, "⚠️ Você já tem uma bicicleta alugada: " + bicicletasAlugadas.get(chatId));
-                } else {
-                    bicicletasAlugadas.put(chatId, "Bike#A" + new Random().nextInt(100));
-                    enviarMensagemComOpcaoMenu(chatId, "✅ Você alugou a bicicleta: " + bicicletasAlugadas.get(chatId));
-                }
-                break;
-
-            case "📜 Ver histórico":
-                enviarMensagemComOpcaoMenu(chatId, "📅 Histórico de aluguéis:\n" +
-                        "1. Bike#A23 - 10/05/2023 14:30\n" +
-                        "2. Bike#A45 - 05/05/2023 09:15");
-                break;
-
-            case "🔄 Retornar bicicleta":
-                if (bicicletasAlugadas.containsKey(chatId)) {
-                    estadosUsuarios.put(chatId, "AGUARDANDO_RETORNO");
-                    enviarMensagem(chatId, "Por favor, informe o estado da bicicleta " +
-                            bicicletasAlugadas.get(chatId) + " (ótimo, bom, regular, ruim):");
-                } else {
-                    enviarMensagemComOpcaoMenu(chatId, "❌ Você não tem nenhuma bicicleta alugada no momento.");
-                }
-                break;
-
-            case "❌ Encerrar atendimento":
-                enviarMensagem(chatId, "👋 Atendimento encerrado. Obrigado por usar a VelociRent!");
-                estadosUsuarios.put(chatId, "INICIO");
-                break;
-
-            default:
-                enviarMensagemComOpcaoMenu(chatId, "Opção inválida. Por favor, selecione uma opção do menu.");
-        }
-    }
-
-    private void tratarMenuMecanico(Long chatId, String mensagem) {
-        switch (mensagem) {
-            case "🔧 Verificar/Editar status das bikes":
-                enviarMensagem(chatId, "🔧 Status das bicicletas:\n" +
-                        "1. Bike#A23 - Disponível (bom estado)\n" +
-                        "2. Bike#A45 - Em manutenção\n" +
-                        "3. Bike#A67 - Alugada\n" +
-                        "Digite o número da bike para editar status:");
-                estadosUsuarios.put(chatId, "AGUARDANDO_EDICAO_STATUS");
-                break;
-
-            case "🚲 Alugar bicicleta":
-                if (bicicletasAlugadas.containsKey(chatId)) {
-                    enviarMensagemComOpcaoMenu(chatId, "⚠️ Você já tem uma bicicleta alugada: " + bicicletasAlugadas.get(chatId));
-                } else {
-                    bicicletasAlugadas.put(chatId, "Bike#M" + new Random().nextInt(100));
-                    enviarMensagemComOpcaoMenu(chatId, "✅ Você alugou a bicicleta: " + bicicletasAlugadas.get(chatId));
-                }
-                break;
-
-            case "📜 Ver histórico":
-                enviarMensagemComOpcaoMenu(chatId, "📅 Histórico de manutenções:\n" +
-                        "1. Bike#A23 - Pneu furado - 08/05/2023\n" +
-                        "2. Bike#A45 - Freios ajustados - 05/05/2023");
-                break;
-
-            case "🔄 Retornar bicicleta":
-                if (bicicletasAlugadas.containsKey(chatId)) {
-                    estadosUsuarios.put(chatId, "AGUARDANDO_RETORNO");
-                    enviarMensagem(chatId, "Por favor, informe o estado da bicicleta " +
-                            bicicletasAlugadas.get(chatId) + " (ótimo, bom, regular, ruim):");
-                } else {
-                    enviarMensagemComOpcaoMenu(chatId, "❌ Você não tem nenhuma bicicleta alugada no momento.");
-                }
-                break;
-
-            case "❌ Encerrar atendimento":
-                enviarMensagem(chatId, "👋 Atendimento encerrado. Obrigado por usar a VelociRent!");
-                estadosUsuarios.put(chatId, "INICIO");
-                break;
-
-            default:
-                enviarMensagemComOpcaoMenu(chatId, "Opção inválida. Por favor, selecione uma opção do menu.");
-        }
-    }
-
-    private void tratarMenuAdmin(Long chatId, String mensagem) {
-        switch (mensagem) {
-            case "🔍 Ver status das bikes":
-                enviarMensagemComOpcaoMenu(chatId, "🚲 Status de todas as bicicletas:\n" +
-                        "1. Bike#A23 - Alugada por Argos\n" +
-                        "2. Bike#A45 - Disponível\n" +
-                        "3. Bike#A67 - Em manutenção");
-                break;
-
-            case "📑 Ver histórico de todos":
-                enviarMensagemComOpcaoMenu(chatId, "📊 Histórico completo:\n" +
-                        "1. Argos - Bike#A23 - 10/05/2023\n" +
-                        "2. Lara - Bike#A45 - 09/05/2023\n" +
-                        "3. Megan - Bike#M12 - 08/05/2023");
-                break;
-
-            case "🚲 Alugar bicicleta":
-                if (bicicletasAlugadas.containsKey(chatId)) {
-                    enviarMensagemComOpcaoMenu(chatId, "⚠️ Você já tem uma bicicleta alugada: " + bicicletasAlugadas.get(chatId));
-                } else {
-                    bicicletasAlugadas.put(chatId, "Bike#AD" + new Random().nextInt(100));
-                    enviarMensagemComOpcaoMenu(chatId, "✅ Você alugou a bicicleta: " + bicicletasAlugadas.get(chatId));
-                }
-                break;
-
-            case "📜 Ver meu histórico":
-                enviarMensagemComOpcaoMenu(chatId, "📅 Seu histórico:\n" +
-                        "1. Bike#AD12 - 10/05/2023\n" +
-                        "2. Bike#AD34 - 05/05/2023");
-                break;
-
-            case "🔄 Retornar bicicleta":
-                if (bicicletasAlugadas.containsKey(chatId)) {
-                    estadosUsuarios.put(chatId, "AGUARDANDO_RETORNO");
-                    enviarMensagem(chatId, "Por favor, informe o estado da bicicleta " +
-                            bicicletasAlugadas.get(chatId) + " (ótimo, bom, regular, ruim):");
-                } else {
-                    enviarMensagemComOpcaoMenu(chatId, "❌ Você não tem nenhuma bicicleta alugada no momento.");
-                }
-                break;
-
-            case "❌ Encerrar atendimento":
-                enviarMensagem(chatId, "👋 Atendimento encerrado. Obrigado por usar a VelociRent!");
-                estadosUsuarios.put(chatId, "INICIO");
-                break;
-
-            default:
-                enviarMensagemComOpcaoMenu(chatId, "Opção inválida. Por favor, selecione uma opção do menu.");
-        }
-    }
-
-    private void tratarRetornoBicicleta(Long chatId, String mensagem) {
-        String perfil = perfisUsuarios.get(chatId);
-        String bike = bicicletasAlugadas.get(chatId);
-
-        if (mensagem.matches("ótimo|bom|regular|ruim")) {
-            bicicletasAlugadas.remove(chatId);
-            enviarMensagemComOpcaoMenu(chatId, "✅ Bicicleta " + bike + " retornada com estado: " + mensagem +
-                    "\nObrigado por utilizar nossos serviços!");
-
-            // Volta para o estado do menu apropriado
-            estadosUsuarios.put(chatId, "MENU_" + perfil);
-        } else {
-            enviarMensagem(chatId, "❌ Estado inválido. Por favor, informe o estado da bicicleta " +
-                    bike + " (ótimo, bom, regular, ruim):");
-        }
-    }
-
-    private void tratarEdicaoStatus(Long chatId, String mensagem) {
-        if (mensagem.matches("[123]")) {
-            enviarMensagemComOpcaoMenu(chatId, "✅ Status da bicicleta #" + mensagem + " atualizado com sucesso!");
-            estadosUsuarios.put(chatId, "MENU_MECANICO");
-        } else {
-            enviarMensagem(chatId, "❌ Número inválido. Por favor, digite 1, 2 ou 3:");
         }
     }
 
@@ -395,59 +177,5 @@ public class MeuBot extends TelegramLongPollingBot {
             e.printStackTrace();
         }
     }
-}
 
-class PerfilUsuario {
-
-    public static List<String> optionsAluno() {
-        return Arrays.asList(
-                "🚲 Alugar bicicleta",
-                "📜 Ver histórico",
-                "🔄 Retornar bicicleta",
-                "❌ Encerrar atendimento"
-        );
-    }
-
-    public static void mostrarMenuAluno(MeuBot bot, Long chatId, String nome) {
-        bot.enviarMensagemComBotoes(chatId, "🎓 Menu do Aluno", optionsAluno());
-        bot.enviarMensagem(chatId, "Olá " + nome + "! Como posso te ajudar?");
-
-    }
-
-    public static void mostrarMenuProfessor(MeuBot bot, Long chatId, String nome) {
-        List<String> opcoes = Arrays.asList(
-                "🚲 Alugar bicicleta",
-                "📜 Ver histórico",
-                "🔄 Retornar bicicleta",
-                "❌ Encerrar atendimento"
-        );
-        bot.enviarMensagemComBotoes(chatId, "📘 Menu do Professor", opcoes);
-        bot.enviarMensagem(chatId, "Olá " + nome + "! Como posso te ajudar?");
-    }
-
-    public static void mostrarMenuMecanico(MeuBot bot, Long chatId, String nome) {
-        List<String> opcoes = Arrays.asList(
-                "🔧 Verificar/Editar status das bikes",
-                "🚲 Alugar bicicleta",
-                "📜 Ver histórico",
-                "🔄 Retornar bicicleta",
-                "❌ Encerrar atendimento"
-        );
-        bot.enviarMensagemComBotoes(chatId, "🛠️ Menu do Mecânico", opcoes);
-        bot.enviarMensagem(chatId, "Olá " + nome + "! Como posso te ajudar?");
-
-    }
-
-    public static void mostrarMenuAdmin(MeuBot bot, Long chatId, String nome) {
-        List<String> opcoes = Arrays.asList(
-                "🔍 Ver status das bikes",
-                "📑 Ver histórico de todos",
-                "🚲 Alugar bicicleta",
-                "📜 Ver meu histórico",
-                "🔄 Retornar bicicleta",
-                "❌ Encerrar atendimento"
-        );
-        bot.enviarMensagemComBotoes(chatId, "👑 Menu do Admin", opcoes);
-        bot.enviarMensagem(chatId, "Olá " + nome + "! Como posso te ajudar?");
-    }
 }
