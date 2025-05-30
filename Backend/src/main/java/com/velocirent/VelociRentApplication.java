@@ -15,10 +15,10 @@ public class VelociRentApplication {
 		SpringApplication.run(VelociRentApplication.class, args);
 	}
 	@Bean
-	public TelegramBotsApi telegramBotsApi(VelociBot meuBot) throws TelegramApiException {
+	public TelegramBotsApi telegramBotsApi(VelociBot velociBot) throws TelegramApiException {
 		TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
-		botsApi.registerBot(meuBot);
-		System.out.println("Bot inicializado com sucesso!");
+		botsApi.registerBot(velociBot);
+		System.out.println("=== BOT REGISTRADO COM SUCESSO ===");
 		return botsApi;
 	}
 }

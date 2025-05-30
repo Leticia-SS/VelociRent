@@ -1,5 +1,7 @@
 package com.velocirent.telegram;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -9,6 +11,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.*;
 
+@Component
 public class VelociBot extends TelegramLongPollingBot {
 
     private Map<Long, String> estadosUsuarios = new HashMap<>();
@@ -17,14 +20,16 @@ public class VelociBot extends TelegramLongPollingBot {
     private Map<Long, String> dadosTemporarios = new HashMap<>();
     private Tratamentos tratamentos = new Tratamentos();
 
+    @Value("${telegram.bot.token}")
+    private String token;
+
     @Override
     public String getBotUsername() {
         return "VelociRent_Bot";
     }
-
     @Override
     public String getBotToken() {
-        return "7771915185:AAGy69iqSZthvV5hzBpIS4Mzbm5Jgctxw5M";
+        return token;
     }
 
     @Override
