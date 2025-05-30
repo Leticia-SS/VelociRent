@@ -1,4 +1,4 @@
-package com.velocirent;
+package com.velocirent.telegram;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -9,7 +9,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.*;
 
-public class MeuBot extends TelegramLongPollingBot {
+public class VelociBot extends TelegramLongPollingBot {
 
     private Map<Long, String> estadosUsuarios = new HashMap<>();
     private Map<Long, String> perfisUsuarios = new HashMap<>();
@@ -34,7 +34,6 @@ public class MeuBot extends TelegramLongPollingBot {
             String mensagem = update.getMessage().getText();
             String estado = estadosUsuarios.getOrDefault(chatId, "INICIO");
 
-            // Verifica se o usuário quer voltar ao menu principal
             if (mensagem.equals("↩️ Voltar ao menu")) {
                 String perfil = perfisUsuarios.get(chatId);
                 String nome = obterNomePorChatId(chatId);
@@ -161,7 +160,6 @@ public class MeuBot extends TelegramLongPollingBot {
             linhas.add(linha);
         }
 
-        // Adiciona o botão "Voltar ao menu" apenas se não for o menu principal
         if (!opcoes.contains("❌ Encerrar atendimento")) {
             KeyboardRow linhaVoltar = new KeyboardRow();
             linhaVoltar.add("↩️ Voltar ao menu");

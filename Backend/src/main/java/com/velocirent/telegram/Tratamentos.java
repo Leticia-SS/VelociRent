@@ -1,4 +1,4 @@
-package com.velocirent;
+package com.velocirent.telegram;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class Tratamentos {
-    public void tratarMatricula(MeuBot bot, Long chatId, String mensagem,
+    public void tratarMatricula(VelociBot bot, Long chatId, String mensagem,
                                 Map<Long, String> estadosUsuarios, Map<Long, String> perfisUsuarios) {
         if (mensagem.equals("123")) {
             perfisUsuarios.put(chatId, "ALUNO");
@@ -33,7 +33,7 @@ public class Tratamentos {
         }
     }
 
-    public void tratarMenuAluno(MeuBot bot, Long chatId, String mensagem,
+    public void tratarMenuAluno(VelociBot bot, Long chatId, String mensagem,
                                 Map<Long, String> bicicletasAlugadas, Map<Long, String> estadosUsuarios) {
         switch (mensagem) {
             case "🚲 Alugar bicicleta":
@@ -81,7 +81,7 @@ public class Tratamentos {
         }
     }
 
-    public void tratarMenuProfessor(MeuBot bot, Long chatId, String mensagem,
+    public void tratarMenuProfessor(VelociBot bot, Long chatId, String mensagem,
                                     Map<Long, String> bicicletasAlugadas, Map<Long, String> estadosUsuarios) {
         switch (mensagem) {
             case "🚲 Alugar bicicleta":
@@ -129,7 +129,7 @@ public class Tratamentos {
         }
     }
 
-    public void tratarMenuMecanico(MeuBot bot, Long chatId, String mensagem,
+    public void tratarMenuMecanico(VelociBot bot, Long chatId, String mensagem,
                                    Map<Long, String> bicicletasAlugadas, Map<Long, String> estadosUsuarios) {
         switch (mensagem) {
             case "🔧 Verificar/Editar status das bikes":
@@ -185,7 +185,7 @@ public class Tratamentos {
         }
     }
 
-    public void tratarMenuAdmin(MeuBot bot, Long chatId, String mensagem,
+    public void tratarMenuAdmin(VelociBot bot, Long chatId, String mensagem,
                                 Map<Long, String> bicicletasAlugadas, Map<Long, String> estadosUsuarios) {
         switch (mensagem) {
             case "🔍 Ver status das bikes":
@@ -247,7 +247,7 @@ public class Tratamentos {
         }
     }
 
-    public void tratarRetornoBicicleta(MeuBot bot, Long chatId, String mensagem,
+    public void tratarRetornoBicicleta(VelociBot bot, Long chatId, String mensagem,
                                        Map<Long, String> bicicletasAlugadas, Map<Long, String> perfisUsuarios,
                                        Map<Long, String> estadosUsuarios) {
         String perfil = perfisUsuarios.get(chatId);
@@ -266,7 +266,7 @@ public class Tratamentos {
         }
     }
 
-    public void tratarEdicaoStatus(MeuBot bot, Long chatId, String mensagem, Map<Long, String> estadosUsuarios) {
+    public void tratarEdicaoStatus(VelociBot bot, Long chatId, String mensagem, Map<Long, String> estadosUsuarios) {
         if (mensagem.matches("[123]")) {
             bot.enviarMensagemComOpcaoMenu(chatId, "✅ Status da bicicleta #" + mensagem + " atualizado com sucesso!");
             estadosUsuarios.put(chatId, "MENU_MECANICO");

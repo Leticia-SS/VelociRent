@@ -1,4 +1,4 @@
-package com.velocirent;
+package com.velocirent.telegram;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,13 +14,13 @@ class PerfilUsuario {
         );
     }
 
-    public static void mostrarMenuAluno(MeuBot bot, Long chatId, String nome) {
+    public static void mostrarMenuAluno(VelociBot bot, Long chatId, String nome) {
         bot.enviarMensagemComBotoes(chatId, "🎓 Menu do Aluno", optionsAluno());
         bot.enviarMensagem(chatId, "Olá " + nome + "! Como posso te ajudar?");
 
     }
 
-    public static void mostrarMenuProfessor(MeuBot bot, Long chatId, String nome) {
+    public static void mostrarMenuProfessor(VelociBot bot, Long chatId, String nome) {
         List<String> opcoes = Arrays.asList(
                 "🚲 Alugar bicicleta",
                 "📜 Ver histórico",
@@ -31,7 +31,7 @@ class PerfilUsuario {
         bot.enviarMensagem(chatId, "Olá " + nome + "! Como posso te ajudar?");
     }
 
-    public static void mostrarMenuMecanico(MeuBot bot, Long chatId, String nome) {
+    public static void mostrarMenuMecanico(VelociBot bot, Long chatId, String nome) {
         List<String> opcoes = Arrays.asList(
                 "🔧 Verificar/Editar status das bikes",
                 "🚲 Alugar bicicleta",
@@ -44,7 +44,7 @@ class PerfilUsuario {
 
     }
 
-    public static void mostrarMenuAdmin(MeuBot bot, Long chatId, String nome) {
+    public static void mostrarMenuAdmin(VelociBot bot, Long chatId, String nome) {
         List<String> opcoes = Arrays.asList(
                 "🔍 Ver status das bikes",
                 "📑 Ver histórico de todos",
@@ -57,7 +57,7 @@ class PerfilUsuario {
         bot.enviarMensagem(chatId, "Olá " + nome + "! Como posso te ajudar?");
     }
 
-    public static void AvaliarBike(MeuBot bot, Long chatId, String nome){
+    public static void AvaliarBike(VelociBot bot, Long chatId, String nome){
         List<String> opcoes = Arrays.asList(
                 "ótimo",
                 "bom",
