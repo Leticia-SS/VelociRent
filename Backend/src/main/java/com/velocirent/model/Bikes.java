@@ -6,7 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "veloci_bikes")
 public class Bikes {
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String model;
     private boolean available;
 

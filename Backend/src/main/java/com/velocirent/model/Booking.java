@@ -8,7 +8,9 @@ import java.util.Date;
 @Table(name = "veloci_bookings")
 public class Booking {
     @Id
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "matricula")
     private Users user;
@@ -19,24 +21,17 @@ public class Booking {
     private Date endTime;
     private String status;
 
-    public Booking(int id, Users user, Bikes bike, Date startTime, Date endTime, String status) {
+
+    public Booking() {
+    }
+
+    public Booking(Integer id, Users user, Bikes bike, Date startTime, Date endTime, String status) {
         this.id = id;
         this.user = user;
         this.bike = bike;
         this.startTime = startTime;
         this.endTime = endTime;
         this.status = status;
-    }
-
-    public Booking() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public Date getStartTime() {
@@ -77,5 +72,13 @@ public class Booking {
 
     public void setBike(Bikes bike) {
         this.bike = bike;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

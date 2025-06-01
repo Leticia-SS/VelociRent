@@ -1,5 +1,6 @@
 package com.velocirent.controller;
 
+import com.velocirent.model.Bikes;
 import com.velocirent.model.Booking;
 import com.velocirent.repository.BikesRepository;
 import com.velocirent.repository.BookingRepository;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -51,31 +53,38 @@ public class BookingController {
             return ResponseEntity.badRequest().build();
         }
 
+        Bikes bike = bikesRepository.findById(booking.getBike().getId()).orElse(null);
+        if (bike == null || !bike.isAvailable()) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        bike.setAvailable(false);
+        bikesRepository.save(bike);
+
+        booking.setStatus("EM_ANDAMENTO");
+
         Booking savedBooking = bookingRepository.save(booking);
         return ResponseEntity.ok(savedBooking);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Booking> updateBooking(@PathVariable int id, @RequestBody Booking booking) {
-        if (!bookingRepository.existsById(id)) {
+    @PutMapping("/{id}/return")
+    public ResponseEntity<Booking> returnBike(@PathVariable int id) {
+        Booking booking = bookingRepository.findById(id).orElse(null);
+        if (booking == null) {
             return ResponseEntity.notFound().build();
         }
 
-        if (booking.getUser() == null || booking.getBike() == null ||
-                booking.getStartTime() == null || booking.getEndTime() == null) {
+        if ("COMPLETO".equals(booking.getStatus())) {
             return ResponseEntity.badRequest().build();
         }
 
-        if (!usersRepository.existsById(booking.getUser().getMatricula()) ||
-                !bikesRepository.existsById(booking.getBike().getId())) {
-            return ResponseEntity.badRequest().build();
-        }
+        Bikes bike = booking.getBike();
+        bike.setAvailable(true);
+        bikesRepository.save(bike);
 
-        if (booking.getEndTime().before(booking.getStartTime())) {
-            return ResponseEntity.badRequest().build();
-        }
+        booking.setStatus("COMPLETO");
+        booking.setEndTime(new Date());
 
-        booking.setId(id);
         Booking updatedBooking = bookingRepository.save(booking);
         return ResponseEntity.ok(updatedBooking);
     }

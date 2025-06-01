@@ -1,5 +1,11 @@
 package com.velocirent.telegram;
 
+import com.velocirent.model.Bikes;
+import com.velocirent.model.Users;
+import com.velocirent.repository.BikesRepository;
+import com.velocirent.repository.BookingRepository;
+import com.velocirent.repository.UsersRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -16,9 +22,22 @@ public class VelociBot extends TelegramLongPollingBot {
 
     private Map<Long, String> estadosUsuarios = new HashMap<>();
     private Map<Long, String> perfisUsuarios = new HashMap<>();
+    private Map<Long, Integer> matriculasUsuarios = new HashMap<>();
+    private Map<Long, String> nomesUsuarios = new HashMap<>();
     private Map<Long, String> bicicletasAlugadas = new HashMap<>();
-    private Map<Long, String> dadosTemporarios = new HashMap<>();
-    private Tratamentos tratamentos = new Tratamentos();
+    private Map<Long, List<Bikes>> bikesTemporarias = new HashMap<>();
+
+    @Autowired
+    private Tratamentos tratamentos;
+
+    @Autowired
+    private UsersRepository usersRepository;
+
+    @Autowired
+    private BikesRepository bikesRepository;
+
+    @Autowired
+    private BookingRepository bookingRepository;
 
     @Value("${telegram.bot.token}")
     private String token;
@@ -27,6 +46,7 @@ public class VelociBot extends TelegramLongPollingBot {
     public String getBotUsername() {
         return "VelociRent_Bot";
     }
+
     @Override
     public String getBotToken() {
         return token;
@@ -41,24 +61,13 @@ public class VelociBot extends TelegramLongPollingBot {
 
             if (mensagem.equals("↩️ Voltar ao menu")) {
                 String perfil = perfisUsuarios.get(chatId);
-                String nome = obterNomePorChatId(chatId);
-                switch (perfil) {
-                    case "ALUNO":
-                        estadosUsuarios.put(chatId, "MENU_ALUNO");
-                        PerfilUsuario.mostrarMenuAluno(this, chatId, nome);
-                        break;
-                    case "PROFESSOR":
-                        estadosUsuarios.put(chatId, "MENU_PROFESSOR");
-                        PerfilUsuario.mostrarMenuProfessor(this, chatId, nome);
-                        break;
-                    case "MECANICO":
-                        estadosUsuarios.put(chatId, "MENU_MECANICO");
-                        PerfilUsuario.mostrarMenuMecanico(this, chatId, nome);
-                        break;
-                    case "ADMIN":
-                        estadosUsuarios.put(chatId, "MENU_ADMIN");
-                        PerfilUsuario.mostrarMenuAdmin(this, chatId, nome);
-                        break;
+                String nome = nomesUsuarios.getOrDefault(chatId, "Usuário");
+                if (perfil != null) {
+                    estadosUsuarios.put(chatId, "MENU_" + perfil);
+                    PerfilUsuario.mostrarMenuPorPerfil(this, chatId, nome, perfil);
+                } else {
+                    enviarMensagem(chatId, "❌ Perfil não encontrado. Reinicie com /start");
+                    estadosUsuarios.put(chatId, "INICIO");
                 }
                 return;
             }
@@ -70,50 +79,48 @@ public class VelociBot extends TelegramLongPollingBot {
                     break;
 
                 case "AGUARDANDO_MATRICULA":
-                    tratamentos.tratarMatricula(this, chatId, mensagem, estadosUsuarios, perfisUsuarios);
+                    tratamentos.tratarMatricula(this, chatId, mensagem, estadosUsuarios,
+                            matriculasUsuarios, perfisUsuarios, nomesUsuarios);
                     break;
 
                 case "MENU_ALUNO":
-                    tratamentos.tratarMenuAluno(this, chatId, mensagem, bicicletasAlugadas, estadosUsuarios);
+                    tratamentos.tratarMenuAluno(this, chatId, mensagem, bicicletasAlugadas,
+                            estadosUsuarios, matriculasUsuarios, nomesUsuarios);
                     break;
 
                 case "MENU_PROFESSOR":
-                    tratamentos.tratarMenuProfessor(this, chatId, mensagem, bicicletasAlugadas, estadosUsuarios);
+                    tratamentos.tratarMenuProfessor(this, chatId, mensagem, bicicletasAlugadas,
+                            estadosUsuarios, matriculasUsuarios, nomesUsuarios);
                     break;
 
                 case "MENU_MECANICO":
-                    tratamentos.tratarMenuMecanico(this, chatId, mensagem, bicicletasAlugadas, estadosUsuarios);
+                    tratamentos.tratarMenuMecanico(this, chatId, mensagem, bicicletasAlugadas,
+                            estadosUsuarios, matriculasUsuarios, nomesUsuarios);
                     break;
 
                 case "MENU_ADMIN":
-                    tratamentos.tratarMenuAdmin(this, chatId, mensagem, bicicletasAlugadas, estadosUsuarios);
+                    tratamentos.tratarMenuAdmin(this, chatId, mensagem, bicicletasAlugadas,
+                            estadosUsuarios, matriculasUsuarios, nomesUsuarios);
                     break;
 
                 case "AGUARDANDO_RETORNO":
-                    tratamentos.tratarRetornoBicicleta(this, chatId, mensagem, bicicletasAlugadas, perfisUsuarios, estadosUsuarios);
+                    tratamentos.tratarRetornoBicicleta(this, chatId, mensagem, bicicletasAlugadas,
+                            matriculasUsuarios, estadosUsuarios, nomesUsuarios);
                     break;
 
                 case "AGUARDANDO_EDICAO_STATUS":
-                    tratamentos.tratarEdicaoStatus(this, chatId, mensagem, estadosUsuarios);
+                    tratamentos.tratarEdicaoStatus(this, chatId, mensagem, estadosUsuarios, perfisUsuarios);
                     break;
 
+                case "AGUARDANDO_ESCOLHA_BIKE":
+                    tratamentos.tratarEscolhaBicicleta(this, chatId, mensagem,
+                            bicicletasAlugadas, matriculasUsuarios,
+                            nomesUsuarios);
+                    break;
                 default:
                     enviarMensagem(chatId, "Erro de estado. Reinicie com /start.");
                     estadosUsuarios.put(chatId, "INICIO");
             }
-        }
-    }
-
-    private String obterNomePorChatId(Long chatId) {
-        String perfil = perfisUsuarios.get(chatId);
-        if (perfil == null) return "Usuário";
-
-        switch (perfil) {
-            case "ALUNO": return "Argos";
-            case "PROFESSOR": return "Lara";
-            case "MECANICO": return "Megan";
-            case "ADMIN": return "Fazoeli";
-            default: return "Usuário";
         }
     }
 
@@ -181,4 +188,55 @@ public class VelociBot extends TelegramLongPollingBot {
         }
     }
 
+    private String obterNomePorChatId(Long chatId) {
+        String nome = nomesUsuarios.get(chatId);
+        if (nome != null) {
+            return nome;
+        }
+
+        Integer matricula = matriculasUsuarios.get(chatId);
+        if (matricula != null) {
+            return usersRepository.findById(matricula)
+                    .map(Users::getName)
+                    .orElse("Usuário");
+        }
+
+        return "Usuário";
+    }
+
+    public UsersRepository getUsersRepository() {
+        return usersRepository;
+    }
+
+    public BikesRepository getBikesRepository() {
+        return bikesRepository;
+    }
+
+    public BookingRepository getBookingRepository() {
+        return bookingRepository;
+    }
+
+    public Map<Long, List<Bikes>> getBikesTemporarias() {
+        return bikesTemporarias;
+    }
+
+    public Map<Long, String> getEstadosUsuarios() {
+        return estadosUsuarios;
+    }
+
+    public Map<Long, String> getPerfisUsuarios() {
+        return perfisUsuarios;
+    }
+
+    public Map<Long, Integer> getMatriculasUsuarios() {
+        return matriculasUsuarios;
+    }
+
+    public Map<Long, String> getNomesUsuarios() {
+        return nomesUsuarios;
+    }
+
+    public Map<Long, String> getBicicletasAlugadas() {
+        return bicicletasAlugadas;
+    }
 }
