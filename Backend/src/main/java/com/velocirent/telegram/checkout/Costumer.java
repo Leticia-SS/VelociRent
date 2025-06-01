@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class Costumer {
     @Value("${asaas.api.key}")
-    private static String accessToken;
+    public static String accessToken;
 
     public static String main() {
         // Criação do cliente HTTP
@@ -44,7 +44,7 @@ public class Costumer {
                 .post(body)
                 .addHeader("accept", "application/json")
                 .addHeader("content-type", "application/json")
-                .addHeader("access_token", accessToken) // Substitua pela sua chave real
+                .addHeader("access_token", accessToken)
                 .build();
 
         // Executa a chamada HTTP
@@ -93,10 +93,9 @@ class Checkout {
                     .post(body)
                     .addHeader("accept", "application/json")
                     .addHeader("content-type", "application/json")
-                    .addHeader("access_token", "$aact_prod_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjUzNTlmZmVmLTMyM2UtNGMzYy04Y2EyLTQzMTY0NmQ3YWE2MDo6JGFhY2hfNTcxNmJlODEtMzI1Yi00YWQ0LWI2YzYtN2RjOGE4Yjc3Mzgy")  // Note: "access" is misspelled as "acess"
+                    .addHeader("access_token", Costumer.accessToken)  // Note: "access" is misspelled as "acess"
                     .build();
 
-            // Execute HTTP call
             try (Response response = client.newCall(request).execute()) {
                 if (response.isSuccessful()) {
 
