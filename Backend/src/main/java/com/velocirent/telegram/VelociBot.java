@@ -9,12 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.io.ByteArrayInputStream;
 import java.util.*;
 
 @Component
@@ -238,5 +241,24 @@ public class VelociBot extends TelegramLongPollingBot {
 
     public Map<Long, String> getBicicletasAlugadas() {
         return bicicletasAlugadas;
+    }
+
+    public void enviarDocumento(Long chatId, byte[] documento, String nomeArquivo, String caption) {
+        try (ByteArrayInputStream inputStream = new ByteArrayInputStream(documento)) {
+            InputFile inputFile = new InputFile(inputStream, nomeArquivo);
+
+            SendDocument sendDocument = SendDocument.builder()
+                    .chatId(chatId.toString())
+                    .document(inputFile)
+                    .caption(caption)
+                    .build();
+
+            execute(sendDocument);
+        } catch (TelegramApiException e) {
+            System.err.println("Erro ao enviar documento: " + e.getMessage());
+            enviarMensagem(chatId, "❌ Falha ao enviar o documento");
+        } catch (Exception e) {
+            System.err.println("Erro inesperado: " + e.getMessage());
+        }
     }
 }

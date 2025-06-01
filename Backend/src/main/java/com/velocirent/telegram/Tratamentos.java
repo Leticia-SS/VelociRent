@@ -4,12 +4,22 @@ import com.velocirent.model.Bikes;
 import com.velocirent.model.Booking;
 import com.velocirent.model.Users;
 import com.velocirent.repository.UsersRepository;
+import com.velocirent.service.PDFGenerator;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.io.ByteArrayInputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import static org.springframework.jdbc.datasource.init.DatabasePopulatorUtils.execute;
 
 @Component
 public class Tratamentos {
@@ -339,29 +349,21 @@ public class Tratamentos {
                 bot.enviarMensagemComOpcaoMenu(chatId, statusBikes.toString());
                 break;
             case "📑 Ver histórico de todos":
-                List<Booking> todosHistoricos = bot.getBookingRepository().findAll();
-                StringBuilder historicoCompleto = new StringBuilder("📊 Histórico completo:\n");
+                try {
+                    List<Booking> todosHistoricos = bot.getBookingRepository().findAll();
 
-                for (Booking booking : todosHistoricos) {
-                    historicoCompleto.append("- ")
-                            .append(booking.getUser().getName())
-                            .append(": ")
-                            .append(booking.getBike().getModel())
-                            .append(" (")
-                            .append(DateUtils.formatToBrazilian(booking.getStartTime()))
-                            .append(" a ")
-                            .append(booking.getEndTime() != null ?
-                                    DateUtils.formatToBrazilian(booking.getEndTime()) : "em andamento")
-                            .append(") - ")
-                            .append(booking.getStatus())
-                            .append("\n");
+                    ClassPathResource resource = new ClassPathResource("images/logo.png");
+                    byte[] logoBytes = Files.readAllBytes(resource.getFile().toPath());
+
+                    byte[] pdfBytes = PDFGenerator.generateHistoryPDF(todosHistoricos, logoBytes);
+
+                    bot.enviarDocumento(chatId, pdfBytes, "historico_alugueis.pdf",
+                            "📊 Histórico completo em anexo");
+
+                } catch (Exception e) {
+                    System.err.println("Erro ao gerar PDF: " + e.getMessage());
+                    bot.enviarMensagem(chatId, "❌ Erro ao gerar o histórico em PDF");
                 }
-
-                if (todosHistoricos.isEmpty()) {
-                    historicoCompleto.append("Nenhum registro encontrado.");
-                }
-
-                bot.enviarMensagemComOpcaoMenu(chatId, historicoCompleto.toString());
                 break;
             case "🚲 Alugar bicicleta":
                 tratarAluguelBicicleta(bot, chatId, bicicletasAlugadas, matriculasUsuarios, nomesUsuarios);
@@ -505,4 +507,5 @@ public class Tratamentos {
             }
         }
     }
+
 }
