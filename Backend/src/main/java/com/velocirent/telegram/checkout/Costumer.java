@@ -7,6 +7,8 @@ import okhttp3.Response;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +19,7 @@ public class Costumer {
 
         // Dados do cliente
         String userName = "Argos Megan Lara";
-        String userEmail = "giovani@infnet.edu.br"; // E-mail válido
+        String userEmail = "giovani.ferreira@infnet.edu.br"; // E-mail válido (somente com @ ja serve)
         String userCpf = "10271345640"; // CPF com 11 dígitos válidos
 
         // Criação do JSON com Gson
@@ -46,7 +48,7 @@ public class Costumer {
             if (response.isSuccessful()) {
                 String responseBody = response.body().string();
                 String customerId = responseBody.split("\"id\":\"")[1].split("\"")[0];
-                System.out.println("id do cliete gerado: " + customerId);
+//                System.out.println("id do cliete gerado: " + customerId);
                 return customerId;  // Retorna o ID
             } else {
                 System.out.println("Erro: " + response.code() + " - " + response.message());
@@ -65,13 +67,23 @@ public class Costumer {
 class Checkout {
     public static void main(String[] args) {
         String customerId = Costumer.main();
+        LocalDate hoje = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataFormatada = hoje.format(formatter);
+
         if (customerId != null) {
             OkHttpClient client = new OkHttpClient();
 
             MediaType mediaType = MediaType.parse("application/json");
             // Use the actual customerId instead of hardcoded value
             RequestBody body = RequestBody.create(mediaType,
-                    "{\"billingType\":\"UNDEFINED\",\"customer\":\"" + customerId + "\",\"value\":5,\"dueDate\":\"2026-07-01\"}");
+                    "{"
+                            + "\"billingType\":\"UNDEFINED\","
+                            + "\"customer\":\"" + customerId + "\","
+                            + "\"value\":5,"
+                            + "\"dueDate\":\"2026-07-01\","
+                            + "\"description\":\"Referente ao aluguel da VelociBike realizado em " + dataFormatada + ". Agradecemos a sua preferência!\""
+                            + "}");
 
             Request request = new Request.Builder()
                     .url("https://api.asaas.com/v3/payments")
