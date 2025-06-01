@@ -42,8 +42,8 @@ const BikesPage = () => {
     <div className="bikesPage">
       <div className="bikesHero">
         <div className="bikesHeroContent">
-          <h1>Our Bikes</h1>
-          <p>Explore our range of high-quality bikes available for rent</p>
+          <h1>Nossas bikes</h1>
+          <p>Explore nossa variedade de bicicletas de alta qualidade disponíveis para aluguel</p>
         </div>
       </div>
 
@@ -52,11 +52,11 @@ const BikesPage = () => {
           <div className="bikeIconContainer">
             <Bike size={48} />
           </div>
-          <h2>Choose the perfect ride for your journey</h2>
+          <h2>Selecione a escolha ideal para a sua jornada</h2>
           <p>
-            We offer a variety of bikes to suit your needs, whether you're commuting to work, exploring the city, or
-            enjoying a leisurely ride through the park. All our bikes are regularly maintained and sanitized for your
-            safety and comfort.
+            Apresentamos uma variedade de bicicletas para atender às suas necessidades, 
+            seja para o deslocamento diário, a exploração urbana ou um passeio tranquilo no parque. 
+            Todas as nossas bicicletas são regularmente mantidas e higienizadas para garantir sua segurança e conforto.
           </p>
         </div>
 
@@ -77,18 +77,18 @@ const BikesPage = () => {
                     </div>
                   ))}
                 </div>
-                <button className="bikeRentButton">Rent Now</button>
+                <button className="bikeRentButton">Alugue agora!</button>
               </div>
             </div>
           ))}
         </div>
 
         <div className="bikesCTA">
-          <h3>Ready to ride?</h3>
-          <p>Download our app to find and rent bikes near you in seconds.</p>
+          <h3>Pronto para sua viagem?</h3>
+          <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
           <div className="bikesButtons">
-            <button className="primaryButton">Download App</button>
-            <button className="secondaryButton">Learn More</button>
+            <button className="primaryButton">Aluguel no Telegram</button>
+            <button className="secondaryButton">Aluguel no Site</button>
           </div>
         </div>
       </div>

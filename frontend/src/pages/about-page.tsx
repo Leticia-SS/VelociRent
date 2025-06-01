@@ -227,11 +227,11 @@ const AboutPage = () => {
         </div>
 
         <div className={styles.aboutCTA}>
-          <h3>Join the BikeShare Community</h3>
-          <p>Be part of the sustainable transportation revolution. Download our app and start riding today!</p>
+          <h3>Pronto para sua viagem?</h3>
+          <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
           <div className={styles.aboutButtons}>
-            <button className={styles.primaryButton}>Download App</button>
-            <button className={styles.secondaryButton}>View Locations</button>
+            <button className={styles.primaryButton}>Aluguel no Telegram</button>
+            <button className={styles.secondaryButton}>Aluguel no Site</button>
           </div>
         </div>
       </div>
