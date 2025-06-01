@@ -5,11 +5,9 @@ import com.velocirent.model.Booking;
 import com.velocirent.model.Users;
 import com.velocirent.repository.UsersRepository;
 import jakarta.transaction.Transactional;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
