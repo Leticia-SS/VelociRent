@@ -6,55 +6,55 @@ const PickupPage = () => {
     {
       id: 1,
       icon: <Smartphone size={40} />,
-      title: "Open the App",
-      description: "Launch the BikeShare app on your smartphone and ensure you're logged in to your account.",
-      details: ["Make sure location services are enabled", "Check that you have a stable internet connection"],
+      title: "Abra o Site ou Aplicativo",
+      description: "Abra o site ou bot do telegram.",
+      details: ["Verifique se sua conexão a internet é estável", "Não utilize o celular em áreas de risco"],
     },
     {
       id: 2,
       icon: <MapPin size={40} />,
-      title: "Find a Station",
-      description: "Use the map to locate the nearest bike station with available bikes.",
-      details: ["Green dots indicate available bikes", "Red dots show stations that are full or out of service"],
+      title: "Vá até o seu campus",
+      description: "Esteja no seu campus quando for retirar a bicicleta.",
+      details: ["As bicicletas disponíveis iram aparecer", "Caso não tenham bikes disponíveis voce será sinalizado"],
     },
     {
       id: 3,
       icon: <QrCode size={40} />,
-      title: "Scan the QR Code",
-      description: "Point your phone's camera at the QR code located on the bike's handlebars.",
-      details: ["Hold your phone steady for 2-3 seconds", "Make sure the QR code is well-lit and visible"],
+      title: "Entre com sua matrícula",
+      description: "Faça seu login ou entrada com seu número de matrícula.",
+      details: ["É necessário estar com sua matrícula ativa", "Matrículas pendentes serão tratadas como inexistentes"],
     },
     {
       id: 4,
       icon: <Unlock size={40} />,
-      title: "Unlock the Bike",
-      description: "The bike will automatically unlock once the QR code is successfully scanned.",
-      details: ["You'll hear a click sound when unlocked", "The LED light will turn green"],
+      title: "Desbloqueie sua bike",
+      description: "Após escolher o modelo a bike estará disponível para sua retirada.",
+      details: ["Esteja no local quando desbloquear", "Sejá responsável com o uso da bicicleta"],
     },
     {
       id: 5,
       icon: <CheckCircle size={40} />,
-      title: "Start Your Ride",
-      description: "Adjust the seat height if needed and begin your journey safely.",
-      details: ["Check brakes before riding", "Ensure the helmet fits properly if using one"],
+      title: "Comece sua viagem!",
+      description: "Ajuste a altura do banco e viaje em segurança.",
+      details: ["Verifique a condição da bicicleta", "É desejável o uso de capacete"],
     },
   ]
 
   const tips = [
     {
       icon: <Clock size={24} />,
-      title: "Check Operating Hours",
-      description: "Most stations operate 24/7, but some may have limited hours in certain areas.",
+      title: "Verifique a disponibilidade",
+      description: "A estação opera 24 horas, mas pode ser de escolha do campus limitar que horas o aluno pode ter acesso.",
     },
     {
       icon: <Shield size={24} />,
-      title: "Inspect Before Riding",
-      description: "Always check the bike's condition, including brakes, tires, and chain before starting.",
+      title: "Inspecione antes da corrida",
+      description: "Atente-se à condição e integridade da bicicleta para evitar acidentes.",
     },
     {
       icon: <AlertCircle size={24} />,
-      title: "Report Issues",
-      description: "If you notice any problems with the bike, report them immediately through the app.",
+      title: "Relate problemas",
+      description: "Se você notar algum problema ou defeito na bicicleta, reporte imeditamente.",
     },
   ]
 
@@ -62,8 +62,8 @@ const PickupPage = () => {
     <div className={styles.pickupPage}>
       <div className={styles.pickupHero}>
         <div className={styles.pickupHeroContent}>
-          <h1>How to Pick Up a Bike</h1>
-          <p>Follow these simple steps to get your bike and start riding in minutes</p>
+          <h1>Como pegar a sua bike?</h1>
+          <p>Siga estes passos simples para pegar sua bicicleta e começar a pedalar em minutos</p>
         </div>
       </div>
 
@@ -72,15 +72,15 @@ const PickupPage = () => {
           <div className={styles.pickupIconContainer}>
             <MapPin size={48} />
           </div>
-          <h2>Getting started is easy</h2>
+          <h2>Começar nunca foi tão fácil</h2>
           <p>
-            Our streamlined pickup process ensures you can get on the road quickly and safely. Follow the step-by-step
-            guide below to pick up your bike from any BikeShare station.
+            Nosso processo otimizado de retirada garante que você possa começar a pedalar com rapidez e segurança.
+             Siga o guia passo a passo abaixo para retirar sua bicicleta quando necessário.
           </p>
         </div>
 
         <div className={styles.stepsSection}>
-          <h3>Step-by-Step Guide</h3>
+          <h3>Guia Passo a Passo</h3>
           <div className={styles.stepsList}>
             {steps.map((step) => (
               <div key={step.id} className={styles.stepCard}>
@@ -103,7 +103,7 @@ const PickupPage = () => {
         </div>
 
         <div className={styles.tipsSection}>
-          <h3>Important Tips</h3>
+          <h3>Dicas Importantes</h3>
           <div className={styles.tipsList}>
             {tips.map((tip, index) => (
               <div key={index} className={styles.tipCard}>
@@ -118,11 +118,11 @@ const PickupPage = () => {
         </div>
 
         <div className={styles.pickupCTA}>
-          <h3>Ready to ride?</h3>
-          <p>Download our app and find the nearest bike station to get started.</p>
+          <h3>Pronto para sua viagem?</h3>
+          <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
           <div className={styles.pickupButtons}>
-            <button className={styles.primaryButton}>Download App</button>
-            <button className={styles.secondaryButton}>Find Stations</button>
+            <button className={styles.primaryButton}>Aluguel no Telegram</button>
+            <button className={styles.secondaryButton}>Aluguel no Site</button>
           </div>
         </div>
       </div>

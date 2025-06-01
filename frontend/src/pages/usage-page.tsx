@@ -6,90 +6,59 @@ const UsagePage = () => {
     {
       id: 1,
       icon: <Zap size={40} />,
-      title: "Quick Rides",
-      duration: "15 minutes - 2 hours",
-      description: "Perfect for short trips around the city, commuting, or quick errands.",
+      title: "Viagem Rápida",
+      duration: "15 minutos - 2 horas",
+      description: "Perfeito para rápidas viagens ao redor do campus.",
       features: [
-        "Ideal for city commuting",
-        "Quick station-to-station trips",
-        "No overnight storage needed",
-        "Most affordable option",
+        "Ideal para locomoção na cidade",
+        "Viagem rápida de ida e volta",
+        "Disponibiliza a bike mais rapidamente",
+        "Opção mais confortável",
       ],
-      price: "Starting at $2/hour",
       popular: false,
     },
     {
       id: 2,
       icon: <Coffee size={40} />,
-      title: "Day Adventures",
-      duration: "2 - 12 hours",
-      description: "Explore the city at your own pace with extended rental periods.",
-      features: ["Perfect for sightseeing", "Flexible return times", "Multiple stop capability", "Great for tourists"],
-      price: "Starting at $15/day",
-      popular: true,
+      title: "Aventura do Dia a Dia",
+      duration: "2 - 12 horas",
+      description: "Explore a cidade na sua velocidade.",
+      features: ["Perfeito para dias cheios de compromisso", "Tempo de retorno flexível", "Pode fazer diversas paradas",
+         "Possibilidade de uso turístico"],
+      popular: false,
     },
     {
       id: 3,
       icon: <Home size={40} />,
-      title: "Take Home",
-      duration: "24+ hours",
-      description: "Take the bike home for extended use, perfect for multi-day adventures.",
-      features: ["Keep bike overnight", "Use for multiple days", "Store at your location", "Maximum flexibility"],
-      price: "Starting at $25/day",
-      popular: false,
+      title: "Volte para casa",
+      duration: "Mais de 24 horas",
+      description: "Pegue a bike para voltar para casa.",
+      features: ["Passar a noite com a bicileta", "Utilize para ir e voltar", "Uso responsável perto da sua casa",
+         "Mais flexível"],
+      popular: true,
     },
   ]
 
   const benefits = [
     {
       icon: <Clock size={32} />,
-      title: "Flexible Timing",
-      description: "Choose the rental duration that fits your needs, from minutes to days.",
+      title: "Tempo flexível",
+      description: "Sempre disponível, no seu tempo e para o seu tempo.",
     },
     {
       icon: <MapPin size={32} />,
-      title: "No Return Pressure",
-      description: "With longer rentals, explore without worrying about return deadlines.",
+      title: "Sem pressão de retorno",
+      description: "Você pode retirar para utilizar em qualquer necessidade pessoal.",
     },
     {
       icon: <Shield size={32} />,
-      title: "Secure Storage",
-      description: "Take bikes home safely with our built-in security features.",
+      title: "Prioridade para Segurança",
+      description: "Vá e volte de maneira segura para casa.",
     },
     {
       icon: <Star size={32} />,
-      title: "Premium Experience",
-      description: "Enjoy the freedom of having your own bike for as long as you need.",
-    },
-  ]
-
-  const guidelines = [
-    {
-      title: "Quick Rides (Under 2 hours)",
-      rules: [
-        "Return to any BikeShare station",
-        "Perfect for one-way trips",
-        "Automatic billing when returned",
-        "No special requirements",
-      ],
-    },
-    {
-      title: "Day Adventures (2-12 hours)",
-      rules: [
-        "Can be returned to any station",
-        "Ideal for exploring multiple locations",
-        "Pause timer at designated rest stops",
-        "Extended battery life available",
-      ],
-    },
-    {
-      title: "Take Home (24+ hours)",
-      rules: [
-        "Secure the bike at your location",
-        "Use the app to pause/resume rental",
-        "Return to any station when finished",
-        "Responsible for bike security",
-      ],
+      title: "Experiência Premium",
+      description: "Aproveite a liberdade e a paz de uma viagem de bicicleta.",
     },
   ]
 
@@ -97,8 +66,8 @@ const UsagePage = () => {
     <div className={styles.usagePage}>
       <div className={styles.usageHero}>
         <div className={styles.usageHeroContent}>
-          <h1>Usage Time Options</h1>
-          <p>From quick trips to extended adventures - choose the rental duration that works for you</p>
+          <h1>Entenda o Tempo de Uso</h1>
+          <p>Viagens curtas, longas ou sua ida e volta para casa.</p>
         </div>
       </div>
 
@@ -107,16 +76,10 @@ const UsagePage = () => {
           <div className={styles.usageIconContainer}>
             <Calendar size={48} />
           </div>
-          <h2>Rent for as long as you need</h2>
-          <p>
-            Whether you need a bike for a quick commute, a day of exploration, or an extended adventure, BikeShare
-            offers flexible rental options to match your lifestyle. Take bikes home, use them for multiple days, or just
-            enjoy short rides around the city.
-          </p>
         </div>
 
         <div className={styles.optionsSection}>
-          <h3>Choose Your Rental Duration</h3>
+          <h3>Como você pode utilizar?</h3>
           <div className={styles.optionsList}>
             {usageOptions.map((option) => (
               <div key={option.id} className={`${styles.optionCard} ${option.popular ? styles.popular : ""}`}>
@@ -133,8 +96,6 @@ const UsagePage = () => {
                       <li key={index}>{feature}</li>
                     ))}
                   </ul>
-                  <div className={styles.optionPrice}>{option.price}</div>
-                  <button className={styles.optionButton}>Select Plan</button>
                 </div>
               </div>
             ))}
@@ -142,7 +103,7 @@ const UsagePage = () => {
         </div>
 
         <div className={styles.benefitsSection}>
-          <h3>Why Choose Flexible Rentals?</h3>
+          <h3>VelociRent como a sua opção</h3>
           <div className={styles.benefitsList}>
             {benefits.map((benefit, index) => (
               <div key={index} className={styles.benefitCard}>
@@ -156,28 +117,12 @@ const UsagePage = () => {
           </div>
         </div>
 
-        <div className={styles.guidelinesSection}>
-          <h3>Usage Guidelines</h3>
-          <div className={styles.guidelinesList}>
-            {guidelines.map((guideline, index) => (
-              <div key={index} className={styles.guidelineCard}>
-                <h4>{guideline.title}</h4>
-                <ul>
-                  {guideline.rules.map((rule, ruleIndex) => (
-                    <li key={ruleIndex}>{rule}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-
         <div className={styles.usageCTA}>
-          <h3>Ready to start your adventure?</h3>
-          <p>Download our app and choose the perfect rental duration for your next ride.</p>
+          <h3>Pronto para sua viagem?</h3>
+          <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
           <div className={styles.usageButtons}>
-            <button className={styles.primaryButton}>Start Renting</button>
-            <button className={styles.secondaryButton}>View Pricing</button>
+            <button className={styles.primaryButton}>Aluguel no Telegram</button>
+            <button className={styles.secondaryButton}>Aluguel no Telegram</button>
           </div>
         </div>
       </div>
