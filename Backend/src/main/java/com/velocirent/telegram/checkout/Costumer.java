@@ -6,6 +6,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -13,6 +14,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Costumer {
+    @Value("${asaas.api.key}")
+    private static String accessToken;
+
     public static String main() {
         // Criação do cliente HTTP
         OkHttpClient client = new OkHttpClient();
@@ -40,7 +44,7 @@ public class Costumer {
                 .post(body)
                 .addHeader("accept", "application/json")
                 .addHeader("content-type", "application/json")
-                .addHeader("access_token", "$aact_prod_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjUzNTlmZmVmLTMyM2UtNGMzYy04Y2EyLTQzMTY0NmQ3YWE2MDo6JGFhY2hfNTcxNmJlODEtMzI1Yi00YWQ0LWI2YzYtN2RjOGE4Yjc3Mzgy") // Substitua pela sua chave real
+                .addHeader("access_token", accessToken) // Substitua pela sua chave real
                 .build();
 
         // Executa a chamada HTTP
@@ -75,7 +79,6 @@ class Checkout {
             OkHttpClient client = new OkHttpClient();
 
             MediaType mediaType = MediaType.parse("application/json");
-            // Use the actual customerId instead of hardcoded value
             RequestBody body = RequestBody.create(mediaType,
                     "{"
                             + "\"billingType\":\"UNDEFINED\","
