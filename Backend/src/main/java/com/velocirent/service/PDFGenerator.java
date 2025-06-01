@@ -10,10 +10,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.util.List;
+import java.util.Locale;
 
 public class PDFGenerator {
+    private static final BaseColor PURPLE_COLOR = new BaseColor(115, 98, 149);
     public static byte[] generateHistoryPDF(List<Booking> bookings, byte[] logoBytes) throws Exception {
-        Document document = new Document(PageSize.A4.rotate());
+        Document document = new Document(PageSize.A4);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         try {
@@ -34,12 +36,13 @@ public class PDFGenerator {
             document.add(title);
 
             Font dateFont = new Font(Font.FontFamily.HELVETICA, 10, Font.ITALIC);
-            Paragraph date = new Paragraph("Gerado em: " + new Date(), dateFont);
-            date.setAlignment(Element.ALIGN_RIGHT);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", new Locale("pt", "BR"));
+            String dataFormatada = sdf.format(new Date());
+            Paragraph date = new Paragraph("Gerado em: " + dataFormatada, dateFont);            date.setAlignment(Element.ALIGN_RIGHT);
             date.setSpacingAfter(20);
             document.add(date);
 
-            PdfPTable table = new PdfPTable(5); // 5 colunas
+            PdfPTable table = new PdfPTable(5);
             table.setWidthPercentage(100);
             table.setSpacingBefore(10f);
             table.setSpacingAfter(10f);
@@ -64,7 +67,7 @@ public class PDFGenerator {
 
         for (String header : headers) {
             PdfPCell cell = new PdfPCell();
-            cell.setBackgroundColor(new BaseColor(0, 102, 204)); // Azul
+            cell.setBackgroundColor(PURPLE_COLOR);
             cell.setPadding(5);
             cell.setPhrase(new Phrase(header, font));
             table.addCell(cell);

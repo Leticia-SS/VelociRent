@@ -179,6 +179,7 @@ public class Tratamentos {
 
             if (historico.isEmpty()) {
                 historicoStr.append("Nenhum aluguel registrado.");
+                bot.enviarMensagemComOpcaoMenu(chatId, historicoStr.toString());
             } else {
                 for (Booking booking : historico) {
                     historicoStr.append("- ")
@@ -192,8 +193,21 @@ public class Tratamentos {
                             .append(booking.getStatus())
                             .append("\n");
                 }
+
+                try {
+                    ClassPathResource resource = new ClassPathResource("images/logo.png");
+                    byte[] logoBytes = Files.readAllBytes(resource.getFile().toPath());
+
+                    byte[] pdfBytes = PDFGenerator.generateHistoryPDF(historico, logoBytes);
+
+                    bot.enviarDocumento(chatId, pdfBytes, "historico_aluguel.pdf",
+                            "📄 Histórico detalhado em anexo");
+
+                } catch (Exception e) {
+                    System.err.println("Erro ao gerar PDF: " + e.getMessage());
+                    bot.enviarMensagem(chatId, "⚠️ Histórico em PDF não pôde ser gerado, mas aqui está o resumo:\n\n" + historicoStr);
+                }
             }
-            bot.enviarMensagemComOpcaoMenu(chatId, historicoStr.toString());
         } catch (Exception e) {
             System.err.println("ERRO ao buscar histórico: " + e.getMessage());
             bot.enviarMensagemComOpcaoMenu(chatId, "❌ Ocorreu um erro ao buscar o histórico");
