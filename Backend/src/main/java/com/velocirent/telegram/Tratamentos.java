@@ -9,6 +9,8 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Component
@@ -174,9 +176,10 @@ public class Tratamentos {
                     historicoStr.append("- ")
                             .append(booking.getBike().getModel())
                             .append(" (")
-                            .append(booking.getStartTime())
+                            .append(DateUtils.formatToBrazilian(booking.getStartTime()))
                             .append(" a ")
-                            .append(booking.getEndTime() != null ? booking.getEndTime() : "em andamento")
+                            .append(booking.getEndTime() != null ?
+                                    DateUtils.formatToBrazilian(booking.getEndTime()) : "em andamento")
                             .append(") - ")
                             .append(booking.getStatus())
                             .append("\n");
@@ -342,11 +345,22 @@ public class Tratamentos {
                 StringBuilder historicoCompleto = new StringBuilder("📊 Histórico completo:\n");
 
                 for (Booking booking : todosHistoricos) {
-                    historicoCompleto.append("- ").append(booking.getUser().getName())
-                            .append(": ").append(booking.getBike().getModel())
-                            .append(" (").append(booking.getStartTime()).append(" a ")
-                            .append(booking.getEndTime() != null ? booking.getEndTime() : "em andamento")
-                            .append(") - ").append(booking.getStatus()).append("\n");
+                    historicoCompleto.append("- ")
+                            .append(booking.getUser().getName())
+                            .append(": ")
+                            .append(booking.getBike().getModel())
+                            .append(" (")
+                            .append(DateUtils.formatToBrazilian(booking.getStartTime()))
+                            .append(" a ")
+                            .append(booking.getEndTime() != null ?
+                                    DateUtils.formatToBrazilian(booking.getEndTime()) : "em andamento")
+                            .append(") - ")
+                            .append(booking.getStatus())
+                            .append("\n");
+                }
+
+                if (todosHistoricos.isEmpty()) {
+                    historicoCompleto.append("Nenhum registro encontrado.");
                 }
 
                 bot.enviarMensagemComOpcaoMenu(chatId, historicoCompleto.toString());
@@ -477,6 +491,20 @@ public class Tratamentos {
             }
         } catch (NumberFormatException e) {
             bot.enviarMensagem(chatId, "❌ Digite apenas números");
+        }
+    }
+
+    public class DateUtils {
+
+        private static final SimpleDateFormat BRAZIL_FORMAT = new SimpleDateFormat("dd/MM/yy - HH:mm");
+
+        public static String formatToBrazilian(Date date) {
+            if (date == null) {
+                return "EM_ANDAMENTO";
+            }
+            synchronized (BRAZIL_FORMAT) {
+                return BRAZIL_FORMAT.format(date);
+            }
         }
     }
 }
