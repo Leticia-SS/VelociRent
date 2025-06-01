@@ -1,0 +1,580 @@
+.aboutPage {
+  min-height: 100vh;
+  padding-top: 70px; 
+}
+
+.aboutHero {
+  background: linear-gradient(to right, var(--dark-purple), var(--black));
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.aboutHeroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.aboutHero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.aboutHero p {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.aboutContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.missionSection {
+  margin-bottom: 5rem;
+}
+
+.missionContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.missionText h2 {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+.missionText p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.missionImage {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.missionImage img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.statsSection {
+  margin-bottom: 5rem;
+  text-align: center;
+}
+
+.statsSection h3 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.statsSection h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  border-radius: 2px;
+}
+
+.statsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.statCard {
+  background-color: rgba(59, 49, 99, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+}
+
+.statNumber {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--green);
+  margin-bottom: 0.5rem;
+}
+
+.statLabel {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.1rem;
+}
+
+.valuesSection {
+  margin-bottom: 5rem;
+}
+
+.valuesSection h3 {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.valuesSection h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  border-radius: 2px;
+}
+
+.valuesList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.valueCard {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.valueCard:hover {
+  transform: translateY(-5px);
+}
+
+.valueIcon {
+  color: var(--purple);
+  margin-bottom: 1rem;
+}
+
+.valueCard h4 {
+  color: white;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.valueCard p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+.timelineSection {
+  margin-bottom: 5rem;
+}
+
+.timelineSection h3 {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.timelineSection h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  border-radius: 2px;
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--green), var(--purple));
+  transform: translateX(-50%);
+}
+
+.timelineItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.timelineItem:nth-child(odd) {
+  flex-direction: row;
+}
+
+.timelineItem:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timelineYear {
+  background-color: var(--purple);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: bold;
+  min-width: 80px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.timelineContent {
+  background-color: rgba(59, 49, 99, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 0 2rem;
+  flex: 1;
+}
+
+.timelineContent h4 {
+  color: var(--green);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.timelineContent p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+.teamSection {
+  margin-bottom: 5rem;
+}
+
+.teamSection h3 {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.teamSection h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  border-radius: 2px;
+}
+
+.teamList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.teamCard {
+  background-color: rgba(59, 49, 99, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.teamCard:hover {
+  transform: translateY(-5px);
+}
+
+.teamImage {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 1.5rem;
+}
+
+.teamImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.teamInfo h4 {
+  color: white;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.teamPosition {
+  color: var(--green);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.teamBio {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.contactSection {
+  margin-bottom: 5rem;
+}
+
+.contactSection h3 {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.contactSection h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  border-radius: 2px;
+}
+
+.contactContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.contactItem {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.contactItem svg {
+  color: var(--purple);
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.contactItem h4 {
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.contactItem p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+.contactForm {
+  background-color: rgba(59, 49, 99, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.contactForm h4 {
+  color: white;
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formInput,
+.formTextarea {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(115, 98, 149, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem;
+  color: white;
+  font-family: inherit;
+}
+
+.formInput::placeholder,
+.formTextarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.formInput:focus,
+.formTextarea:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+.formButton {
+  background-color: var(--green);
+  color: var(--black);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.formButton:hover {
+  background-color: #6daf7d;
+}
+
+.aboutCTA {
+  background: linear-gradient(to right, var(--dark-purple), var(--purple));
+  padding: 3rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.aboutCTA h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.aboutCTA p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.aboutButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.primaryButton {
+  background-color: var(--green);
+  color: var(--black);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.primaryButton:hover {
+  background-color: #6daf7d;
+  transform: translateY(-2px);
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--green);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  background-color: rgba(133, 197, 148, 0.1);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .aboutHero {
+    padding: 4rem 1.5rem;
+  }
+
+  .aboutHero h1 {
+    font-size: 2.5rem;
+  }
+
+  .aboutContainer {
+    padding: 3rem 1.5rem;
+  }
+
+  .missionContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .missionImage {
+    order: -1;
+  }
+
+  .statsList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .valuesList {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline::before {
+    left: 2rem;
+  }
+
+  .timelineItem {
+    flex-direction: row !important;
+    padding-left: 4rem;
+  }
+
+  .timelineYear {
+    position: absolute;
+    left: 0;
+    min-width: 60px;
+  }
+
+  .timelineContent {
+    margin: 0;
+  }
+
+  .teamList {
+    grid-template-columns: 1fr;
+  }
+
+  .contactContent {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .aboutCTA {
+    padding: 2rem 1.5rem;
+  }
+
+  .aboutButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+}

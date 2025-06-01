@@ -5,23 +5,23 @@ const HowItWorks = () => {
   const steps = [
     {
       icon: <Smartphone size={32} />,
-      title: "Download the app",
-      description: "Get our free app for iOS or Android to get started.",
+      title: "Acesse o canal ou site",
+      description: "Aluguel pelo site VelociRent ou pelo Telegram com VelociBot.",
     },
     {
       icon: <Map size={32} />,
-      title: "Find a bike",
-      description: "Locate the nearest bike station on the map.",
+      title: "Faça o login",
+      description: "Entre com sua mátricula ativa para poder retirar a bike.",
     },
     {
       icon: <BikeIcon size={32} />,
-      title: "Scan & unlock",
-      description: "Scan the QR code on the bike to unlock it.",
+      title: "Escolha sua VelociBike",
+      description: "Selecione qual bike você vai utilizar.",
     },
     {
       icon: <ThumbsUp size={32} />,
-      title: "Enjoy the ride",
-      description: "Ride to your destination and park at any station.",
+      title: "Curta o passeio",
+      description: "Utilize a bike para qualquer viagem desejada.",
     },
   ]
 
@@ -29,8 +29,8 @@ const HowItWorks = () => {
     <section className={styles.howItWorks}>
       <div className={styles.container}>
         <div className={styles.content}>
-          <h2>How it works</h2>
-          <p className={styles.subtitle}>Renting a bike has never been easier</p>
+          <h2>Como funciona?</h2>
+          <p className={styles.subtitle}>Voltar pra casa nunca foi tão fácil!</p>
 
           <div className={styles.steps}>
             {steps.map((step, index) => (
@@ -46,7 +46,7 @@ const HowItWorks = () => {
 
         <div className={styles.imageSection}>
           <div className={styles.imageContainer}>
-            <img src="/placeholder.svg?height=500&width=400" alt="Person using the BikeShare app" />
+            <img src="/placeholder.svg?height=500&width=400" alt="Dinossauro com bicicleta" />
           </div>
         </div>
       </div>

@@ -5,30 +5,30 @@ const Features = () => {
   const features = [
     {
       icon: <MapPin size={32} />,
-      title: "Convenient Locations",
-      description: "Find bikes at hundreds of stations across the city, always within walking distance.",
+      title: "Localização ideal",
+      description: "Bikes disponíveis e de fácil acesso no campus da sua faculdade.",
     },
     {
       icon: <Clock size={32} />,
-      title: "24/7 Availability",
-      description: "Our bikes are available day and night, whenever you need them.",
+      title: "Ao seu dispor",
+      description: "Nossas bikes podem ficar a sua disposição por mais de 24 horas.",
     },
     {
       icon: <CreditCard size={32} />,
-      title: "Affordable Pricing",
-      description: "Pay only for what you use with flexible pricing plans for every budget.",
+      title: "Sem custos",
+      description: "Com sua matrícula ativa, você pode fazer o uso de nossas bikes.",
     },
     {
       icon: <Leaf size={32} />,
       title: "Eco-Friendly",
-      description: "Reduce your carbon footprint and help create a cleaner, greener city.",
+      description: "Diminua a emissão de carbono e crie um mundo mais verde.",
     },
   ]
 
   return (
     <section className={styles.features}>
       <div className={styles.container}>
-        <h2>Why choose BikeShare?</h2>
+        <h2>Por que ir de VelociRent?</h2>
         <div className={styles.featureGrid}>
           {features.map((feature, index) => (
             <div key={index} className={styles.featureCard}>

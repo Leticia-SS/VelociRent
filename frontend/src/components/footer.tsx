@@ -9,9 +9,9 @@ const Footer = () => {
           <div className={styles.footerColumn}>
             <div className={styles.logo}>
               <Bike size={24} />
-              <span>BikeShare</span>
+              <span>VelociRent</span>
             </div>
-            <p>Convenient, affordable, and eco-friendly bike rentals for everyone.</p>
+            <p>A sua volta para casa é nossa responsabilidade, com bikes acessíveis e sustentáveis na ponta do seus dedos.</p>
             <div className={styles.socialIcons}>
               <a href="#" aria-label="Facebook">
                 <Facebook size={20} />
@@ -26,72 +26,65 @@ const Footer = () => {
           </div>
 
           <div className={styles.footerColumn}>
-            <h3>Quick Links</h3>
+            <h3>Nossos Links</h3>
             <ul>
               <li>
                 <a href="#">Home</a>
               </li>
               <li>
-                <a href="#">About Us</a>
+                <a href="#">Como retirar</a>
               </li>
               <li>
-                <a href="#">Pricing</a>
+                <a href="#">Tempo de uso</a>
               </li>
               <li>
-                <a href="#">Locations</a>
+                <a href="#">Estágios</a>
               </li>
               <li>
-                <a href="#">Safety</a>
+                <a href="#">Sobre nós</a>
               </li>
             </ul>
           </div>
 
           <div className={styles.footerColumn}>
-            <h3>Support</h3>
+            <h3>Suporte</h3>
             <ul>
               <li>
-                <a href="#">Help Center</a>
+                <a href="#">Mecânica</a>
               </li>
               <li>
-                <a href="#">FAQ</a>
+                <a href="#">Termos de Serviço</a>
               </li>
               <li>
-                <a href="#">Contact Us</a>
-              </li>
-              <li>
-                <a href="#">Terms of Service</a>
-              </li>
-              <li>
-                <a href="#">Privacy Policy</a>
+                <a href="#">Política de Privacidade</a>
               </li>
             </ul>
           </div>
 
           <div className={styles.footerColumn}>
-            <h3>Contact</h3>
+            <h3>Contato</h3>
             <div className={styles.contactInfo}>
               <div className={styles.contactItem}>
                 <Smartphone size={16} />
-                <span>(123) 456-7890</span>
+                <span>(+55) 4002-8922</span>
               </div>
               <div className={styles.contactItem}>
                 <Mail size={16} />
-                <span>info@bikeshare.com</span>
+                <span>VeloSuport@vmail.com</span>
               </div>
               <div className={styles.contactItem}>
                 <MapPin size={16} />
-                <span>123 Bike Street, City</span>
+                <span>23 Via Verde, Varsóvia</span>
               </div>
             </div>
             <div className={styles.appButtons}>
-              <button className={styles.appButton}>App Store</button>
-              <button className={styles.appButton}>Google Play</button>
+              <button className={styles.appButton}>Telegram</button>
             </div>
           </div>
         </div>
 
         <div className={styles.footerBottom}>
-          <p>&copy; {new Date().getFullYear()} BikeShare. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} VelociBikes. Todos os direitos reservados. RAAWWRRRR!!!</p>
         </div>
       </div>
     </footer>

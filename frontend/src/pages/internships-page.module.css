@@ -1,0 +1,512 @@
+.internshipsPage {
+  min-height: 100vh;
+  padding-top: 70px; /* Space for fixed navbar */
+}
+
+.internshipsHero {
+  background: linear-gradient(to right, var(--dark-purple), var(--black));
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.internshipsHeroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.internshipsHero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.internshipsHero p {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.internshipsContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.internshipsIntro {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.internshipsIconContainer {
+  width: 80px;
+  height: 80px;
+  background-color: var(--dark-purple);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: var(--green);
+}
+
+.internshipsIntro h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.internshipsIntro p {
+  max-width: 700px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+.programsSection {
+  margin-bottom: 4rem;
+}
+
+.programsSection h3 {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.programsSection h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  border-radius: 2px;
+}
+
+.programsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.programCard {
+  background-color: rgba(59, 49, 99, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.programCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(115, 98, 149, 0.2);
+}
+
+.programHeader {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  text-align: center;
+}
+
+.programIcon {
+  color: var(--green);
+  margin-bottom: 1rem;
+}
+
+.programHeader h4 {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.programField {
+  color: var(--purple);
+  font-weight: 600;
+}
+
+.programContent {
+  padding: 2rem;
+}
+
+.programDescription {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.programDetails {
+  margin-bottom: 1.5rem;
+}
+
+.programResponsibilities,
+.programRequirements {
+  margin-bottom: 1.5rem;
+}
+
+.programResponsibilities h5,
+.programRequirements h5 {
+  color: var(--green);
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.programResponsibilities ul,
+.programRequirements ul {
+  list-style: none;
+  padding: 0;
+}
+
+.programResponsibilities li,
+.programRequirements li {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.programResponsibilities li::before,
+.programRequirements li::before {
+  content: "•";
+  color: var(--purple);
+  position: absolute;
+  left: 0;
+}
+
+.programButton {
+  background-color: var(--green);
+  color: var(--black);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.programButton:hover {
+  background-color: #6daf7d;
+}
+
+.benefitsSection {
+  margin-bottom: 4rem;
+}
+
+.benefitsSection h3 {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.benefitsSection h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  border-radius: 2px;
+}
+
+.benefitsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.benefitCard {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.benefitCard:hover {
+  transform: translateY(-5px);
+}
+
+.benefitIcon {
+  color: var(--purple);
+  margin-bottom: 1rem;
+}
+
+.benefitContent h4 {
+  color: white;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.benefitContent p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+.testimonialsSection {
+  margin-bottom: 4rem;
+}
+
+.testimonialsSection h3 {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.testimonialsSection h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  border-radius: 2px;
+}
+
+.testimonialsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.testimonialCard {
+  background-color: rgba(59, 49, 99, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.testimonialCard:hover {
+  transform: translateY(-5px);
+}
+
+.testimonialContent {
+  margin-bottom: 1.5rem;
+}
+
+.testimonialQuote {
+  color: rgba(255, 255, 255, 0.8);
+  font-style: italic;
+  line-height: 1.6;
+  position: relative;
+}
+
+.testimonialQuote::before {
+  content: '"';
+  font-size: 3rem;
+  color: var(--purple);
+  opacity: 0.3;
+  position: absolute;
+  top: -1.5rem;
+  left: -1rem;
+}
+
+.testimonialAuthor {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testimonialImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.testimonialImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonialInfo h4 {
+  color: white;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.testimonialInfo p {
+  color: var(--green);
+  font-size: 0.8rem;
+}
+
+.applicationSection {
+  margin-bottom: 4rem;
+}
+
+.applicationSection h3 {
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.applicationSection h3::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  border-radius: 2px;
+}
+
+.applicationSteps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.applicationStep {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.applicationStep:hover {
+  transform: translateY(-5px);
+}
+
+.stepNumber {
+  width: 40px;
+  height: 40px;
+  background-color: var(--purple);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin: 0 auto 1rem;
+}
+
+.applicationStep h4 {
+  color: white;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.applicationStep p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+.internshipsCTA {
+  background: linear-gradient(to right, var(--dark-purple), var(--purple));
+  padding: 3rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.internshipsCTA h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.internshipsCTA p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.internshipsButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.primaryButton {
+  background-color: var(--green);
+  color: var(--black);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.primaryButton:hover {
+  background-color: #6daf7d;
+  transform: translateY(-2px);
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--green);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  background-color: rgba(133, 197, 148, 0.1);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .internshipsHero {
+    padding: 4rem 1.5rem;
+  }
+
+  .internshipsHero h1 {
+    font-size: 2.5rem;
+  }
+
+  .internshipsContainer {
+    padding: 3rem 1.5rem;
+  }
+
+  .programsList {
+    grid-template-columns: 1fr;
+  }
+
+  .benefitsList {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonialsList {
+    grid-template-columns: 1fr;
+  }
+
+  .applicationSteps {
+    grid-template-columns: 1fr;
+  }
+
+  .internshipsCTA {
+    padding: 2rem 1.5rem;
+  }
+
+  .internshipsButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+}

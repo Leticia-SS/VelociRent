@@ -1,0 +1,239 @@
+.bikesPage {
+  min-height: 100vh;
+  padding-top: 70px; /* Space for fixed navbar */
+}
+
+.bikesHero {
+  background: linear-gradient(to right, var(--dark-purple), var(--black));
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.bikesHeroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.bikesHero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bikesHero p {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.bikesContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.bikesIntro {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.bikeIconContainer {
+  width: 80px;
+  height: 80px;
+  background-color: var(--dark-purple);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: var(--green);
+}
+
+.bikesIntro h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.bikesIntro p {
+  max-width: 700px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+.bikesList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+}
+
+.bikeCard {
+  background-color: rgba(59, 49, 99, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bikeCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(115, 98, 149, 0.2);
+}
+
+.bikeImageContainer {
+  height: 200px;
+  overflow: hidden;
+}
+
+.bikeImageContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.bikeCard:hover .bikeImageContainer img {
+  transform: scale(1.05);
+}
+
+.bikeContent {
+  padding: 1.5rem;
+}
+
+.bikeContent h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--green);
+}
+
+.bikeDescription {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.bikeFeatures {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.bikeFeature {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.bikeFeatureIcon {
+  color: var(--purple);
+}
+
+.bikeFeature span {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.bikeRentButton {
+  background-color: var(--green);
+  color: var(--black);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.bikeRentButton:hover {
+  background-color: #6daf7d;
+}
+
+.bikesCTA {
+  background: linear-gradient(to right, var(--dark-purple), var(--purple));
+  padding: 3rem;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.bikesCTA h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.bikesCTA p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bikesButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.primaryButton {
+  background-color: var(--green);
+  color: var(--black);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.primaryButton:hover {
+  background-color: #6daf7d;
+  transform: translateY(-2px);
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--green);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  background-color: rgba(133, 197, 148, 0.1);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .bikesHero {
+    padding: 4rem 1.5rem;
+  }
+
+  .bikesHero h1 {
+    font-size: 2.5rem;
+  }
+
+  .bikesContainer {
+    padding: 3rem 1.5rem;
+  }
+
+  .bikesList {
+    grid-template-columns: 1fr;
+  }
+
+  .bikesCTA {
+    padding: 2rem 1.5rem;
+  }
+
+  .bikesButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+}

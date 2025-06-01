@@ -1,19 +1,32 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Navbar from "./components/navbar"
-import BikeHero from "./components/bike-hero"
-import Features from "./components/features"
-import HowItWorks from "./components/how-it-works"
 import Footer from "./components/footer"
+import HomePage from "./pages/home-page"
+import BikesPage from "./pages/bikes-page"
+import PickupPage from "./pages/pickup-page"
+import UsagePage from "./pages/usage-page"
+import InternshipsPage from "./pages/internships-page"
+import AboutPage from "./pages/about-page"
 import "./App.css"
 
 function App() {
   return (
-    <main className="main">
-      <Navbar />
-      <BikeHero />
-      <Features />
-      <HowItWorks />
-      <Footer />
-    </main>
+    <Router>
+      <div className="main">
+        <Navbar />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/bikes" element={<BikesPage />} />
+            <Route path="/pickup" element={<PickupPage />} />
+            <Route path="/usage" element={<UsagePage />} />
+            <Route path="/internships" element={<InternshipsPage />} />
+            <Route path="/about" element={<AboutPage />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
+    </Router>
   )
 }
 

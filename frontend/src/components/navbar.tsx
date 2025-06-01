@@ -1,8 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import styles from "./navbar.module.css"
+import { Link } from "react-router-dom"
 import { Bike, Menu, X } from "lucide-react"
+import styles from "./navbar.module.css"
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -11,13 +12,17 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen)
   }
 
+  const closeMenu = () => {
+    setIsMenuOpen(false)
+  }
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.navContainer}>
-        <div className={styles.logo}>
+        <Link to="/" className={styles.logo} onClick={closeMenu}>
           <Bike size={24} />
           <span>BikeShare</span>
-        </div>
+        </Link>
 
         <div className={styles.mobileMenuButton} onClick={toggleMenu}>
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -25,19 +30,29 @@ const Navbar = () => {
 
         <ul className={`${styles.navLinks} ${isMenuOpen ? styles.active : ""}`}>
           <li>
-            <a href="#">Bikes</a>
+            <Link to="/bikes" onClick={closeMenu}>
+              Bikes
+            </Link>
           </li>
           <li>
-            <a href="#">Locations</a>
+            <Link to="/pickup" onClick={closeMenu}>
+              How to pick up
+            </Link>
           </li>
           <li>
-            <a href="#">Pricing</a>
+            <Link to="/usage" onClick={closeMenu}>
+              Usage time
+            </Link>
           </li>
           <li>
-            <a href="#">Safety</a>
+            <Link to="/internships" onClick={closeMenu}>
+              Internships
+            </Link>
           </li>
           <li>
-            <a href="#">About</a>
+            <Link to="/about" onClick={closeMenu}>
+              About
+            </Link>
           </li>
         </ul>
 
