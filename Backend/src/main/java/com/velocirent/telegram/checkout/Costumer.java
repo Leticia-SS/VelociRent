@@ -7,17 +7,19 @@ import okhttp3.Response;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Costumer {
-    public static void main(String[] args) {
+    public static String main() {
         // Criação do cliente HTTP
         OkHttpClient client = new OkHttpClient();
 
         // Dados do cliente
-        String userName = "Giovani Marlon";
-        String userEmail = "giovani@infnet.edu.br"; // E-mail válido
+        String userName = "Argos Megan Lara";
+        String userEmail = "giovani.ferreira@infnet.edu.br"; // E-mail válido (somente com @ ja serve)
         String userCpf = "10271345640"; // CPF com 11 dígitos válidos
 
         // Criação do JSON com Gson
@@ -38,21 +40,79 @@ public class Costumer {
                 .post(body)
                 .addHeader("accept", "application/json")
                 .addHeader("content-type", "application/json")
-                .addHeader("access_token", "acessTokenAqui") // Substitua pela sua chave real
+                .addHeader("access_token", "$aact_prod_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjUzNTlmZmVmLTMyM2UtNGMzYy04Y2EyLTQzMTY0NmQ3YWE2MDo6JGFhY2hfNTcxNmJlODEtMzI1Yi00YWQ0LWI2YzYtN2RjOGE4Yjc3Mzgy") // Substitua pela sua chave real
                 .build();
 
         // Executa a chamada HTTP
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
-                System.out.println("Resposta: " + response.body().string());
+                String responseBody = response.body().string();
+                String customerId = responseBody.split("\"id\":\"")[1].split("\"")[0];
+//                System.out.println("id do cliete gerado: " + customerId);
+                return customerId;  // Retorna o ID
             } else {
                 System.out.println("Erro: " + response.code() + " - " + response.message());
                 if (response.body() != null) {
                     System.out.println("Detalhes do erro: " + response.body().string());
                 }
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
+        }
+    }
+}
+
+class Checkout {
+    public static void main(String[] args) {
+        String customerId = Costumer.main();
+        LocalDate hoje = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataFormatada = hoje.format(formatter);
+
+        if (customerId != null) {
+            OkHttpClient client = new OkHttpClient();
+
+            MediaType mediaType = MediaType.parse("application/json");
+            // Use the actual customerId instead of hardcoded value
+            RequestBody body = RequestBody.create(mediaType,
+                    "{"
+                            + "\"billingType\":\"UNDEFINED\","
+                            + "\"customer\":\"" + customerId + "\","
+                            + "\"value\":5,"
+                            + "\"dueDate\":\"2026-07-01\","
+                            + "\"description\":\"Referente ao aluguel da VelociBike realizado em " + dataFormatada + ". Agradecemos a sua preferência!\""
+                            + "}");
+
+            Request request = new Request.Builder()
+                    .url("https://api.asaas.com/v3/payments")
+                    .post(body)
+                    .addHeader("accept", "application/json")
+                    .addHeader("content-type", "application/json")
+                    .addHeader("access_token", "$aact_prod_000MzkwODA2MWY2OGM3MWRlMDU2NWM3MzJlNzZmNGZhZGY6OjUzNTlmZmVmLTMyM2UtNGMzYy04Y2EyLTQzMTY0NmQ3YWE2MDo6JGFhY2hfNTcxNmJlODEtMzI1Yi00YWQ0LWI2YzYtN2RjOGE4Yjc3Mzgy")  // Note: "access" is misspelled as "acess"
+                    .build();
+
+            // Execute HTTP call
+            try (Response response = client.newCall(request).execute()) {
+                if (response.isSuccessful()) {
+
+                    if (response.body() != null) {
+                        String responseBody = response.body().string();
+                        String urlPayment = responseBody.split("\"invoiceUrl\":\"")[1].split("\"")[0];
+                        System.out.println("link de pagamento: " + urlPayment);
+                    }
+                } else {
+                    System.out.println("Erro: " + response.code() + " - " + response.message());
+                    if (response.body() != null) {
+                        System.out.println("Detalhes do erro: " + response.body().string());
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Falha ao obter Customer ID");
         }
     }
 }
