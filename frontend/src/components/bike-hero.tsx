@@ -3,7 +3,6 @@ import { ArrowRight } from "lucide-react"
 import Logo from "../assets/logo-sem-fundo.png"
 
 const BikeHero = () => {
-    // alteração inutil
   return (
     <section className={styles.hero}>
       <div className={styles.heroContent}>
@@ -13,7 +12,7 @@ const BikeHero = () => {
           <button className={styles.primaryButton}>
             Alugue uma bicicleta! <ArrowRight size={16} />
           </button>
-          <button className={styles.secondaryButton}>Acessar pelo app</button>
+          <button className={styles.secondaryButton}>Alugar pelo Telegram</button>
         </div>
       </div>
       <div className={styles.heroImage}>

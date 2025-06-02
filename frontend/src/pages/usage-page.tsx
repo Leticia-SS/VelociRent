@@ -122,7 +122,7 @@ const UsagePage = () => {
           <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
           <div className={styles.usageButtons}>
             <button className={styles.primaryButton}>Aluguel no Telegram</button>
-            <button className={styles.secondaryButton}>Aluguel no Telegram</button>
+            <button className={styles.secondaryButton}>Aluguel no Site</button>
           </div>
         </div>
       </div>

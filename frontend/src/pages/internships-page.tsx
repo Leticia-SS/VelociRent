@@ -137,7 +137,6 @@ const InternshipsPage = () => {
                       </ul>
                     </div>
                   </div>
-                  <button className={styles.programButton}>Apply Now</button>
                 </div>
               </div>
             ))}
