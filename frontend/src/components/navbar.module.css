@@ -70,10 +70,6 @@
   transition: all 0.3s ease;
 }
 
-.signupButton:hover {
-  background-color: #6daf7d;
-}
-
 .mobileMenuButton {
   display: none;
   cursor: pointer;

@@ -20,7 +20,7 @@ const UsagePage = () => {
     {
       id: 2,
       icon: <Coffee size={40} />,
-      title: "Aventura do Dia a Dia",
+      title: "Aventuras do Dia a Dia",
       duration: "2 - 12 horas",
       description: "Explore a cidade na sua velocidade.",
       features: ["Perfeito para dias cheios de compromisso", "Tempo de retorno flexível", "Pode fazer diversas paradas",
@@ -83,7 +83,7 @@ const UsagePage = () => {
           <div className={styles.optionsList}>
             {usageOptions.map((option) => (
               <div key={option.id} className={`${styles.optionCard} ${option.popular ? styles.popular : ""}`}>
-                {option.popular && <div className={styles.popularBadge}>Most Popular</div>}
+                {option.popular && <div className={styles.popularBadge}>Mais utilizado</div>}
                 <div className={styles.optionHeader}>
                   <div className={styles.optionIcon}>{option.icon}</div>
                   <h4>{option.title}</h4>

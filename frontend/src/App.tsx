@@ -7,6 +7,7 @@ import PickupPage from "./pages/pickup-page"
 import UsagePage from "./pages/usage-page"
 import InternshipsPage from "./pages/internships-page"
 import AboutPage from "./pages/about-page"
+import LoginPage from "./pages/login-page"
 import "./App.css"
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path="/usage" element={<UsagePage />} />
             <Route path="/internships" element={<InternshipsPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </div>
         <Footer />
