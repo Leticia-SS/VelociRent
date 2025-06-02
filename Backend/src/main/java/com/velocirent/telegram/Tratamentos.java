@@ -229,14 +229,27 @@ public class Tratamentos {
                 tratarHistorico(bot, chatId, matriculasUsuarios, nomesUsuarios);
                 break;
             case "🔄 Retornar bicicleta":
-                if (bicicletasAlugadas.containsKey(chatId)) {
+                Integer matricula = matriculasUsuarios.get(chatId);
+                if (matricula == null) {
+                    bot.enviarMensagemComOpcaoMenu(chatId, "❌ Matrícula não encontrada. Reinicie o bot.");
+                    break;
+                }
+
+                List<Booking> alugueisAtivos = bot.getBookingRepository()
+                        .findActiveBookingByUserMatricula(matricula);
+
+                if (!alugueisAtivos.isEmpty()) {
                     estadosUsuarios.put(chatId, "AGUARDANDO_RETORNO");
-                    bot.enviarMensagem(chatId, "Por favor, informe o estado da bicicleta " +
-                            bicicletasAlugadas.get(chatId) + " (ótimo, bom, regular, ruim):");
+                    Bikes bike = alugueisAtivos.get(0).getBike();
+                    String mensagemBike = "Por favor, avalie o estado da bicicleta:\n" +
+                            "Modelo: " + bike.getModel() + "\n" +
+                            "ID: " + bike.getId();
+
+                    bot.enviarMensagem(chatId, mensagemBike);
                     List<String> opcoes = Arrays.asList("ótimo", "bom", "regular", "ruim");
-                    bot.enviarMensagemComBotoes(chatId, "Avaliar bike como:", opcoes);
+                    bot.enviarMensagemComBotoes(chatId, "Avaliação:", opcoes);
                 } else {
-                    bot.enviarMensagemComOpcaoMenu(chatId, "❌ Você não tem nenhuma bicicleta alugada no momento.");
+                    bot.enviarMensagemComOpcaoMenu(chatId, "❌ Você não tem nenhum aluguel ativo.");
                 }
                 break;
             case "❌ Encerrar atendimento":
@@ -263,14 +276,27 @@ public class Tratamentos {
                 tratarHistorico(bot, chatId, matriculasUsuarios, nomesUsuarios);
                 break;
             case "🔄 Retornar bicicleta":
-                if (bicicletasAlugadas.containsKey(chatId)) {
+                Integer matricula = matriculasUsuarios.get(chatId);
+                if (matricula == null) {
+                    bot.enviarMensagemComOpcaoMenu(chatId, "❌ Matrícula não encontrada. Reinicie o bot.");
+                    break;
+                }
+
+                List<Booking> alugueisAtivos = bot.getBookingRepository()
+                        .findActiveBookingByUserMatricula(matricula);
+
+                if (!alugueisAtivos.isEmpty()) {
                     estadosUsuarios.put(chatId, "AGUARDANDO_RETORNO");
-                    bot.enviarMensagem(chatId, "Por favor, informe o estado da bicicleta " +
-                            bicicletasAlugadas.get(chatId) + " (ótimo, bom, regular, ruim):");
+                    Bikes bike = alugueisAtivos.get(0).getBike();
+                    String mensagemBike = "Por favor, avalie o estado da bicicleta:\n" +
+                            "Modelo: " + bike.getModel() + "\n" +
+                            "ID: " + bike.getId();
+
+                    bot.enviarMensagem(chatId, mensagemBike);
                     List<String> opcoes = Arrays.asList("ótimo", "bom", "regular", "ruim");
-                    bot.enviarMensagemComBotoes(chatId, "Avaliar bike como:", opcoes);
+                    bot.enviarMensagemComBotoes(chatId, "Avaliação:", opcoes);
                 } else {
-                    bot.enviarMensagemComOpcaoMenu(chatId, "❌ Você não tem nenhuma bicicleta alugada no momento.");
+                    bot.enviarMensagemComOpcaoMenu(chatId, "❌ Você não tem nenhum aluguel ativo.");
                 }
                 break;
             case "❌ Encerrar atendimento":
@@ -312,14 +338,27 @@ public class Tratamentos {
                 tratarHistorico(bot, chatId, matriculasUsuarios, nomesUsuarios);
                 break;
             case "🔄 Retornar bicicleta":
-                if (bicicletasAlugadas.containsKey(chatId)) {
+                Integer matricula = matriculasUsuarios.get(chatId);
+                if (matricula == null) {
+                    bot.enviarMensagemComOpcaoMenu(chatId, "❌ Matrícula não encontrada. Reinicie o bot.");
+                    break;
+                }
+
+                List<Booking> alugueisAtivos = bot.getBookingRepository()
+                        .findActiveBookingByUserMatricula(matricula);
+
+                if (!alugueisAtivos.isEmpty()) {
                     estadosUsuarios.put(chatId, "AGUARDANDO_RETORNO");
-                    bot.enviarMensagem(chatId, "Por favor, informe o estado da bicicleta " +
-                            bicicletasAlugadas.get(chatId) + " (ótimo, bom, regular, ruim):");
+                    Bikes bike = alugueisAtivos.get(0).getBike();
+                    String mensagemBike = "Por favor, avalie o estado da bicicleta:\n" +
+                            "Modelo: " + bike.getModel() + "\n" +
+                            "ID: " + bike.getId();
+
+                    bot.enviarMensagem(chatId, mensagemBike);
                     List<String> opcoes = Arrays.asList("ótimo", "bom", "regular", "ruim");
-                    bot.enviarMensagemComBotoes(chatId, "Avaliar bike como:", opcoes);
+                    bot.enviarMensagemComBotoes(chatId, "Avaliação:", opcoes);
                 } else {
-                    bot.enviarMensagemComOpcaoMenu(chatId, "❌ Você não tem nenhuma bicicleta alugada no momento.");
+                    bot.enviarMensagemComOpcaoMenu(chatId, "❌ Você não tem nenhum aluguel ativo.");
                 }
                 break;
             case "❌ Encerrar atendimento":
@@ -386,14 +425,27 @@ public class Tratamentos {
                 tratarHistorico(bot, chatId, matriculasUsuarios, nomesUsuarios);
                 break;
             case "🔄 Retornar bicicleta":
-                if (bicicletasAlugadas.containsKey(chatId)) {
+                Integer matricula = matriculasUsuarios.get(chatId);
+                if (matricula == null) {
+                    bot.enviarMensagemComOpcaoMenu(chatId, "❌ Matrícula não encontrada. Reinicie o bot.");
+                    break;
+                }
+
+                List<Booking> alugueisAtivos = bot.getBookingRepository()
+                        .findActiveBookingByUserMatricula(matricula);
+
+                if (!alugueisAtivos.isEmpty()) {
                     estadosUsuarios.put(chatId, "AGUARDANDO_RETORNO");
-                    bot.enviarMensagem(chatId, "Por favor, informe o estado da bicicleta " +
-                            bicicletasAlugadas.get(chatId) + " (ótimo, bom, regular, ruim):");
+                    Bikes bike = alugueisAtivos.get(0).getBike();
+                    String mensagemBike = "Por favor, avalie o estado da bicicleta:\n" +
+                            "Modelo: " + bike.getModel() + "\n" +
+                            "ID: " + bike.getId();
+
+                    bot.enviarMensagem(chatId, mensagemBike);
                     List<String> opcoes = Arrays.asList("ótimo", "bom", "regular", "ruim");
-                    bot.enviarMensagemComBotoes(chatId, "Avaliar bike como:", opcoes);
+                    bot.enviarMensagemComBotoes(chatId, "Avaliação:", opcoes);
                 } else {
-                    bot.enviarMensagemComOpcaoMenu(chatId, "❌ Você não tem nenhuma bicicleta alugada no momento.");
+                    bot.enviarMensagemComOpcaoMenu(chatId, "❌ Você não tem nenhum aluguel ativo.");
                 }
                 break;
             case "❌ Encerrar atendimento":
@@ -427,7 +479,7 @@ public class Tratamentos {
                     .findActiveBookingByUserMatricula(matricula);
 
             if (alugueisAtivos.isEmpty()) {
-                bot.enviarMensagemComOpcaoMenu(chatId, "❌ Nenhum aluguel ativo encontrado.");
+                bot.enviarMensagemComOpcaoMenu(chatId, "❌ Nenhum aluguel ativo encontrado no banco de dados.");
                 return;
             }
 
@@ -458,18 +510,24 @@ public class Tratamentos {
                             "Horário: %s",
                     bike.getModel(),
                     mensagem,
-                    booking.getEndTime()
+                    Tratamentos.DateUtils.formatToBrazilian(booking.getEndTime())
             );
 
             bot.enviarMensagemComOpcaoMenu(chatId, confirmacao);
 
             String perfil = bot.getPerfisUsuarios().get(chatId);
-            estadosUsuarios.put(chatId, "MENU_" + perfil);
+            if (perfil != null) {
+                estadosUsuarios.put(chatId, "MENU_" + perfil);
+                PerfilUsuario.mostrarMenuPorPerfil(bot, chatId, nomesUsuarios.get(chatId), perfil);
+            } else {
+                estadosUsuarios.put(chatId, "INICIO");
+                bot.enviarMensagem(chatId, "❌ Perfil não encontrado. Reinicie o bot.");
+            }
 
         } catch (Exception e) {
             System.err.println("ERRO no retorno: " + e.getMessage());
             e.printStackTrace();
-            bot.enviarMensagem(chatId, "❌ Falha no retorno. Tente novamente ou contate o suporte. Erro: " + e.getMessage());
+            bot.enviarMensagem(chatId, "❌ Falha no retorno. Tente novamente ou contate o suporte.");
         }
     }
 
