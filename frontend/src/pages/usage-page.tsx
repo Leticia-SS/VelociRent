@@ -1,7 +1,14 @@
+"use client"
+
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/auth-context"
 import { Clock, Home, MapPin, Calendar, Star, Shield, Zap, Coffee } from "lucide-react"
 import styles from "./usage-page.module.css"
 
 const UsagePage = () => {
+  const navigate = useNavigate()
+  const { isAuthenticated } = useAuth()
+
   const usageOptions = [
     {
       id: 1,
@@ -23,8 +30,12 @@ const UsagePage = () => {
       title: "Aventuras do Dia a Dia",
       duration: "2 - 12 horas",
       description: "Explore a cidade na sua velocidade.",
-      features: ["Perfeito para dias cheios de compromisso", "Tempo de retorno flexível", "Pode fazer diversas paradas",
-         "Possibilidade de uso turístico"],
+      features: [
+        "Perfeito para dias cheios de compromisso",
+        "Tempo de retorno flexível",
+        "Pode fazer diversas paradas",
+        "Possibilidade de uso turístico",
+      ],
       popular: false,
     },
     {
@@ -33,8 +44,12 @@ const UsagePage = () => {
       title: "Volte para casa",
       duration: "Mais de 24 horas",
       description: "Pegue a bike para voltar para casa.",
-      features: ["Passar a noite com a bicicleta", "Utilize para ir e voltar", "Uso responsável perto da sua casa",
-         "Mais flexível"],
+      features: [
+        "Passar a noite com a bicicleta",
+        "Utilize para ir e voltar",
+        "Uso responsável perto da sua casa",
+        "Mais flexível",
+      ],
       popular: true,
     },
   ]
@@ -61,6 +76,18 @@ const UsagePage = () => {
       description: "Aproveite a liberdade e a paz de uma viagem de bicicleta.",
     },
   ]
+
+  const handleWebsiteRental = () => {
+    if (isAuthenticated) {
+      navigate("/rental")
+    } else {
+      navigate("/login", { state: { from: { pathname: "/rental" } } })
+    }
+  }
+
+  const handleTelegramRental = () => {
+    window.open("https://t.me/VelociRent_Bot", "_blank", "noopener,noreferrer")
+  }
 
   return (
     <div className={styles.usagePage}>
@@ -121,8 +148,12 @@ const UsagePage = () => {
           <h3>Pronto para sua viagem?</h3>
           <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
           <div className={styles.usageButtons}>
-            <button className={styles.primaryButton}>Aluguel no Telegram</button>
-            <button className={styles.secondaryButton}>Aluguel no Site</button>
+            <button className={styles.primaryButton} onClick={handleWebsiteRental}>
+              Aluguel no Site
+            </button>
+            <button className={styles.secondaryButton} onClick={handleTelegramRental}>
+              Aluguel no Telegram
+            </button>
           </div>
         </div>
       </div>

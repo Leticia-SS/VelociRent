@@ -1,7 +1,14 @@
+"use client"
+
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/auth-context"
 import { Wrench, Building2, Calculator, GraduationCap, Users, Award, Clock } from "lucide-react"
 import styles from "./internships-page.module.css"
 
 const InternshipsPage = () => {
+  const navigate = useNavigate()
+  const { isAuthenticated } = useAuth()
+
   const internshipTypes = [
     {
       id: 1,
@@ -35,11 +42,7 @@ const InternshipsPage = () => {
         "Ajuda na otização de processos",
         "Contribuir para iniciativas de melhora de serviço",
       ],
-      requirements: [
-        "Cursando Administração",
-        "Forte habilidade analítica",
-        "Interesse em mobilidade urbana",
-      ],
+      requirements: ["Cursando Administração", "Forte habilidade analítica", "Interesse em mobilidade urbana"],
     },
     {
       id: 3,
@@ -54,11 +57,7 @@ const InternshipsPage = () => {
         "Participar do planejamento de budget",
         "Analize de custos e eficiência operacional",
       ],
-      requirements: [
-        "Cursando Economia ou Contabilidade",
-        "Alta habilidade númerica",
-        "Atencioso com detalhes",
-      ],
+      requirements: ["Cursando Economia ou Contabilidade", "Alta habilidade númerica", "Atencioso com detalhes"],
     },
   ]
 
@@ -85,6 +84,18 @@ const InternshipsPage = () => {
     },
   ]
 
+  const handleWebsiteRental = () => {
+    if (isAuthenticated) {
+      navigate("/rental")
+    } else {
+      navigate("/login", { state: { from: { pathname: "/rental" } } })
+    }
+  }
+
+  const handleTelegramRental = () => {
+    window.open("https://t.me/VelociRent_Bot", "_blank", "noopener,noreferrer")
+  }
+
   return (
     <div className={styles.internshipsPage}>
       <div className={styles.internshipsHero}>
@@ -101,9 +112,9 @@ const InternshipsPage = () => {
           </div>
           <h2>Construa seu futuro com a VelociRent</h2>
           <p>
-            Oferecemos oportunidades de estágio significativas para estudantes universitários das áreas de engenharia mecânica,
-             administração, economia e contabilidade. Adquira experiência prática enquanto contribui para soluções de 
-             mobilidade urbana sustentável que fazem a diferença em sua comunidade.
+            Oferecemos oportunidades de estágio significativas para estudantes universitários das áreas de engenharia
+            mecânica, administração, economia e contabilidade. Adquira experiência prática enquanto contribui para
+            soluções de mobilidade urbana sustentável que fazem a diferença em sua comunidade.
           </p>
         </div>
 
@@ -160,12 +171,14 @@ const InternshipsPage = () => {
 
         <div className={styles.internshipsCTA}>
           <h3>Pronto para sua viagem?</h3>
-          <p>
-            Entre no aplicativo e vá aonde quiser agora mesmo.
-          </p>
+          <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
           <div className={styles.internshipsButtons}>
-            <button className={styles.primaryButton}>Aluguel no Telegram</button>
-            <button className={styles.secondaryButton}>Aluguel no Site</button>
+            <button className={styles.primaryButton} onClick={handleWebsiteRental}>
+              Aluguel no Site
+            </button>
+            <button className={styles.secondaryButton} onClick={handleTelegramRental}>
+              Aluguel no Telegram
+            </button>
           </div>
         </div>
       </div>

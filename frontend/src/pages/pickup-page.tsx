@@ -1,7 +1,14 @@
+"use client"
+
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/auth-context"
 import { MapPin, Smartphone, QrCode, Unlock, CheckCircle, Clock, Shield, AlertCircle } from "lucide-react"
 import styles from "./pickup-page.module.css"
 
 const PickupPage = () => {
+  const navigate = useNavigate()
+  const { isAuthenticated } = useAuth()
+
   const steps = [
     {
       id: 1,
@@ -44,7 +51,8 @@ const PickupPage = () => {
     {
       icon: <Clock size={24} />,
       title: "Verifique a disponibilidade",
-      description: "A estação opera 24 horas, mas pode ser de escolha do campus limitar que horas o aluno pode ter acesso.",
+      description:
+        "A estação opera 24 horas, mas pode ser de escolha do campus limitar que horas o aluno pode ter acesso.",
     },
     {
       icon: <Shield size={24} />,
@@ -57,6 +65,18 @@ const PickupPage = () => {
       description: "Se você notar algum problema ou defeito na bicicleta, reporte imeditamente.",
     },
   ]
+
+  const handleWebsiteRental = () => {
+    if (isAuthenticated) {
+      navigate("/rental")
+    } else {
+      navigate("/login", { state: { from: { pathname: "/rental" } } })
+    }
+  }
+
+  const handleTelegramRental = () => {
+    window.open("https://t.me/VelociRent_Bot", "_blank", "noopener,noreferrer")
+  }
 
   return (
     <div className={styles.pickupPage}>
@@ -74,8 +94,8 @@ const PickupPage = () => {
           </div>
           <h2>Começar nunca foi tão fácil</h2>
           <p>
-            Nosso processo otimizado de retirada garante que você possa começar a pedalar com rapidez e segurança.
-             Siga o guia passo a passo abaixo para retirar sua bicicleta quando necessário.
+            Nosso processo otimizado de retirada garante que você possa começar a pedalar com rapidez e segurança. Siga
+            o guia passo a passo abaixo para retirar sua bicicleta quando necessário.
           </p>
         </div>
 
@@ -121,8 +141,12 @@ const PickupPage = () => {
           <h3>Pronto para sua viagem?</h3>
           <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
           <div className={styles.pickupButtons}>
-            <button className={styles.primaryButton}>Aluguel no Telegram</button>
-            <button className={styles.secondaryButton}>Aluguel no Site</button>
+            <button className={styles.primaryButton} onClick={handleWebsiteRental}>
+              Aluguel no Site
+            </button>
+            <button className={styles.secondaryButton} onClick={handleTelegramRental}>
+              Aluguel no Telegram
+            </button>
           </div>
         </div>
       </div>

@@ -18,6 +18,10 @@ const BikeHero = () => {
     }
   }
 
+  const handleTelegramRent = () => {
+    window.open("https://t.me/VelociRent_Bot", "_blank", "noopener,noreferrer")
+  }
+
   return (
     <section className={styles.hero}>
       <div className={styles.heroContent}>
@@ -29,13 +33,19 @@ const BikeHero = () => {
           <button className={styles.primaryButton} onClick={handleRentBike}>
             Alugue uma bicicleta! <ArrowRight size={16} />
           </button>
-          <button className={styles.secondaryButton}>Alugar pelo Telegram</button>
+          <button className={styles.secondaryButton} onClick={handleTelegramRent}>
+            Alugar pelo Telegram
+          </button>
         </div>
       </div>
       <div className={styles.heroImage}>
         <div className={styles.imageContainer}>
           <img src={Logo} alt="logo dino" />
         </div>
+      </div>
+      <div className={styles.scrollIndicator}>
+        <div className={styles.mouseIcon}></div>
+        <span>Role para explorar</span>
       </div>
     </section>
   )
