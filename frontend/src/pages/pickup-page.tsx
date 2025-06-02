@@ -6,7 +6,7 @@ const PickupPage = () => {
     {
       id: 1,
       icon: <Smartphone size={40} />,
-      title: "Abra o Site ou Aplicativo",
+      title: "Abra o Site ou Telegram",
       description: "Abra o site ou bot do telegram.",
       details: ["Verifique se sua conexão a internet é estável", "Não utilize o celular em áreas de risco"],
     },

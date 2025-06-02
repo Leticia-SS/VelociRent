@@ -1,0 +1,275 @@
+.loginPage {
+  min-height: 100vh;
+  padding-top: 70px; /* Space for fixed navbar */
+}
+
+.loginHero {
+  background: linear-gradient(to bottom, var(--black) 0%, var(--dark-purple) 100%);
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.loginHeroContent {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.loginHero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.loginHero p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.loginContainer {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.loginCard {
+  background-color: rgba(59, 49, 99, 0.2);
+  border-radius: 12px;
+  padding: 3rem;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.loginHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.loginIcon {
+  width: 80px;
+  height: 80px;
+  background-color: var(--dark-purple);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: var(--green);
+}
+
+.loginHeader h2 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.loginHeader p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formLabel {
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  color: var(--purple);
+  z-index: 1;
+}
+
+.formInput {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(115, 98, 149, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem 1rem 0.75rem 3rem;
+  color: white;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.formInput::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--purple);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.passwordToggle:hover {
+  color: var(--green);
+}
+
+.formOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--green);
+}
+
+.checkboxText {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.forgotLink {
+  color: var(--green);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.forgotLink:hover {
+  color: #6daf7d;
+}
+
+.loginButton {
+  background-color: var(--green);
+  color: var(--black);
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.loginButton:hover {
+  background-color: #6daf7d;
+  transform: translateY(-2px);
+}
+
+.loginFooter {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.loginFooter p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.signupLink {
+  color: var(--green);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.signupLink:hover {
+  color: #6daf7d;
+}
+
+.divider {
+  text-align: center;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: rgba(115, 98, 149, 0.3);
+}
+
+.divider span {
+  background-color: rgba(59, 49, 99, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 0 1rem;
+  font-size: 0.9rem;
+}
+
+.socialLogin {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialButton {
+  flex: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(115, 98, 149, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.socialButton:hover {
+  background-color: rgba(115, 98, 149, 0.2);
+  border-color: var(--purple);
+}
+
+@media (max-width: 768px) {
+  .loginHero {
+    padding: 2rem 1.5rem;
+  }
+
+  .loginHero h1 {
+    font-size: 2rem;
+  }
+
+  .loginContainer {
+    padding: 2rem 1.5rem;
+  }
+
+  .loginCard {
+    padding: 2rem;
+  }
+
+  .socialLogin {
+    flex-direction: column;
+  }
+}

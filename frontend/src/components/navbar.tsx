@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className={styles.navContainer}>
         <Link to="/" className={styles.logo} onClick={closeMenu}>
           <Bike size={24} />
-          <span>VelociRent</span>
+          <span>BikeShare</span>
         </Link>
 
         <div className={styles.mobileMenuButton} onClick={toggleMenu}>
@@ -36,7 +36,7 @@ const Navbar = () => {
           </li>
           <li>
             <Link to="/pickup" onClick={closeMenu}>
-              Como alugar
+              Como pegar
             </Link>
           </li>
           <li>
@@ -57,8 +57,9 @@ const Navbar = () => {
         </ul>
 
         <div className={`${styles.navButtons} ${isMenuOpen ? styles.active : ""}`}>
-          <button className={styles.loginButton}>Log in</button>
-          <button className={styles.signupButton}>Sign up</button>
+          <Link to="/login" className={styles.loginButton} onClick={closeMenu}>
+            Login
+          </Link>
         </div>
       </div>
     </nav>

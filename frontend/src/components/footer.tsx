@@ -50,9 +50,6 @@ const Footer = () => {
             <h3>Suporte</h3>
             <ul>
               <li>
-                <a href="#">Mecânica</a>
-              </li>
-              <li>
                 <a href="#">Termos de Serviço</a>
               </li>
               <li>
