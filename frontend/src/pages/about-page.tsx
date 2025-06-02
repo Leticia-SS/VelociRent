@@ -1,106 +1,73 @@
 import { Users, Leaf, MapPin, Calendar, Heart, Lightbulb } from "lucide-react"
 import styles from "./about-page.module.css"
+import Team from "../assets/velociteam.jpg"
+import Gabriel from "../assets/gabriel.jpg"
+import Giovani from "../assets/giovani.jpg"
+import Leticia from "../assets/leticia.jpg"
+
+
 
 const AboutPage = () => {
   const values = [
     {
       icon: <Leaf size={40} />,
-      title: "Sustainability",
-      description: "We're committed to reducing carbon emissions and promoting eco-friendly transportation solutions.",
+      title: "Sustentabilidade",
+      description: "Estamos comprometidos em reduzir as emissões de carbono e promover soluções de transporte ecologicamente corretas.",
     },
     {
       icon: <Users size={40} />,
-      title: "Community",
-      description: "Building stronger communities by connecting people and making cities more accessible for everyone.",
+      title: "Comunidade",
+      description: "Construindo comunidades mais fortes ao conectar pessoas e tornar as cidades mais acessíveis para todos.",
     },
     {
       icon: <Heart size={40} />,
-      title: "Health & Wellness",
-      description: "Encouraging active lifestyles and promoting physical and mental well-being through cycling.",
+      title: "Saúde e Bem-estar",
+      description: "Promovendo estilos de vida ativos e incentivando o bem-estar físico e mental através do ciclismo.",
     },
     {
       icon: <Lightbulb size={40} />,
-      title: "Innovation",
-      description: "Continuously improving our technology and services to provide the best user experience.",
-    },
-  ]
-
-  const milestones = [
-    {
-      year: "2019",
-      title: "Company Founded",
-      description: "BikeShare was established with a vision to transform urban mobility.",
-    },
-    {
-      year: "2020",
-      title: "First 100 Bikes",
-      description: "Launched our pilot program with 100 bikes across 10 stations in downtown.",
-    },
-    {
-      year: "2021",
-      title: "City Expansion",
-      description: "Expanded to 500 bikes and 50 stations, covering major neighborhoods.",
-    },
-    {
-      year: "2022",
-      title: "Student Program",
-      description: "Launched our internship program for college students.",
-    },
-    {
-      year: "2023",
-      title: "1 Million Rides",
-      description: "Celebrated our 1 millionth ride and continued growing our community.",
-    },
-    {
-      year: "2024",
-      title: "Regional Network",
-      description: "Expanded to neighboring cities, creating a regional bike-sharing network.",
+      title: "Inovação",
+      description: "Melhorando continuamente nossa tecnologia e serviços para oferecer a melhor experiência ao usuário.",
     },
   ]
 
   const team = [
     {
-      name: "Sarah Chen",
-      position: "CEO & Founder",
-      bio: "Former urban planner with 10+ years of experience in sustainable transportation.",
-      image: "https://placehold.co/200x200",
+      name: "Leticia Saraiva",
+      position: "CEO & Fundadora",
+      bio: "Profissional com mais de uma década de experiência em planejamento urbano, focado em transporte sustentável.",
+      image: Leticia,
     },
     {
-      name: "Marcus Rodriguez",
+      name: "Giovani Marlon",
       position: "CTO",
-      bio: "Tech entrepreneur passionate about mobility solutions and smart city technologies.",
-      image: "https://placehold.co/200x200",
+      bio: "Empreendedor de tecnologia apaixonado por soluções de mobilidade e tecnologias para cidades inteligentes.",
+      image: Giovani,
     },
     {
-      name: "Emily Johnson",
+      name: "Gabriel Vieira",
       position: "Head of Operations",
-      bio: "Operations expert with a background in logistics and supply chain management.",
-      image: "https://placehold.co/200x200",
-    },
-    {
-      name: "David Kim",
-      position: "Head of Maintenance",
-      bio: "Mechanical engineer specializing in bike technology and fleet management.",
-      image: "https://placehold.co/200x200",
+      bio: "Especialista em operações com experiência em logística e gestão da cadeia de suprimentos.",
+      image: Gabriel,
     },
   ]
 
   const stats = [
     {
-      number: "2,500+",
-      label: "Bikes in Fleet",
+      number: "9,500+",
+      label: "Bikes em uso",
     },
     {
-      number: "150+",
-      label: "Station Locations",
+      number: "30+",
+      label: "Faculdades parceiras",
     },
     {
-      number: "50,000+",
-      label: "Active Users",
+      number: "100,000+",
+      label: "Usuários ativos",
     },
     {
-      number: "2M+",
-      label: "Total Rides",
+      number: "4M+",
+      label: "Corridas totais",
     },
   ]
 
@@ -108,8 +75,8 @@ const AboutPage = () => {
     <div className={styles.aboutPage}>
       <div className={styles.aboutHero}>
         <div className={styles.aboutHeroContent}>
-          <h1>About BikeShare</h1>
-          <p>Transforming urban mobility through sustainable, accessible, and innovative bike-sharing solutions</p>
+          <h1>Conheça o VelociRent</h1>
+          <p>Transformando mobilidade urbana por meio da sustentabilidade, acessibilidade e inovando no ramo de bicicletas</p>
         </div>
       </div>
 
@@ -117,25 +84,30 @@ const AboutPage = () => {
         <div className={styles.missionSection}>
           <div className={styles.missionContent}>
             <div className={styles.missionText}>
-              <h2>Our Mission</h2>
+              <h2>Nossa missão</h2>
               <p>
-                At BikeShare, we believe that sustainable transportation should be accessible to everyone. Our mission
-                is to reduce urban congestion, lower carbon emissions, and promote healthier lifestyles by providing
-                convenient, affordable, and reliable bike-sharing services.
+                Nossa missão é revolucionar a mobilidade universitária, oferecendo acesso fácil e acessível a
+                 bicicletas de qualidade para estudantes e toda a comunidade acadêmica. 
+                 Acreditamos que a bicicleta é a chave para um campus mais dinâmico, saudável e sustentável. 
+                 Ao simplificar o aluguel de bikes, queremos empoderar cada estudante a explorar seu campus
+                  e a cidade ao redor com liberdade, contribuindo para uma rotina universitária mais ativa e conectada.
               </p>
               <p>
-                We're not just a transportation company – we're building a movement towards more livable, sustainable
-                cities where people can move freely while caring for our planet.
+                Estamos empenhados em criar uma experiência de aluguel de bikes sem complicações em todas as universidades
+                 que atendemos. Nosso compromisso é com a qualidade da frota e a excelência no atendimento, 
+                 garantindo que a mobilidade sobre duas rodas seja uma opção prática e prazerosa. 
+                 Ao expandir nossa rede de franquias, visamos construir uma comunidade de ciclistas universitários, 
+                 promovendo a sustentadoria e o bem-estar por meio de um transporte eficiente e divertido.
               </p>
             </div>
             <div className={styles.missionImage}>
-              <img src="https://placehold.co/500x400" alt="BikeShare mission" />
+              <img src={Team} alt="BikeShare mission" />
             </div>
           </div>
         </div>
 
         <div className={styles.statsSection}>
-          <h3>Our Impact</h3>
+          <h3>Nosso Impacto</h3>
           <div className={styles.statsList}>
             {stats.map((stat, index) => (
               <div key={index} className={styles.statCard}>
@@ -147,28 +119,13 @@ const AboutPage = () => {
         </div>
 
         <div className={styles.valuesSection}>
-          <h3>Our Values</h3>
+          <h3>Nossos Valores</h3>
           <div className={styles.valuesList}>
             {values.map((value, index) => (
               <div key={index} className={styles.valueCard}>
                 <div className={styles.valueIcon}>{value.icon}</div>
                 <h4>{value.title}</h4>
                 <p>{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.timelineSection}>
-          <h3>Our Journey</h3>
-          <div className={styles.timeline}>
-            {milestones.map((milestone, index) => (
-              <div key={index} className={styles.timelineItem}>
-                <div className={styles.timelineYear}>{milestone.year}</div>
-                <div className={styles.timelineContent}>
-                  <h4>{milestone.title}</h4>
-                  <p>{milestone.description}</p>
-                </div>
               </div>
             ))}
           </div>
@@ -189,40 +146,6 @@ const AboutPage = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-
-        <div className={styles.contactSection}>
-          <h3>Get in Touch</h3>
-          <div className={styles.contactContent}>
-            <div className={styles.contactInfo}>
-              <div className={styles.contactItem}>
-                <MapPin size={24} />
-                <div>
-                  <h4>Headquarters</h4>
-                  <p>123 Green Street, Eco City, EC 12345</p>
-                </div>
-              </div>
-              <div className={styles.contactItem}>
-                <Calendar size={24} />
-                <div>
-                  <h4>Business Hours</h4>
-                  <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
-                  <p>Weekend: 10:00 AM - 4:00 PM</p>
-                </div>
-              </div>
-            </div>
-            <div className={styles.contactForm}>
-              <h4>Send us a message</h4>
-              <form className={styles.form}>
-                <input type="text" placeholder="Your Name" className={styles.formInput} />
-                <input type="email" placeholder="Your Email" className={styles.formInput} />
-                <textarea placeholder="Your Message" rows={4} className={styles.formTextarea}></textarea>
-                <button type="submit" className={styles.formButton}>
-                  Send Message
-                </button>
-              </form>
-            </div>
           </div>
         </div>
 

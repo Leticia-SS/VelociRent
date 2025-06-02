@@ -33,7 +33,7 @@ const UsagePage = () => {
       title: "Volte para casa",
       duration: "Mais de 24 horas",
       description: "Pegue a bike para voltar para casa.",
-      features: ["Passar a noite com a bicileta", "Utilize para ir e voltar", "Uso responsável perto da sua casa",
+      features: ["Passar a noite com a bicicleta", "Utilize para ir e voltar", "Uso responsável perto da sua casa",
          "Mais flexível"],
       popular: true,
     },

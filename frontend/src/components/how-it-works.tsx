@@ -1,5 +1,7 @@
 import styles from "./how-it-works.module.css"
 import { Smartphone, Map, BikeIcon, ThumbsUp } from "lucide-react"
+import Icon from "../assets/logo-icon-sem-fundo.png"
+
 
 const HowItWorks = () => {
   const steps = [
@@ -46,7 +48,7 @@ const HowItWorks = () => {
 
         <div className={styles.imageSection}>
           <div className={styles.imageContainer}>
-            <img src="/placeholder.svg?height=500&width=400" alt="Dinossauro com bicicleta" />
+            <img src={Icon} alt="Dinossauro com bicicleta" />
           </div>
         </div>
       </div>
