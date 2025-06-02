@@ -1,7 +1,14 @@
+"use client"
+
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/auth-context"
 import { Bike, Battery, Wind, Shield, Weight, Clock } from "lucide-react"
 import "./bikes-page.css"
 
 const BikesPage = () => {
+  const navigate = useNavigate()
+  const { isAuthenticated } = useAuth()
+
   const bikes = [
     {
       id: 1,
@@ -38,6 +45,26 @@ const BikesPage = () => {
     },
   ]
 
+  const handleWebsiteRental = () => {
+    if (isAuthenticated) {
+      navigate("/rental")
+    } else {
+      navigate("/login", { state: { from: { pathname: "/rental" } } })
+    }
+  }
+
+  const handleTelegramRental = () => {
+    window.open("https://t.me/VelociRent_Bot", "_blank", "noopener,noreferrer")
+  }
+
+  const handleIndividualBikeRent = () => {
+    if (isAuthenticated) {
+      navigate("/rental")
+    } else {
+      navigate("/login", { state: { from: { pathname: "/rental" } } })
+    }
+  }
+
   return (
     <div className="bikesPage">
       <div className="bikesHero">
@@ -54,9 +81,9 @@ const BikesPage = () => {
           </div>
           <h2>Selecione a escolha ideal para a sua jornada</h2>
           <p>
-            Apresentamos uma variedade de bicicletas para atender às suas necessidades, 
-            seja para o deslocamento diário, a exploração urbana ou um passeio tranquilo no parque. 
-            Todas as nossas bicicletas são regularmente mantidas e higienizadas para garantir sua segurança e conforto.
+            Apresentamos uma variedade de bicicletas para atender às suas necessidades, seja para o deslocamento diário,
+            a exploração urbana ou um passeio tranquilo no parque. Todas as nossas bicicletas são regularmente mantidas
+            e higienizadas para garantir sua segurança e conforto.
           </p>
         </div>
 
@@ -77,7 +104,9 @@ const BikesPage = () => {
                     </div>
                   ))}
                 </div>
-                <button className="bikeRentButton">Alugue agora!</button>
+                <button className="bikeRentButton" onClick={handleIndividualBikeRent}>
+                  Alugue agora!
+                </button>
               </div>
             </div>
           ))}
@@ -87,8 +116,12 @@ const BikesPage = () => {
           <h3>Pronto para sua viagem?</h3>
           <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
           <div className="bikesButtons">
-            <button className="primaryButton">Aluguel no Telegram</button>
-            <button className="secondaryButton">Aluguel no Site</button>
+            <button className="primaryButton" onClick={handleWebsiteRental}>
+              Aluguel no Site
+            </button>
+            <button className="secondaryButton" onClick={handleTelegramRental}>
+              Aluguel no Telegram
+            </button>
           </div>
         </div>
       </div>

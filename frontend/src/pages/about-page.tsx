@@ -1,23 +1,30 @@
-import { Users, Leaf, MapPin, Calendar, Heart, Lightbulb } from "lucide-react"
+"use client"
+
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/auth-context"
+import { Users, Leaf, Heart, Lightbulb } from "lucide-react"
 import styles from "./about-page.module.css"
 import Team from "../assets/velociteam.jpg"
 import Gabriel from "../assets/gabriel.jpg"
 import Giovani from "../assets/giovani.jpg"
 import Leticia from "../assets/leticia.jpg"
 
-
-
 const AboutPage = () => {
+  const navigate = useNavigate()
+  const { isAuthenticated } = useAuth()
+
   const values = [
     {
       icon: <Leaf size={40} />,
       title: "Sustentabilidade",
-      description: "Estamos comprometidos em reduzir as emissões de carbono e promover soluções de transporte ecologicamente corretas.",
+      description:
+        "Estamos comprometidos em reduzir as emissões de carbono e promover soluções de transporte ecologicamente corretas.",
     },
     {
       icon: <Users size={40} />,
       title: "Comunidade",
-      description: "Construindo comunidades mais fortes ao conectar pessoas e tornar as cidades mais acessíveis para todos.",
+      description:
+        "Construindo comunidades mais fortes ao conectar pessoas e tornar as cidades mais acessíveis para todos.",
     },
     {
       icon: <Heart size={40} />,
@@ -27,7 +34,8 @@ const AboutPage = () => {
     {
       icon: <Lightbulb size={40} />,
       title: "Inovação",
-      description: "Melhorando continuamente nossa tecnologia e serviços para oferecer a melhor experiência ao usuário.",
+      description:
+        "Melhorando continuamente nossa tecnologia e serviços para oferecer a melhor experiência ao usuário.",
     },
   ]
 
@@ -47,7 +55,7 @@ const AboutPage = () => {
     {
       name: "Gabriel Vieira",
       position: "Head of Operations",
-      bio: "Especialista em operações com experiência em logística e gestão da cadeia de suprimentos.",
+      bio: "Especialista em operações com experiência em logística e gestão da cadeia de recursos.",
       image: Gabriel,
     },
   ]
@@ -71,12 +79,27 @@ const AboutPage = () => {
     },
   ]
 
+  const handleWebsiteRental = () => {
+    if (isAuthenticated) {
+      navigate("/rental")
+    } else {
+      navigate("/login", { state: { from: { pathname: "/rental" } } })
+    }
+  }
+
+  const handleTelegramRental = () => {
+    window.open("https://t.me/VelociRent_Bot", "_blank", "noopener,noreferrer")
+  }
+
   return (
     <div className={styles.aboutPage}>
       <div className={styles.aboutHero}>
         <div className={styles.aboutHeroContent}>
           <h1>Conheça o VelociRent</h1>
-          <p>Transformando mobilidade urbana por meio da sustentabilidade, acessibilidade e inovando no ramo de bicicletas</p>
+          <p>
+            Transformando mobilidade urbana por meio da sustentabilidade, acessibilidade e inovando no ramo de
+            bicicletas
+          </p>
         </div>
       </div>
 
@@ -86,22 +109,22 @@ const AboutPage = () => {
             <div className={styles.missionText}>
               <h2>Nossa missão</h2>
               <p>
-                Nossa missão é revolucionar a mobilidade universitária, oferecendo acesso fácil e acessível a
-                 bicicletas de qualidade para estudantes e toda a comunidade acadêmica. 
-                 Acreditamos que a bicicleta é a chave para um campus mais dinâmico, saudável e sustentável. 
-                 Ao simplificar o aluguel de bikes, queremos empoderar cada estudante a explorar seu campus
-                  e a cidade ao redor com liberdade, contribuindo para uma rotina universitária mais ativa e conectada.
+                Nossa missão é revolucionar a mobilidade universitária, oferecendo acesso fácil e acessível a bicicletas
+                de qualidade para estudantes e toda a comunidade acadêmica. Acreditamos que a bicicleta é a chave para
+                um campus mais dinâmico, saudável e sustentável. Ao simplificar o aluguel de bikes, queremos empoderar
+                cada estudante a explorar seu campus e a cidade ao redor com liberdade, contribuindo para uma rotina
+                universitária mais ativa e conectada.
               </p>
               <p>
-                Estamos empenhados em criar uma experiência de aluguel de bikes sem complicações em todas as universidades
-                 que atendemos. Nosso compromisso é com a qualidade da frota e a excelência no atendimento, 
-                 garantindo que a mobilidade sobre duas rodas seja uma opção prática e prazerosa. 
-                 Ao expandir nossa rede de franquias, visamos construir uma comunidade de ciclistas universitários, 
-                 promovendo a sustentadoria e o bem-estar por meio de um transporte eficiente e divertido.
+                Estamos empenhados em criar uma experiência de aluguel de bikes sem complicações em todas as
+                universidades que atendemos. Nosso compromisso é com a qualidade da frota e a excelência no atendimento,
+                garantindo que a mobilidade sobre duas rodas seja uma opção prática e prazerosa. Ao expandir nossa rede
+                de franquias, visamos construir uma comunidade de ciclistas universitários, promovendo a sustentadoria e
+                o bem-estar por meio de um transporte eficiente e divertido.
               </p>
             </div>
             <div className={styles.missionImage}>
-              <img src={Team} alt="BikeShare mission" />
+              <img src={Team || "/placeholder.svg"} alt="BikeShare mission" />
             </div>
           </div>
         </div>
@@ -132,7 +155,7 @@ const AboutPage = () => {
         </div>
 
         <div className={styles.teamSection}>
-          <h3>Meet Our Team</h3>
+          <h3>Conheça o nosso Time</h3>
           <div className={styles.teamList}>
             {team.map((member, index) => (
               <div key={index} className={styles.teamCard}>
@@ -153,8 +176,12 @@ const AboutPage = () => {
           <h3>Pronto para sua viagem?</h3>
           <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
           <div className={styles.aboutButtons}>
-            <button className={styles.primaryButton}>Aluguel no Telegram</button>
-            <button className={styles.secondaryButton}>Aluguel no Site</button>
+            <button className={styles.primaryButton} onClick={handleWebsiteRental}>
+              Aluguel no Site
+            </button>
+            <button className={styles.secondaryButton} onClick={handleTelegramRental}>
+              Aluguel no Telegram
+            </button>
           </div>
         </div>
       </div>
