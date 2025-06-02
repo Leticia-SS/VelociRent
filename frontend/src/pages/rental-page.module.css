@@ -1,0 +1,347 @@
+.rentalPage {
+  min-height: 100vh;
+  padding-top: 70px;
+}
+
+.rentalHero {
+  background: linear-gradient(to right, var(--dark-purple), var(--black));
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.rentalHeroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.rentalHero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--green), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.rentalHero p {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.rentalContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.rentalContent {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+}
+
+.rentalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.formSection h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.formSection h3 svg {
+  color: var(--green);
+}
+
+.stationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.stationCard {
+  background-color: rgba(59, 49, 99, 0.2);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.stationCard:hover {
+  border-color: var(--purple);
+  transform: translateY(-2px);
+}
+
+.stationCard.selected {
+  border-color: var(--green);
+  background-color: rgba(133, 197, 148, 0.1);
+}
+
+.stationCard h4 {
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.stationCard p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.availability {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--green);
+  font-size: 0.9rem;
+}
+
+.bikeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.bikeCard {
+  background-color: rgba(59, 49, 99, 0.2);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bikeCard:hover {
+  border-color: var(--purple);
+  transform: translateY(-2px);
+}
+
+.bikeCard.selected {
+  border-color: var(--green);
+  background-color: rgba(133, 197, 148, 0.1);
+}
+
+.bikeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.bikeHeader h4 {
+  color: white;
+  font-size: 1.1rem;
+}
+
+.bikePrice {
+  color: var(--green);
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.bikeCard p {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.bikeFeatures {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8rem;
+}
+
+.feature svg {
+  color: var(--purple);
+}
+
+.durationSelector {
+  max-width: 300px;
+}
+
+.durationSelect {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(115, 98, 149, 0.3);
+  border-radius: 8px;
+  padding: 0.75rem;
+  color: white;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.durationSelect:focus {
+  outline: none;
+  border-color: var(--green);
+}
+
+.rentalSummary {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.summaryCard {
+  background-color: rgba(59, 49, 99, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  position: sticky;
+  top: 100px;
+}
+
+.summaryCard h3 {
+  color: white;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.summaryItem:first-child span {
+  color: white;
+}
+
+.summaryDivider {
+  height: 1px;
+  background-color: rgba(115, 98, 149, 0.3);
+  margin: 1.5rem 0;
+}
+
+.summaryTotal {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--green);
+  margin-bottom: 2rem;
+}
+
+.paymentSection {
+  margin-bottom: 2rem;
+}
+
+.paymentSection h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.paymentCard {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.rentButton {
+  width: 100%;
+  background-color: var(--green);
+  color: var(--black);
+  padding: 1rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.rentButton:hover:not(:disabled) {
+  background-color: #6daf7d;
+  transform: translateY(-2px);
+}
+
+.rentButton:disabled {
+  background-color: rgba(115, 98, 149, 0.3);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+}
+
+.instructionsCard {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.instructionsCard h4 {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.instructionsList {
+  color: rgba(255, 255, 255, 0.8);
+  padding-left: 1.5rem;
+}
+
+.instructionsList li {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.errorMessage {
+  background-color: rgba(220, 53, 69, 0.2);
+  border: 1px solid rgba(220, 53, 69, 0.5);
+  color: #ff6b6b;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .rentalContent {
+    grid-template-columns: 1fr;
+  }
+
+  .summaryCard {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .rentalHero {
+    padding: 3rem 1.5rem;
+  }
+
+  .rentalHero h1 {
+    font-size: 2.5rem;
+  }
+
+  .rentalContainer {
+    padding: 2rem 1.5rem;
+  }
+
+  .stationGrid,
+  .bikeGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -33,7 +33,7 @@ const UsagePage = () => {
       title: "Volte para casa",
       duration: "Mais de 24 horas",
       description: "Pegue a bike para voltar para casa.",
-      features: ["Passar a noite com a bicileta", "Utilize para ir e voltar", "Uso responsável perto da sua casa",
+      features: ["Passar a noite com a bicicleta", "Utilize para ir e voltar", "Uso responsável perto da sua casa",
          "Mais flexível"],
       popular: true,
     },
@@ -122,7 +122,7 @@ const UsagePage = () => {
           <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
           <div className={styles.usageButtons}>
             <button className={styles.primaryButton}>Aluguel no Telegram</button>
-            <button className={styles.secondaryButton}>Aluguel no Telegram</button>
+            <button className={styles.secondaryButton}>Aluguel no Site</button>
           </div>
         </div>
       </div>

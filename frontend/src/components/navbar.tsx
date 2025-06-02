@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className={styles.navContainer}>
         <Link to="/" className={styles.logo} onClick={closeMenu}>
           <Bike size={24} />
-          <span>BikeShare</span>
+          <span>VelociRent</span>
         </Link>
 
         <div className={styles.mobileMenuButton} onClick={toggleMenu}>

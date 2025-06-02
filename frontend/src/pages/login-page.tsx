@@ -3,17 +3,25 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate, useLocation } from "react-router-dom"
+import { useAuth } from "../context/auth-context"
 import { Mail, Lock, Eye, EyeOff, Bike } from "lucide-react"
 import styles from "./login-page.module.css"
 
 const LoginPage = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const { login, isLoading } = useAuth()
+
   const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     rememberMe: false,
   })
+  const [error, setError] = useState("")
+
+  const from = location.state?.from?.pathname || "/"
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
@@ -27,10 +35,16 @@ const LoginPage = () => {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle login logic here
-    console.log("Login attempt:", formData)
+    setError("")
+
+    const success = await login(formData.email, formData.password)
+    if (success) {
+      navigate(from, { replace: true })
+    } else {
+      setError("Invalid email or password")
+    }
   }
 
   return (
@@ -53,6 +67,8 @@ const LoginPage = () => {
           </div>
 
           <form className={styles.loginForm} onSubmit={handleSubmit}>
+            {error && <div className={styles.errorMessage}>{error}</div>}
+
             <div className={styles.formGroup}>
               <label htmlFor="email" className={styles.formLabel}>
                 Email Address
@@ -115,8 +131,8 @@ const LoginPage = () => {
               </Link>
             </div>
 
-            <button type="submit" className={styles.loginButton}>
-              Sign In
+            <button type="submit" className={styles.loginButton} disabled={isLoading}>
+              {isLoading ? "Signing In..." : "Sign In"}
             </button>
           </form>
 
@@ -127,6 +143,19 @@ const LoginPage = () => {
                 Sign up here
               </Link>
             </p>
+          </div>
+
+          <div className={styles.divider}>
+            <span>or continue with</span>
+          </div>
+
+          <div className={styles.socialLogin}>
+            <button className={styles.socialButton}>
+              <span>Google</span>
+            </button>
+            <button className={styles.socialButton}>
+              <span>Apple</span>
+            </button>
           </div>
         </div>
       </div>
