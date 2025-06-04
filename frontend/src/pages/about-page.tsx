@@ -80,7 +80,13 @@ const AboutPage = () => {
 
 const handleWebsiteRental = () => {
   if (email) {
-    navigate("/rental?email=" + email);
+    navigate("/rental?email=" + encodeURIComponent(email) + "#test");
+    
+    // Aguardar a navegação terminar para fazer o scroll
+    setTimeout(() => {
+      const el = document.getElementById("test");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 100); // Pequeno delay para garantir que o elemento esteja no DOM
   } else {
     navigate("/login", { state: { from: { pathname: "/rental" } } });
   }
@@ -92,7 +98,7 @@ const handleWebsiteRental = () => {
   }
 
   return (
-    <div className={styles.aboutPage}>
+    <div id="test" className={styles.aboutPage}>
       <div className={styles.aboutHero}>
         <div className={styles.aboutHeroContent}>
           <h1>Conheça o VelociRent</h1>

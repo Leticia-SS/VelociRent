@@ -88,7 +88,7 @@ if(supabase){
   }
 }
   return (
-    <div className={styles.loginPage}>
+    <div id="test" className={styles.loginPage}>
       <div className={styles.loginHero}>
         <div className={styles.loginHeroContent}>
           <h1>Bem-vindo!</h1>
