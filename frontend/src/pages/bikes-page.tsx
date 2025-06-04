@@ -2,9 +2,13 @@
 
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/auth-context"
-import { Bike, Battery, Wind, Shield, Weight, Clock } from "lucide-react"
+import { Bike, Leaf, Wind, Shield, Weight, Gauge, User, Zap, Compass } from "lucide-react"
 import "./bikes-page.css"
 import { Outlet, useSearchParams } from 'react-router-dom';
+import Explorer from "../assets/caloiexplorer.webp"
+import Speed from "../assets/caloispeed.jpg"
+import Mountain from "../assets/oggimountain.png"
+
 
 const BikesPage = () => {
   const navigate = useNavigate()
@@ -16,35 +20,35 @@ const BikesPage = () => {
   const bikes = [
     {
       id: 1,
-      name: "City Cruiser",
-      description: "Perfect for casual rides and city commuting",
-      image: "https://placehold.co/600x400",
+      name: "Caloi Speed Pro",
+      description: "Ideal para quem busca velocidade e desempenho no asfalto",
+      image: Explorer,
       features: [
-        { icon: <Battery size={20} />, text: "Up to 4 hours of battery life" },
-        { icon: <Wind size={20} />, text: "Lightweight aluminum frame" },
-        { icon: <Shield size={20} />, text: "Built-in security features" },
+        { icon: <User size={20} />, text: "Escolha mais popular" },
+        { icon: <Leaf size={20} />, text: "Aro leve de alumínio" },
+        { icon: <Shield size={20} />, text: "Design mais seguro" },
       ],
     },
     {
       id: 2,
-      name: "Urban Explorer",
-      description: "Designed for longer trips and varied terrain",
-      image: "https://placehold.co/600x400",
+      name: "Caloi Explorer Pro",
+      description: "Perfeita para trilhas leves e aventuras urbanas com conforto",
+      image: Speed,
       features: [
-        { icon: <Battery size={20} />, text: "Up to 6 hours of battery life" },
-        { icon: <Weight size={20} />, text: "Reinforced frame for durability" },
-        { icon: <Clock size={20} />, text: "Quick charging capability" },
+        { icon: <Compass size={20} />, text: "Combinação perfeita para trilhas" },
+        { icon: <Weight size={20} />, text: "Maior durabilidade no aro" },
+        { icon: <Gauge size={20} />, text: "Alto desempenho de velocidade" },
       ],
     },
     {
       id: 3,
-      name: "Mountain Rider",
-      description: "Tackle hills and rough terrain with ease",
-      image: "https://placehold.co/600x400",
+      name: "Oggi Mountain Storm",
+      description: "Feita para encarar trilhas exigentes com robustez e controle total",
+      image: Mountain,
       features: [
-        { icon: <Battery size={20} />, text: "Up to 5 hours of battery life" },
-        { icon: <Wind size={20} />, text: "All-terrain tires" },
-        { icon: <Shield size={20} />, text: "Enhanced suspension system" },
+        { icon: <Zap size={20} />, text: "Mais de 6 horas de bateria" },
+        { icon: <Wind size={20} />, text: "Pneus adaptáveis" },
+        { icon: <Shield size={20} />, text: "Systema de suspensão melhorado" },
       ],
     },
   ]

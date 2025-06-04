@@ -103,7 +103,7 @@ if(supabase){
               <Bike size={48} />
             </div>
             <h2>Login</h2>
-            <p>Digite seus dados para criar sua conta</p>
+            <p>Digite seus dados para entrar na sua conta</p>
           </div>
 
           <form className={styles.loginForm} onSubmit={handleSubmit}>
@@ -156,7 +156,7 @@ if(supabase){
             </div>
 
             <button type="submit" className={styles.loginButton} disabled={isLoading}>
-              {isLoading ? "Validando..." : "Validar"}
+              {isLoading ? "Entrando..." : "Entrar"}
             </button>
           </form>
 

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { MapPin, Clock, CreditCard, Bike, Battery, QrCode, CheckCircle } from "lucide-react"
+import { MapPin, Clock, CreditCard, Bike, Shield, CheckCircle, User } from "lucide-react"
 import { useAuth } from "../context/auth-context"
 import styles from "./rental-page.module.css"
 
@@ -12,16 +12,16 @@ const RentalPage = () => {
   const [rentalDuration, setRentalDuration] = useState("2")
 
   const stations = [
-    { id: "1", name: "Downtown Station", address: "123 Main St", availableBikes: 8 },
-    { id: "2", name: "University Campus", address: "456 College Ave", availableBikes: 12 },
-    { id: "3", name: "Central Park", address: "789 Park Blvd", availableBikes: 5 },
-    { id: "4", name: "Shopping District", address: "321 Commerce St", availableBikes: 15 },
+    { id: "1", name: "Instituto INFNET", address: "São José 90", availableBikes: 8 },
+    { id: "2", name: "UFRJ Praia Vermelha", address: "Avenida Pasteur 250", availableBikes: 12 },
+    { id: "3", name: "UERJ Maracanã", address: "São Francisco Xavier 524", availableBikes: 5 },
+    { id: "4", name: "IBMEC Centro", address: "Avenida Presidente Wilson 118", availableBikes: 15 },
   ]
 
   const bikeTypes = [
-    { id: "city", name: "City Cruiser", price: 2, description: "Perfect for city rides" },
-    { id: "urban", name: "Urban Explorer", price: 3, description: "Great for longer trips" },
-    { id: "mountain", name: "Mountain Rider", price: 4, description: "For adventurous rides" },
+    { id: "city", name: "Caloi Speed Pro", price: 2, description: "Perfect for city rides" },
+    { id: "urban", name: "Caloi Explorer", price: 3, description: "Great for longer trips" },
+    { id: "mountain", name: "Oggi Mountain", price: 4, description: "For adventurous rides" },
   ]
 
   const calculatePrice = () => {
@@ -89,12 +89,12 @@ const RentalPage = () => {
                     <p>{bike.description}</p>
                     <div className={styles.bikeFeatures}>
                       <div className={styles.feature}>
-                        <Battery size={16} />
-                        <span>Electric assist</span>
+                        <Shield size={16} />
+                        <span>Bike assegurada</span>
                       </div>
                       <div className={styles.feature}>
-                        <QrCode size={16} />
-                        <span>QR unlock</span>
+                        <User size={16} />
+                        <span>Desbloqueio com a matrícula</span>
                       </div>
                     </div>
                   </div>
