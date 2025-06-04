@@ -1,18 +1,16 @@
 "use client"
 
 import { useNavigate } from "react-router-dom"
-import { useAuth } from "../context/auth-context"
 import { Users, Leaf, Heart, Lightbulb } from "lucide-react"
 import styles from "./about-page.module.css"
 import Team from "../assets/velociteam.jpg"
 import Gabriel from "../assets/gabriel.jpg"
 import Giovani from "../assets/giovani.jpg"
 import Leticia from "../assets/leticia.jpg"
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const AboutPage = () => {
   const navigate = useNavigate()
-  const { isAuthenticated } = useAuth()
 
   const values = [
     {
@@ -100,7 +98,7 @@ const handleWebsiteRental = () => {
           <h1>Conheça o VelociRent</h1>
           <p>
             Transformando mobilidade urbana por meio da sustentabilidade, acessibilidade e inovando no ramo de
-            bicicletas
+            bicicletas!
           </p>
         </div>
       </div>
@@ -176,7 +174,7 @@ const handleWebsiteRental = () => {
 
         <div className={styles.aboutCTA}>
           <h3>Pronto para sua viagem?</h3>
-          <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
+          <p>Entre no site ou Telegram e vá aonde quiser agora mesmo.</p>
           <div className={styles.aboutButtons}>
             <button className={styles.primaryButton} onClick={handleWebsiteRental}>
               Aluguel no Site

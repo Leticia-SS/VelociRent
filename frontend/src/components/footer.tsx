@@ -1,9 +1,8 @@
 import styles from "./footer.module.css"
 import { Bike, Facebook, Twitter, Instagram, Smartphone, Mail, MapPin } from "lucide-react"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Link } from "react-router-dom" 
-import { Outlet, useSearchParams } from 'react-router-dom';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useSearchParams } from 'react-router-dom';
 
 const Footer = () => {
 
@@ -117,9 +116,6 @@ const Footer = () => {
                 <MapPin size={16} />
                 <span>23 Via Verde, Varsóvia</span>
               </div>
-            </div>
-            <div className={styles.appButtons}>
-              <button className={styles.appButton}>Telegram</button>
             </div>
           </div>
         </div>

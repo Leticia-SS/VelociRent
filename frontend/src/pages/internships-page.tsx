@@ -1,14 +1,12 @@
 "use client"
 
 import { useNavigate } from "react-router-dom"
-import { useAuth } from "../context/auth-context"
 import { Wrench, Building2, Calculator, GraduationCap, Users, Award, Clock } from "lucide-react"
 import styles from "./internships-page.module.css"
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const InternshipsPage = () => {
   const navigate = useNavigate()
-  const { isAuthenticated } = useAuth()
 
   const internshipTypes = [
     {
@@ -76,7 +74,7 @@ const InternshipsPage = () => {
     {
       icon: <Award size={32} />,
       title: "Impacto Real",
-      description: "YSeu trabalho impacta diretamente no coditidiano dos nossos clientes.",
+      description: "Seu trabalho impacta diretamente no coditidiano dos nossos clientes.",
     },
     {
       icon: <Clock size={32} />,
@@ -134,7 +132,7 @@ const handleWebsiteRental = () => {
                   <p className={styles.programDescription}>{internship.description}</p>
                   <div className={styles.programDetails}>
                     <div className={styles.programResponsibilities}>
-                      <h5>Responsibilities</h5>
+                      <h5>Responsabilidades</h5>
                       <ul>
                         {internship.responsibilities.map((responsibility, index) => (
                           <li key={index}>{responsibility}</li>
@@ -142,7 +140,7 @@ const handleWebsiteRental = () => {
                       </ul>
                     </div>
                     <div className={styles.programRequirements}>
-                      <h5>Requirements</h5>
+                      <h5>Requisitado</h5>
                       <ul>
                         {internship.requirements.map((requirement, index) => (
                           <li key={index}>{requirement}</li>
@@ -173,7 +171,7 @@ const handleWebsiteRental = () => {
 
         <div className={styles.internshipsCTA}>
           <h3>Pronto para sua viagem?</h3>
-          <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
+          <p>Entre no site ou Telegram e vá aonde quiser agora mesmo.</p>
           <div className={styles.internshipsButtons}>
             <button className={styles.primaryButton} onClick={handleWebsiteRental}>
               Aluguel no Site

@@ -1,14 +1,12 @@
 "use client"
 
 import { useNavigate } from "react-router-dom"
-import { useAuth } from "../context/auth-context"
 import { Clock, Home, MapPin, Calendar, Star, Shield, Zap, Coffee } from "lucide-react"
 import styles from "./usage-page.module.css"
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const UsagePage = () => {
   const navigate = useNavigate()
-  const { isAuthenticated } = useAuth()
 
   const usageOptions = [
     {
@@ -148,7 +146,7 @@ const handleWebsiteRental = () => {
 
         <div className={styles.usageCTA}>
           <h3>Pronto para sua viagem?</h3>
-          <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
+          <p>Entre no site ou Telegram e vá aonde quiser agora mesmo.</p>
           <div className={styles.usageButtons}>
             <button className={styles.primaryButton} onClick={handleWebsiteRental}>
               Aluguel no Site
