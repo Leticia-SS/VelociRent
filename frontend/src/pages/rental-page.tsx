@@ -1,15 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { MapPin, Clock, CreditCard, Bike, Shield, CheckCircle, User } from "lucide-react"
-import { useAuth } from "../context/auth-context"
+import { MapPin, CreditCard, Bike, Shield, CheckCircle, User } from "lucide-react"
 import styles from "./rental-page.module.css"
 
 const RentalPage = () => {
-  const { user } = useAuth()
   const [selectedStation, setSelectedStation] = useState("")
   const [selectedBike, setSelectedBike] = useState("")
-  const [rentalDuration, setRentalDuration] = useState("2")
 
   const stations = [
     { id: "1", name: "Instituto INFNET", address: "São José 90", availableBikes: 8 },
@@ -19,19 +16,18 @@ const RentalPage = () => {
   ]
 
   const bikeTypes = [
-    { id: "city", name: "Caloi Speed Pro", price: 2, description: "Perfect for city rides" },
-    { id: "urban", name: "Caloi Explorer", price: 3, description: "Great for longer trips" },
-    { id: "mountain", name: "Oggi Mountain", price: 4, description: "For adventurous rides" },
+    { id: "city", name: "Caloi Speed Pro", price: 5, description: "Perfeita para a cidade" },
+    { id: "urban", name: "Caloi Explorer", price: 5, description: "Para curtas trilhas e alta velocidade" },
+    { id: "mountain", name: "Oggi Mountain", price: 5, description: "Bike elétrica de grande porte" },
   ]
 
   const calculatePrice = () => {
     const selectedBikeType = bikeTypes.find((bike) => bike.id === selectedBike)
     if (!selectedBikeType) return 0
-    return selectedBikeType.price * Number.parseInt(rentalDuration)
+    return selectedBikeType.price
   }
 
   const handleRentBike = () => {
-    // Handle bike rental logic
     alert("Bike rental confirmed!")
   }
 
@@ -39,8 +35,8 @@ const RentalPage = () => {
     <div className={styles.rentalPage}>
       <div className={styles.rentalHero}>
         <div className={styles.rentalHeroContent}>
-          <h1>Rent a Bike</h1>
-          <p>Choose your bike and start your sustainable journey, {user?.firstName}!</p>
+          <h1>Alugue sua bike!</h1>
+          <p>Escolha sua bike e comece sua jornada!</p>
         </div>
       </div>
 
@@ -50,7 +46,7 @@ const RentalPage = () => {
             <div className={styles.formSection}>
               <h3>
                 <MapPin size={24} />
-                Select Pickup Station
+                Selecione a estação
               </h3>
               <div className={styles.stationGrid}>
                 {stations.map((station) => (
@@ -63,7 +59,7 @@ const RentalPage = () => {
                     <p>{station.address}</p>
                     <div className={styles.availability}>
                       <Bike size={16} />
-                      <span>{station.availableBikes} bikes available</span>
+                      <span>{station.availableBikes} bikes disponíveis</span>
                     </div>
                   </div>
                 ))}
@@ -73,7 +69,7 @@ const RentalPage = () => {
             <div className={styles.formSection}>
               <h3>
                 <Bike size={24} />
-                Choose Bike Type
+                Escolha o modelo da bicicleta
               </h3>
               <div className={styles.bikeGrid}>
                 {bikeTypes.map((bike) => (
@@ -84,7 +80,7 @@ const RentalPage = () => {
                   >
                     <div className={styles.bikeHeader}>
                       <h4>{bike.name}</h4>
-                      <div className={styles.bikePrice}>${bike.price}/hour</div>
+                      <div className={styles.bikePrice}>${bike.price}/aluguel</div>
                     </div>
                     <p>{bike.description}</p>
                     <div className={styles.bikeFeatures}>
@@ -101,60 +97,33 @@ const RentalPage = () => {
                 ))}
               </div>
             </div>
-
-            <div className={styles.formSection}>
-              <h3>
-                <Clock size={24} />
-                Rental Duration
-              </h3>
-              <div className={styles.durationSelector}>
-                <select
-                  value={rentalDuration}
-                  onChange={(e) => setRentalDuration(e.target.value)}
-                  className={styles.durationSelect}
-                >
-                  <option value="1">1 hour</option>
-                  <option value="2">2 hours</option>
-                  <option value="4">4 hours</option>
-                  <option value="8">8 hours (Day pass)</option>
-                  <option value="24">24 hours</option>
-                </select>
-              </div>
-            </div>
           </div>
 
           <div className={styles.rentalSummary}>
             <div className={styles.summaryCard}>
-              <h3>Rental Summary</h3>
+              <h3>Sumário de Aluguel</h3>
 
               <div className={styles.summaryItem}>
-                <span>Station:</span>
-                <span>{selectedStation ? stations.find((s) => s.id === selectedStation)?.name : "Not selected"}</span>
+                <span>Estação:</span>
+                <span>{selectedStation ? stations.find((s) => s.id === selectedStation)?.name : "Não selecionado"}</span>
               </div>
 
               <div className={styles.summaryItem}>
-                <span>Bike Type:</span>
-                <span>{selectedBike ? bikeTypes.find((b) => b.id === selectedBike)?.name : "Not selected"}</span>
-              </div>
-
-              <div className={styles.summaryItem}>
-                <span>Duration:</span>
-                <span>
-                  {rentalDuration} hour{Number.parseInt(rentalDuration) > 1 ? "s" : ""}
-                </span>
+                <span>Tipo de bike:</span>
+                <span>{selectedBike ? bikeTypes.find((b) => b.id === selectedBike)?.name : "Não selecionado"}</span>
               </div>
 
               <div className={styles.summaryDivider}></div>
 
               <div className={styles.summaryTotal}>
-                <span>Total Price:</span>
+                <span>Preço Total:</span>
                 <span>${calculatePrice()}</span>
               </div>
 
               <div className={styles.paymentSection}>
                 <h4>
                   <CreditCard size={20} />
-                  Payment Method
+                  Método de Pagamento
                 </h4>
                 <div className={styles.paymentCard}>
                   <span>•••• •••• •••• 1234</span>
@@ -168,17 +137,17 @@ const RentalPage = () => {
                 disabled={!selectedStation || !selectedBike}
               >
                 <CheckCircle size={20} />
-                Confirm Rental
+                Confirmar Aluguel
               </button>
             </div>
 
             <div className={styles.instructionsCard}>
-              <h4>Next Steps</h4>
+              <h4>Próximos passos:</h4>
               <ol className={styles.instructionsList}>
-                <li>Go to the selected pickup station</li>
-                <li>Scan the QR code on your chosen bike</li>
-                <li>Unlock and start your ride</li>
-                <li>Return to any station when finished</li>
+                <li>Vá até o local selecionado</li>
+                <li>Procure pela bike desbloqueada</li>
+                <li>Comece sua corrida</li>
+                <li>Devolva quando acabar a corrida</li>
               </ol>
             </div>
           </div>

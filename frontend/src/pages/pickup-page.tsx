@@ -1,14 +1,12 @@
 "use client"
 
 import { useNavigate } from "react-router-dom"
-import { useAuth } from "../context/auth-context"
-import { MapPin, Smartphone, QrCode, Unlock, CheckCircle, Clock, Shield, AlertCircle } from "lucide-react"
+import { MapPin, Smartphone, User, Unlock, CheckCircle, Clock, Shield, AlertCircle } from "lucide-react"
 import styles from "./pickup-page.module.css"
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 const PickupPage = () => {
   const navigate = useNavigate()
-  const { isAuthenticated } = useAuth()
 
   const steps = [
     {
@@ -27,7 +25,7 @@ const PickupPage = () => {
     },
     {
       id: 3,
-      icon: <QrCode size={40} />,
+      icon: <User size={40} />,
       title: "Entre com sua matrícula",
       description: "Faça seu login ou entrada com seu número de matrícula.",
       details: ["É necessário estar com sua matrícula ativa", "Matrículas pendentes serão tratadas como inexistentes"],
@@ -141,7 +139,7 @@ const handleWebsiteRental = () => {
 
         <div className={styles.pickupCTA}>
           <h3>Pronto para sua viagem?</h3>
-          <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
+          <p>Entre no site ou Telegram e vá aonde quiser agora mesmo.</p>
           <div className={styles.pickupButtons}>
             <button className={styles.primaryButton} onClick={handleWebsiteRental}>
               Aluguel no Site

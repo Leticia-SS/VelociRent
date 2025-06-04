@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Link, useNavigate, useLocation } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import { useAuth } from "../context/auth-context"
 import { Mail, Lock, Eye, EyeOff, Bike } from "lucide-react"
 import styles from "./login-page.module.css"

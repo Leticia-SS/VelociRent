@@ -1,10 +1,9 @@
 "use client"
 
 import { useNavigate } from "react-router-dom"
-import { useAuth } from "../context/auth-context"
 import { Bike, Leaf, Wind, Shield, Weight, Gauge, User, Zap, Compass } from "lucide-react"
 import "./bikes-page.css"
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import Explorer from "../assets/caloiexplorer.webp"
 import Speed from "../assets/caloispeed.jpg"
 import Mountain from "../assets/oggimountain.png"
@@ -12,7 +11,6 @@ import Mountain from "../assets/oggimountain.png"
 
 const BikesPage = () => {
   const navigate = useNavigate()
-  const { isAuthenticated } = useAuth()
   
   const [searchParams] = useSearchParams();
   const email = searchParams.get('email');  
@@ -78,7 +76,7 @@ const handleWebsiteRental = () => {
       <div className="bikesHero">
         <div className="bikesHeroContent">
           <h1>Nossas bikes</h1>
-          <p>Explore nossa variedade de bicicletas de alta qualidade disponíveis para aluguel</p>
+          <p>Explore nossa variedade de bicicletas de alta qualidade disponíveis para aluguel.</p>
         </div>
       </div>
 
@@ -122,7 +120,7 @@ const handleWebsiteRental = () => {
 
         <div className="bikesCTA">
           <h3>Pronto para sua viagem?</h3>
-          <p>Entre no aplicativo e vá aonde quiser agora mesmo.</p>
+          <p>Entre no site ou Telegram e vá aonde quiser agora mesmo.</p>
           <div className="bikesButtons">
             <button className="primaryButton" onClick={handleWebsiteRental}>
               Aluguel no Site
