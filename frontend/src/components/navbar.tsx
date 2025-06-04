@@ -1,13 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom" 
 import { Bike, Menu, X } from "lucide-react"
 import styles from "./navbar.module.css"
 import { Outlet, useSearchParams } from 'react-router-dom';
 import { useLocation, useNavigate } from "react-router-dom";
-
-
 
 const Navbar = () => {
 

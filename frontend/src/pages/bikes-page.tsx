@@ -9,6 +9,9 @@ import { Outlet, useSearchParams } from 'react-router-dom';
 const BikesPage = () => {
   const navigate = useNavigate()
   const { isAuthenticated } = useAuth()
+  
+  const [searchParams] = useSearchParams();
+  const email = searchParams.get('email');  
 
   const bikes = [
     {
@@ -54,14 +57,13 @@ const handleWebsiteRental = () => {
   }
 };
 
-  const [searchParams] = useSearchParams();
-  const email = searchParams.get('email');  const handleTelegramRental = () => {
+  const handleTelegramRental = () => {
     window.open("https://t.me/VelociRent_Bot", "_blank", "noopener,noreferrer")
   }
 
   const handleIndividualBikeRent = () => {
-    if (isAuthenticated) {
-      navigate("/rental")
+    if (email) {
+    navigate("/rental?email=" + email);
     } else {
       navigate("/login", { state: { from: { pathname: "/rental" } } })
     }
