@@ -53,7 +53,13 @@ const BikesPage = () => {
 
 const handleWebsiteRental = () => {
   if (email) {
-    navigate("/rental?email=" + email);
+    navigate("/rental?email=" + encodeURIComponent(email) + "#test");
+    
+    // Aguardar a navegação terminar para fazer o scroll
+    setTimeout(() => {
+      const el = document.getElementById("test");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 100); // Pequeno delay para garantir que o elemento esteja no DOM
   } else {
     navigate("/login", { state: { from: { pathname: "/rental" } } });
   }
@@ -64,15 +70,21 @@ const handleWebsiteRental = () => {
   }
 
   const handleIndividualBikeRent = () => {
-    if (email) {
-    navigate("/rental?email=" + email);
-    } else {
-      navigate("/login", { state: { from: { pathname: "/rental" } } })
-    }
+  if (email) {
+    navigate("/rental?email=" + encodeURIComponent(email) + "#test");
+    
+    // Aguardar a navegação terminar para fazer o scroll
+    setTimeout(() => {
+      const el = document.getElementById("test");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 100); // Pequeno delay para garantir que o elemento esteja no DOM
+  } else {
+    navigate("/login", { state: { from: { pathname: "/rental" } } });
+  }
   }
 
   return (
-    <div className="bikesPage">
+    <div id="test" className="bikesPage">
       <div className="bikesHero">
         <div className="bikesHeroContent">
           <h1>Nossas bikes</h1>

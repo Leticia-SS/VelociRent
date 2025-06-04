@@ -32,7 +32,7 @@ const RentalPage = () => {
   }
 
   return (
-    <div className={styles.rentalPage}>
+    <div id="test" className={styles.rentalPage}>
       <div className={styles.rentalHero}>
         <div className={styles.rentalHeroContent}>
           <h1>Alugue sua bike!</h1>

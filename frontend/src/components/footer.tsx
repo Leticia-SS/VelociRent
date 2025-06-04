@@ -48,40 +48,70 @@ const Footer = () => {
               <li>
                 
     <Link
-      to={email ? `/bikes?email=${encodeURIComponent(email)}` : "/bikes"}
-      onClick={closeMenu}
+      to={email ? `/bikes?email=${encodeURIComponent(email)}#test` : "/bikes#test"}
+      onClick={(e) => {
+    closeMenu();
+    setTimeout(() => {
+      const el = document.getElementById("test");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 100); // Aguarda o DOM carregar
+  }}
     >
       Bikes
     </Link>
               </li>
               <li>
                 <Link
-      to={email ? `/pickup?email=${encodeURIComponent(email)}` : "/pickup"}
-      onClick={closeMenu}
+      to={email ? `/pickup?email=${encodeURIComponent(email)}#test` : "/pickup#test"}
+      onClick={(e) => {
+    closeMenu();
+    setTimeout(() => {
+      const el = document.getElementById("test");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 100); // Aguarda o DOM carregar
+  }}
     >
       Como pegar
     </Link>
               </li>
               <li>
     <Link
-      to={email ? `/usage?email=${encodeURIComponent(email)}` : "/usage"}
-      onClick={closeMenu}
+      to={email ? `/usage?email=${encodeURIComponent(email)}#test` : "/usage#test"}
+      onClick={(e) => {
+    closeMenu();
+    setTimeout(() => {
+      const el = document.getElementById("test");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 100); // Aguarda o DOM carregar
+  }}
     >
       Tempo de uso
     </Link>
   </li>
   <li>
     <Link
-      to={email ? `/internships?email=${encodeURIComponent(email)}` : "/internships"}
-      onClick={closeMenu}
+      to={email ? `/internships?email=${encodeURIComponent(email)}#test` : "/internships#test"}
+      onClick={(e) => {
+    closeMenu();
+    setTimeout(() => {
+      const el = document.getElementById("test");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 100); // Aguarda o DOM carregar
+  }}
     >
       Estágios
     </Link>
   </li>
   <li>
     <Link
-      to={email ? `/about?email=${encodeURIComponent(email)}` : "/about"}
-      onClick={closeMenu}
+      to={email ? `/about?email=${encodeURIComponent(email)}#test` : "/about#test"}
+      onClick={(e) => {
+    closeMenu();
+    setTimeout(() => {
+      const el = document.getElementById("test");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 100); // Aguarda o DOM carregar
+  }}
     >
       Sobre nós
     </Link>
