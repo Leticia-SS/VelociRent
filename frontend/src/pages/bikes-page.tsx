@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/auth-context"
 import { Bike, Battery, Wind, Shield, Weight, Clock } from "lucide-react"
 import "./bikes-page.css"
+import { Outlet, useSearchParams } from 'react-router-dom';
 
 const BikesPage = () => {
   const navigate = useNavigate()
@@ -45,15 +46,16 @@ const BikesPage = () => {
     },
   ]
 
-  const handleWebsiteRental = () => {
-    if (isAuthenticated) {
-      navigate("/rental")
-    } else {
-      navigate("/login", { state: { from: { pathname: "/rental" } } })
-    }
+const handleWebsiteRental = () => {
+  if (email) {
+    navigate("/rental?email=" + email);
+  } else {
+    navigate("/login", { state: { from: { pathname: "/rental" } } });
   }
+};
 
-  const handleTelegramRental = () => {
+  const [searchParams] = useSearchParams();
+  const email = searchParams.get('email');  const handleTelegramRental = () => {
     window.open("https://t.me/VelociRent_Bot", "_blank", "noopener,noreferrer")
   }
 

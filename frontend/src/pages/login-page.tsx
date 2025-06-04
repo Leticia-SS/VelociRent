@@ -7,8 +7,23 @@ import { Link, useNavigate, useLocation } from "react-router-dom"
 import { useAuth } from "../context/auth-context"
 import { Mail, Lock, Eye, EyeOff, Bike } from "lucide-react"
 import styles from "./login-page.module.css"
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://bvoyvinchnjokkmpduqn.supabase.co'; // URL da API REST
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2b3l2aW5jaG5qb2trbXBkdXFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDczMzc2MDUsImV4cCI6MjA2MjkxMzYwNX0.lfAXwC-v737vM0OLSFyh2ZeJ3EHUoLXTc11MlEkzojI'; // Chave pública (anon ou service role)
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 
 const LoginPage = () => {
+
+
+
+
+if(supabase){
+  
+}
+
   const navigate = useNavigate()
   const location = useLocation()
   const { login, isLoading } = useAuth()
@@ -16,12 +31,11 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
-    rememberMe: false,
+    password: ""
   })
   const [error, setError] = useState("")
 
-  const from = location.state?.from?.pathname || "/"
+  const from = location.state?.from?.pathname || "/pageLogado?email=" + formData.email
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
@@ -36,23 +50,49 @@ const LoginPage = () => {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError("")
+  e.preventDefault()
+  setError("")
 
+  try {
+    
+    // Verifica se o email existe e obtém a matrícula correspondente
+    const { data: userData, error: userError } = await supabase
+      .from('veloci_users')
+      .select('matricula')
+      .eq('email', formData.email)
+      .single()
+
+    if (userError || !userData) {
+      setError("Email não encontrado")
+      return
+    }
+
+    // Verifica se a senha (password) corresponde à matrícula
+    if (formData.password !== userData.matricula.toString()) {
+      setError("Matrícula/senha incorreta")
+      return
+    }
+
+    // Se tudo estiver correto, faz o login
     const success = await login(formData.email, formData.password)
+    
     if (success) {
+      alert("Login bem-sucedido!")
       navigate(from, { replace: true })
     } else {
-      setError("Invalid email or password")
+      setError("Falha no login")
     }
+  } catch (err) {
+    setError("Ocorreu um erro durante o login")
+    console.error(err)
   }
-
+}
   return (
     <div className={styles.loginPage}>
       <div className={styles.loginHero}>
         <div className={styles.loginHeroContent}>
-          <h1>Welcome Back</h1>
-          <p>Sign in to your BikeShare account and continue your journey</p>
+          <h1>Bem-vindo!</h1>
+          <p>Faça login e entre nessa VelociViagem!</p>
         </div>
       </div>
 
@@ -62,8 +102,8 @@ const LoginPage = () => {
             <div className={styles.loginIcon}>
               <Bike size={48} />
             </div>
-            <h2>Sign In</h2>
-            <p>Enter your credentials to access your account</p>
+            <h2>Login</h2>
+            <p>Digite seus dados para criar sua conta</p>
           </div>
 
           <form className={styles.loginForm} onSubmit={handleSubmit}>
@@ -71,7 +111,7 @@ const LoginPage = () => {
 
             <div className={styles.formGroup}>
               <label htmlFor="email" className={styles.formLabel}>
-                Email Address
+                Email
               </label>
               <div className={styles.inputWrapper}>
                 <Mail size={20} className={styles.inputIcon} />
@@ -82,7 +122,7 @@ const LoginPage = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   className={styles.formInput}
-                  placeholder="Enter your email"
+                  placeholder="Digite seu email"
                   required
                 />
               </div>
@@ -90,7 +130,7 @@ const LoginPage = () => {
 
             <div className={styles.formGroup}>
               <label htmlFor="password" className={styles.formLabel}>
-                Password
+                Matrícula
               </label>
               <div className={styles.inputWrapper}>
                 <Lock size={20} className={styles.inputIcon} />
@@ -101,62 +141,26 @@ const LoginPage = () => {
                   value={formData.password}
                   onChange={handleInputChange}
                   className={styles.formInput}
-                  placeholder="Enter your password"
+                  placeholder="Digite sua matrícula"
                   required
                 />
                 <button
                   type="button"
                   className={styles.passwordToggle}
                   onClick={togglePasswordVisibility}
-                  aria-label="Toggle password visibility"
+                  aria-label="Ativiar/Desativar visibilidade da senha"
                 >
                   {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                 </button>
               </div>
             </div>
 
-            <div className={styles.formOptions}>
-              <label className={styles.checkboxLabel}>
-                <input
-                  type="checkbox"
-                  name="rememberMe"
-                  checked={formData.rememberMe}
-                  onChange={handleInputChange}
-                  className={styles.checkbox}
-                />
-                <span className={styles.checkboxText}>Remember me</span>
-              </label>
-              <Link to="/forgot-password" className={styles.forgotLink}>
-                Forgot password?
-              </Link>
-            </div>
-
             <button type="submit" className={styles.loginButton} disabled={isLoading}>
-              {isLoading ? "Signing In..." : "Sign In"}
+              {isLoading ? "Validando..." : "Validar"}
             </button>
           </form>
 
-          <div className={styles.loginFooter}>
-            <p>
-              Don't have an account?{" "}
-              <Link to="/signup" className={styles.signupLink}>
-                Sign up here
-              </Link>
-            </p>
-          </div>
-
-          <div className={styles.divider}>
-            <span>or continue with</span>
-          </div>
-
-          <div className={styles.socialLogin}>
-            <button className={styles.socialButton}>
-              <span>Google</span>
-            </button>
-            <button className={styles.socialButton}>
-              <span>Apple</span>
-            </button>
-          </div>
+       
         </div>
       </div>
     </div>
