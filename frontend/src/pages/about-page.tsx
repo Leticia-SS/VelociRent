@@ -8,6 +8,7 @@ import Team from "../assets/velociteam.jpg"
 import Gabriel from "../assets/gabriel.jpg"
 import Giovani from "../assets/giovani.jpg"
 import Leticia from "../assets/leticia.jpg"
+import { Outlet, useSearchParams } from 'react-router-dom';
 
 const AboutPage = () => {
   const navigate = useNavigate()
@@ -79,15 +80,16 @@ const AboutPage = () => {
     },
   ]
 
-  const handleWebsiteRental = () => {
-    if (isAuthenticated) {
-      navigate("/rental")
-    } else {
-      navigate("/login", { state: { from: { pathname: "/rental" } } })
-    }
+const handleWebsiteRental = () => {
+  if (email) {
+    navigate("/rental?email=" + email);
+  } else {
+    navigate("/login", { state: { from: { pathname: "/rental" } } });
   }
+};
 
-  const handleTelegramRental = () => {
+  const [searchParams] = useSearchParams();
+  const email = searchParams.get('email');  const handleTelegramRental = () => {
     window.open("https://t.me/VelociRent_Bot", "_blank", "noopener,noreferrer")
   }
 

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/auth-context"
 import { MapPin, Smartphone, QrCode, Unlock, CheckCircle, Clock, Shield, AlertCircle } from "lucide-react"
 import styles from "./pickup-page.module.css"
+import { Outlet, useSearchParams } from 'react-router-dom';
 
 const PickupPage = () => {
   const navigate = useNavigate()
@@ -66,15 +67,16 @@ const PickupPage = () => {
     },
   ]
 
-  const handleWebsiteRental = () => {
-    if (isAuthenticated) {
-      navigate("/rental")
-    } else {
-      navigate("/login", { state: { from: { pathname: "/rental" } } })
-    }
+const handleWebsiteRental = () => {
+  if (email) {
+    navigate("/rental?email=" + email);
+  } else {
+    navigate("/login", { state: { from: { pathname: "/rental" } } });
   }
+};
 
-  const handleTelegramRental = () => {
+  const [searchParams] = useSearchParams();
+  const email = searchParams.get('email');  const handleTelegramRental = () => {
     window.open("https://t.me/VelociRent_Bot", "_blank", "noopener,noreferrer")
   }
 

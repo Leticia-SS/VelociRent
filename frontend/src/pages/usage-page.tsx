@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { useAuth } from "../context/auth-context"
 import { Clock, Home, MapPin, Calendar, Star, Shield, Zap, Coffee } from "lucide-react"
 import styles from "./usage-page.module.css"
+import { Outlet, useSearchParams } from 'react-router-dom';
 
 const UsagePage = () => {
   const navigate = useNavigate()
@@ -77,15 +78,16 @@ const UsagePage = () => {
     },
   ]
 
-  const handleWebsiteRental = () => {
-    if (isAuthenticated) {
-      navigate("/rental")
-    } else {
-      navigate("/login", { state: { from: { pathname: "/rental" } } })
-    }
+const handleWebsiteRental = () => {
+  if (email) {
+    navigate("/rental?email=" + email);
+  } else {
+    navigate("/login", { state: { from: { pathname: "/rental" } } });
   }
+};
 
-  const handleTelegramRental = () => {
+  const [searchParams] = useSearchParams();
+  const email = searchParams.get('email');  const handleTelegramRental = () => {
     window.open("https://t.me/VelociRent_Bot", "_blank", "noopener,noreferrer")
   }
 
