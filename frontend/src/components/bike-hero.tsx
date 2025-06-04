@@ -5,14 +5,18 @@ import { useAuth } from "../context/auth-context"
 import styles from "./bike-hero.module.css"
 import { ArrowRight } from "lucide-react"
 import Logo from "../assets/logo-sem-fundo.png"
+import { Outlet, useSearchParams } from 'react-router-dom';
 
 const BikeHero = () => {
   const navigate = useNavigate()
   const { isAuthenticated } = useAuth()
 
+  const [searchParams] = useSearchParams();
+  const email = searchParams.get('email');
+
   const handleRentBike = () => {
-    if (isAuthenticated) {
-      navigate("/rental")
+    if (email) {
+      navigate("/rental?email="+email)
     } else {
       navigate("/login", { state: { from: { pathname: "/rental" } } })
     }

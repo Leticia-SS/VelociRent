@@ -1,7 +1,25 @@
 import styles from "./footer.module.css"
 import { Bike, Facebook, Twitter, Instagram, Smartphone, Mail, MapPin } from "lucide-react"
+import { useState, useEffect } from "react"
+import { Link } from "react-router-dom" 
+import { Outlet, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Footer = () => {
+
+  const [searchParams] = useSearchParams();
+  const email = searchParams.get('email');
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
+
+  const closeMenu = () => {
+    setIsMenuOpen(false)
+  }
+
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -29,20 +47,46 @@ const Footer = () => {
             <h3>Nossos Links</h3>
             <ul>
               <li>
-                <a href="#">Home</a>
+                
+    <Link
+      to={email ? `/bikes?email=${encodeURIComponent(email)}` : "/bikes"}
+      onClick={closeMenu}
+    >
+      Bikes
+    </Link>
               </li>
               <li>
-                <a href="#">Como retirar</a>
+                <Link
+      to={email ? `/pickup?email=${encodeURIComponent(email)}` : "/pickup"}
+      onClick={closeMenu}
+    >
+      Como pegar
+    </Link>
               </li>
               <li>
-                <a href="#">Tempo de uso</a>
-              </li>
-              <li>
-                <a href="#">Estágios</a>
-              </li>
-              <li>
-                <a href="#">Sobre nós</a>
-              </li>
+    <Link
+      to={email ? `/usage?email=${encodeURIComponent(email)}` : "/usage"}
+      onClick={closeMenu}
+    >
+      Tempo de uso
+    </Link>
+  </li>
+  <li>
+    <Link
+      to={email ? `/internships?email=${encodeURIComponent(email)}` : "/internships"}
+      onClick={closeMenu}
+    >
+      Estágios
+    </Link>
+  </li>
+  <li>
+    <Link
+      to={email ? `/about?email=${encodeURIComponent(email)}` : "/about"}
+      onClick={closeMenu}
+    >
+      Sobre nós
+    </Link>
+  </li>
             </ul>
           </div>
 
