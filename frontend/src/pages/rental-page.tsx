@@ -3,6 +3,13 @@
 import { useState } from "react"
 import { MapPin, CreditCard, Bike, Shield, CheckCircle, User } from "lucide-react"
 import styles from "./rental-page.module.css"
+import { useSearchParams } from 'react-router-dom';
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://bvoyvinchnjokkmpduqn.supabase.co'; // URL da API REST
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ2b3l2aW5jaG5qb2trbXBkdXFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDczMzc2MDUsImV4cCI6MjA2MjkxMzYwNX0.lfAXwC-v737vM0OLSFyh2ZeJ3EHUoLXTc11MlEkzojI'; // Chave pública (anon ou service role)
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 const RentalPage = () => {
   const [selectedStation, setSelectedStation] = useState("")
@@ -27,9 +34,71 @@ const RentalPage = () => {
     return selectedBikeType.price
   }
 
-  const handleRentBike = () => {
-    alert("Bike rental confirmed!")
+
+  const [searchParams] = useSearchParams();
+  const email = searchParams.get('email');
+
+const handleRentBike = async () => {
+  if (!email) {
+    console.error('Email não encontrado nos parâmetros da URL.');
+    return;
   }
+
+  // Busca dados do Supabase
+  let { data, error } = await supabase
+    .from('veloci_users')
+    .select('cpf, email, name')
+    .eq('email', email)
+    .single();
+
+  if (error) {
+    console.error('Erro ao buscar dados do usuário:', error.message);
+    return;
+  }
+
+  if (!data) {
+    console.error('Usuário não encontrado.');
+    return;
+  }
+
+  const { cpf, name } = data;
+  console.log('Enviando ao PHP:', { name, email, cpf });
+
+  // Envia para o PHP
+  fetch('https://newandrews.com.br/api-velocirent/checkout.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name, email, cpf })
+  })
+    .then(res => res.json())
+    .then(resposta => {
+      console.log('Resposta do PHP:', resposta);
+
+      if (resposta.paymentLink) {
+        const linkPagamento = resposta.paymentLink;
+        console.log('Link de pagamento:', linkPagamento);
+
+        // Exemplo de uso: redirecionar
+        window.location.href = linkPagamento;
+
+        // ou abrir em nova aba:
+        // window.open(linkPagamento, '_blank');
+
+        // ou mostrar em alerta:
+        // alert(`Link de pagamento: ${linkPagamento}`);
+      } else {
+        alert('Erro: link de pagamento não encontrado.');
+        console.error(resposta);
+      }
+    })
+    .catch(err => {
+      console.error('Erro ao chamar o PHP:', err);
+      alert('Erro ao criar cliente.');
+    });
+};
+
 
   return (
     <div id="test" className={styles.rentalPage}>
@@ -126,8 +195,8 @@ const RentalPage = () => {
                   Método de Pagamento
                 </h4>
                 <div className={styles.paymentCard}>
-                  <span>•••• •••• •••• 1234</span>
-                  <span>Visa</span>
+                  <span>Boleto / PIX / Crédito / Débito</span>
+          
                 </div>
               </div>
 
@@ -137,7 +206,7 @@ const RentalPage = () => {
                 disabled={!selectedStation || !selectedBike}
               >
                 <CheckCircle size={20} />
-                Confirmar Aluguel
+                Escolher forma de pagamento
               </button>
             </div>
 
