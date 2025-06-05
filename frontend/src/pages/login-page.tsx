@@ -16,15 +16,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 
 const LoginPage = () => {
-
-
-
-
-if(supabase){
-  
-}
-
-  const navigate = useNavigate()
+ const navigate = useNavigate()
   const location = useLocation()
   const { login, isLoading } = useAuth()
 
@@ -35,7 +27,7 @@ if(supabase){
   })
   const [error, setError] = useState("")
 
-  const from = location.state?.from?.pathname || "/pageLogado?email=" + formData.email
+  const from = location.state?.from?.pathname || "/rental?email=" + formData.email + "#test"
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword)
@@ -50,43 +42,39 @@ if(supabase){
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault()
-  setError("")
+    e.preventDefault()
+    setError("")
 
-  try {
-    
-    // Verifica se o email existe e obtém a matrícula correspondente
-    const { data: userData, error: userError } = await supabase
-      .from('veloci_users')
-      .select('matricula')
-      .eq('email', formData.email)
-      .single()
+    try {
+      const { data: userData, error: userError } = await supabase
+        .from('veloci_users')
+        .select('matricula')
+        .eq('email', formData.email)
+        .single()
 
-    if (userError || !userData) {
-      setError("Email não encontrado")
-      return
+      if (userError || !userData) {
+        setError("Email não encontrado")
+        return
+      }
+
+      if (formData.password !== userData.matricula.toString()) {
+        setError("Matrícula/senha incorreta")
+        return
+      }
+
+      const success = await login(formData.email, formData.password)
+
+      if (success) {
+        alert("Login bem-sucedido!")
+        navigate(from, { replace: true })
+      } else {
+        setError("Falha no login")
+      }
+    } catch (err) {
+      setError("Ocorreu um erro durante o login")
+      console.error(err)
     }
-
-    // Verifica se a senha (password) corresponde à matrícula
-    if (formData.password !== userData.matricula.toString()) {
-      setError("Matrícula/senha incorreta")
-      return
-    }
-
-    // Se tudo estiver correto, faz o login
-    const success = await login(formData.email, formData.password)
-    
-    if (success) {
-      alert("Login bem-sucedido!")
-      navigate(from, { replace: true })
-    } else {
-      setError("Falha no login")
-    }
-  } catch (err) {
-    setError("Ocorreu um erro durante o login")
-    console.error(err)
   }
-}
   return (
     <div id="test" className={styles.loginPage}>
       <div className={styles.loginHero}>

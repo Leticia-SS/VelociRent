@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom"
 import { Wrench, Building2, Calculator, GraduationCap, Users, Award, Clock } from "lucide-react"
 import styles from "./internships-page.module.css"
 import { useSearchParams } from 'react-router-dom';
+import { useEffect } from "react"
 
 const InternshipsPage = () => {
-  const navigate = useNavigate()
 
   const internshipTypes = [
     {
@@ -83,22 +83,37 @@ const InternshipsPage = () => {
     },
   ]
 
-const handleWebsiteRental = () => {
-  if (email) {
-    navigate("/rental?email=" + encodeURIComponent(email) + "#test");
-    
-    // Aguardar a navegação terminar para fazer o scroll
-    setTimeout(() => {
-      const el = document.getElementById("test");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }, 100); // Pequeno delay para garantir que o elemento esteja no DOM
-  } else {
-    navigate("/login", { state: { from: { pathname: "/rental" } } });
-  }
-};
+const navigate = useNavigate()
 
   const [searchParams] = useSearchParams();
-  const email = searchParams.get('email');  const handleTelegramRental = () => {
+  const email = searchParams.get('email');
+  const scrollToTest = () => {
+    const el = document.getElementById("test");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Scroll ao carregar a página se tiver #test
+  useEffect(() => {
+    if (window.location.hash === "#test") {
+      setTimeout(scrollToTest, 200);
+    }
+  }, []);
+
+const handleWebsiteRental = () => {
+  if (email) {
+      // Redireciona para /rental com email e hash
+      navigate(`/rental?email=${encodeURIComponent(email)}#test`);
+      setTimeout(scrollToTest, 100);
+    } else {
+      // Redireciona para /login com hash direto na URL
+      navigate("/login#test");
+
+      // Scroll opcional imediato (caso o elemento já esteja na página de login)
+      setTimeout(scrollToTest, 100);
+    }
+};
+
+  const handleTelegramRental = () => {
     window.open("https://t.me/VelociRent_Bot", "_blank", "noopener,noreferrer")
   }
 

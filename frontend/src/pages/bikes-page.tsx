@@ -7,13 +7,12 @@ import { useSearchParams } from 'react-router-dom';
 import Explorer from "../assets/caloiexplorer.webp"
 import Speed from "../assets/caloispeed.jpg"
 import Mountain from "../assets/oggimountain.png"
+import { useEffect } from "react"
 
 
 const BikesPage = () => {
-  const navigate = useNavigate()
-  
-  const [searchParams] = useSearchParams();
-  const email = searchParams.get('email');  
+
+
 
   const bikes = [
     {
@@ -51,18 +50,34 @@ const BikesPage = () => {
     },
   ]
 
+  const navigate = useNavigate()
+
+  const [searchParams] = useSearchParams();
+  const email = searchParams.get('email');
+  const scrollToTest = () => {
+    const el = document.getElementById("test");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Scroll ao carregar a página se tiver #test
+  useEffect(() => {
+    if (window.location.hash === "#test") {
+      setTimeout(scrollToTest, 200);
+    }
+  }, []);
+
 const handleWebsiteRental = () => {
   if (email) {
-    navigate("/rental?email=" + encodeURIComponent(email) + "#test");
-    
-    // Aguardar a navegação terminar para fazer o scroll
-    setTimeout(() => {
-      const el = document.getElementById("test");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }, 100); // Pequeno delay para garantir que o elemento esteja no DOM
-  } else {
-    navigate("/login", { state: { from: { pathname: "/rental" } } });
-  }
+      // Redireciona para /rental com email e hash
+      navigate(`/rental?email=${encodeURIComponent(email)}#test`);
+      setTimeout(scrollToTest, 100);
+    } else {
+      // Redireciona para /login com hash direto na URL
+      navigate("/login#test");
+
+      // Scroll opcional imediato (caso o elemento já esteja na página de login)
+      setTimeout(scrollToTest, 100);
+    }
 };
 
   const handleTelegramRental = () => {
@@ -71,16 +86,16 @@ const handleWebsiteRental = () => {
 
   const handleIndividualBikeRent = () => {
   if (email) {
-    navigate("/rental?email=" + encodeURIComponent(email) + "#test");
-    
-    // Aguardar a navegação terminar para fazer o scroll
-    setTimeout(() => {
-      const el = document.getElementById("test");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }, 100); // Pequeno delay para garantir que o elemento esteja no DOM
-  } else {
-    navigate("/login", { state: { from: { pathname: "/rental" } } });
-  }
+      // Redireciona para /rental com email e hash
+      navigate(`/rental?email=${encodeURIComponent(email)}#test`);
+      setTimeout(scrollToTest, 100);
+    } else {
+      // Redireciona para /login com hash direto na URL
+      navigate("/login#test");
+
+      // Scroll opcional imediato (caso o elemento já esteja na página de login)
+      setTimeout(scrollToTest, 100);
+    }
   }
 
   return (
